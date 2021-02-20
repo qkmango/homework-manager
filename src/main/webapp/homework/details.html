@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/hm/lib/layui/css/layui.css" />
+	<base href="http://localhost:80/hm/">
+</head>
+<body>
+	<div class="laymd-dome"></div>
+</body>
+</html>
+<script src="lib/layui/layui.js"></script>
+<script src="lib/laymd/marked.min.js"></script>
+<script src="homework/js/details.js"></script>
+<script>
+	layui.config({base: 'lib/laymd/'}).use(['laymd'], function(){
+	    var laymd = layui.laymd;
+
+	    //实例化编辑器,可以多个实例
+	    //改用css选择器,去除init冗余
+	    var md = laymd('.laymd-dome', {});
+
+	    //内容改变事件
+	    md.on('change', function () {
+	        //这里借用marked.js解析效率比HyperDown快,用户可自行找解析器
+	        this.setPreview(marked(this.getText()));
+	    });
+
+	    //初始化数据预览
+	    md.do('change');
+	});
+</script>

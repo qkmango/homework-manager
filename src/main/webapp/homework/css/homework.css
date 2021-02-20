@@ -1,0 +1,36 @@
+body {
+	/* background-color: #0000FF; */
+}
+
+#homework-list .layui-layout-right {
+	top: auto;
+	margin-right: 10px;
+}
+
+.layui-laypage a, .layui-laypage span {
+	background-color: transparent;
+	/* color: white; */
+}
+
+.layui-nav .layui-input-inline {
+	margin-right: 0;
+}
+.layui-nav .layui-form-item .layui-inline {
+	margin: 0;
+}
+
+.layui-nav .layui-colla-content {
+	padding: 0;
+}
+.layui-nav .layui-form-item {
+	margin: 0;
+}
+
+.layui-nav .layui-form-pane .layui-form-label {
+	width: 80px;
+}
+
+#homework-list {
+	overflow-y: scroll;
+	height: 100%;
+}
