@@ -2,31 +2,71 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/hm/lib/layui/css/layui.css" />
-	<base href="http://localhost:80/hm/">
+<!--<base href="http://localhost:80/hm/">-->
+<base href="/hm/">
+<link rel="stylesheet" href="lib/layui/css/layui.css" />
+<link rel="stylesheet" href="homework/css/details.css" />
+<script src="lib/alioss/oss.js"></script>
+<script src="lib/jquery-3.5.1.js"></script>
+<script src="lib/laymd/marked.min.js"></script>
 </head>
 <body>
-	<div class="laymd-dome"></div>
+
+
+<ul class="layui-nav layui-bg-gray" lay-filter="">
+
+	<div class="layui-collapse">
+		<div class="layui-colla-item">
+
+			<!-- 作业提交 -->
+			<h2 class="layui-colla-title">作业提交</h2>
+			<div class="layui-colla-content">
+				<input type="file" class="layui-btn layui-icon layui-icon-file-b" id="inputFile">
+				<button id="startBtn" class="layui-btn layui-disabled" disabled><i class="layui-icon">&#xe67c;</i>上传</button>
+				<button id="suspendBtn" class="layui-btn layui-disabled" disabled><i class="layui-icon">&#xe651;</i>暂停</button>
+				<button id="resetBtn" class="layui-btn layui-btn-danger layui-disabled" disabled><i class="layui-icon">&#xe640;</i>清空</button>
+
+				<div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="uploadProgress">
+					<div class="layui-progress-bar" lay-percent="0%"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</ul>
+
+
+
+	<div class="layui-card">
+		<div class="layui-card-header">
+			<h1 style="font-weight: bold">java 实验报告一</h1>
+		</div>
+		<div class="layui-card-body">
+			<img src="https://img.shields.io/badge/学科-java-5FB878.svg">
+			<img src="https://img.shields.io/badge/最后提交日期-2020--02--10-5FB878.svg">
+			<hr>
+			<!--markdown内容-->
+			<div id="content"></div>
+		</div>
+	</div>
+
 </body>
 </html>
 <script src="lib/layui/layui.js"></script>
+<script src="homework/js/upload.js"></script>
 <script src="lib/laymd/marked.min.js"></script>
 <script src="homework/js/details.js"></script>
 <script>
-	layui.config({base: 'lib/laymd/'}).use(['laymd'], function(){
-	    var laymd = layui.laymd;
+	//渲染 markdown
+	window.onload = function() {
+		document.getElementById("content").innerHTML=marked('# 小星星');
+	}
 
-	    //实例化编辑器,可以多个实例
-	    //改用css选择器,去除init冗余
-	    var md = laymd('.laymd-dome', {});
-
-	    //内容改变事件
-	    md.on('change', function () {
-	        //这里借用marked.js解析效率比HyperDown快,用户可自行找解析器
-	        this.setPreview(marked(this.getText()));
-	    });
-
-	    //初始化数据预览
-	    md.do('change');
+	var element;
+	layui.use(['element','form'],function () {
+		var form = layui.form;
+		element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+		element.init();
+		// element.progress('demo', 50+'%');
 	});
 </script>

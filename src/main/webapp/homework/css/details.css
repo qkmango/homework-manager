@@ -1,0 +1,23 @@
+.layui-icon {
+    margin-right: 5px;
+}
+
+.layui-card hr{
+    height: 3px;
+    background-color: #c2c2c2;
+}
+
+#content {
+    margin-top: 30px;
+}
+
+.layui-progress-big {
+    margin-top: 10px;
+}
+
+/*作业提交 input button 背景色*/
+#inputFile,
+#startBtn,
+#suspendBtn{
+    background-color: #5FB878;
+}

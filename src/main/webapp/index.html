@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title></title>
+<base href="http://localhost:80/hm/">
 <link rel="stylesheet" href="lib/layui/css/layui.css" />
 <style>
 	
@@ -31,8 +32,15 @@
 	<!-- 左侧垂直导航 -->
 	<div id="left-nav-box" class="layui-col-md2  layui-col-sm3">
 		<ul id="left-nav" class="layui-nav layui-nav-tree layui-inline" lay-filter="left-nav">
+
+			<!--左上角 用户名-->
+			<li id="user" style="padding: 10px;">
+				<span>张嗣龙</span>
+				<a style="color: #009E94; float: right;" >退出</a>
+			</li>
+
 			<li class="layui-nav-item layui-this">
-				<a class="item" id="/homework/homework.html">主页</a>
+				<a class="item" id="homework/homework.html">主页</a>
 			</li>
 			<li class="layui-nav-item">
 				<a>作业</a>
