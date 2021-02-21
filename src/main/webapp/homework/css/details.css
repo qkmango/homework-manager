@@ -11,13 +11,18 @@
     margin-top: 30px;
 }
 
-.layui-progress-big {
-    margin-top: 10px;
+.layui-card .layui-card-header a{
+    margin:2px 10px;
 }
 
-/*作业提交 input button 背景色*/
-#inputFile,
-#startBtn,
-#suspendBtn{
-    background-color: #5FB878;
-}
+
+/*.layui-progress-big {*/
+/*    margin-top: 10px;*/
+/*}*/
+
+/*!*作业提交 input button 背景色*!*/
+/*#inputFile,*/
+/*#startBtn,*/
+/*#suspendBtn{*/
+/*    background-color: #5FB878;*/
+/*}*/

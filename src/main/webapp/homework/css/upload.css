@@ -1,0 +1,19 @@
+.layui-progress.layui-progress-big {
+    margin-bottom: 10px;
+}
+
+/*.layui-box {*/
+/*    padding: 0 15px;*/
+/*}*/
+
+.layui-card hr {
+    height: 3px;
+    background-color: #c2c2c2;
+}
+
+/*右上角状态角标*/
+.layui-card .layui-card-header i {
+    color: #5FB878;
+    font-size: 30px;
+    padding-right: 15px;
+}

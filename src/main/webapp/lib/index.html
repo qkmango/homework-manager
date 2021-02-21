@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="layui/css/layui.css" />
 </head>
 <body>
-	<div class="laymd-dome"></div>
+	<div class="markdown"></div>
 </body>
 </html>
 <script src="layui/layui.js"></script>
@@ -16,7 +16,7 @@
 	
 	    //实例化编辑器,可以多个实例
 	    //改用css选择器,去除init冗余
-	    var md = laymd('.laymd-dome', {});
+	    var md = laymd('.markdown', {});
 	
 	    //内容改变事件
 	    md.on('change', function () {

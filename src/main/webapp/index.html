@@ -35,8 +35,8 @@
 
 			<!--左上角 用户名-->
 			<li id="user" style="padding: 10px;">
-				<span>张嗣龙</span>
-				<a style="color: #009E94; float: right;" >退出</a>
+				<span id="realname"></span>
+				<a id="loginFlag" style="color: #009E94; float: right;" ></a>
 			</li>
 
 			<li class="layui-nav-item layui-this">
@@ -58,17 +58,14 @@
 				</dl>
 			</li>
 			<li class="layui-nav-item">
-				<a>作业发布</a>
-				<dl class="layui-nav-child">
-					<dd><a class="item" id="homework/homework.html">修改昵称</a></dd>
-				</dl>
+				<a class="item" id="admin/addHomework.html">作业发布</a>
 			</li>
 		</ul>
 	</div>
 	
 	<!-- iframe窗体 -->
 	<div id="iframe-box" class="layui-col-md10 layui-col-sm9">
-		<iframe src="homework/details.html"></iframe>
+		<iframe src="homework/upload.html"></iframe>
 	</div>
 	
 </body>
@@ -88,11 +85,32 @@ layui.use('element', function(){
 
 <script>
 $(function() {
+
 	// 左侧导航控制iframe
 	var iframe = $('#iframe-box iframe')[0];
 	$('#left-nav .item').click(function() {
 		// alert(this.id)
 		iframe.src=this.id;
 	})
+
+	$.ajax({
+		url:'system/user/getUserinfo.do',
+		type:'get',
+		dataType:'json',
+		success:function (data) {
+			if (data.success) {
+				$('#realname').text(data.user.realName);
+				$('#loginFlag').text('退出');
+				$('#loginFlag').attr('href','system/user/logout.do');
+			} else {
+				$('#realname').text('未登录');
+				$('#loginFlag').text('去登陆');
+				$('#loginFlag').attr('href','system/login.html');
+			}
+		}
+	})
+
+
+
 })
 </script>

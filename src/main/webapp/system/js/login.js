@@ -1,8 +1,13 @@
+if (window.top!=window) {
+	window.top.location=window.location;
+}
+
+
 layui.use('form', function(){
 	var form = layui.form;
 	 
 	form.verify({
-		loginAct: function(value, item){ //value：表单的值、item：表单的DOM对象
+		username: function(value, item){ //value：表单的值、item：表单的DOM对象
 			if(!new RegExp("^[a-zA-Z0-9]+$").test(value)||
 				value.length > 10 || value.length <5) {
 				return '[5-10]位字母或数字组合';
@@ -20,19 +25,17 @@ layui.use('form', function(){
 
 function login() {
 	$.ajax({
-		url:"settings/login.do",
+		url:"system/user/login.do",
 		data:{
-			loginAct:$.trim($("#loginAct").val()),
-			loginPwd:$.trim($("#loginPwd").val())
+			username:$.trim($("#username").val()),
+			password:$.trim($("#password").val())
 		},
 		type:"post",
 		dataType:"json",
 		success:function (data) {
 			if (data.success) {
 				console.log("登陆成功");
-				console.log(data.user.name);
-				console.log(data.user.id);
-				window.location.href = "/hm/index.html";
+				window.location.href = "../../hm/index.html";
 			} else{
 				alert("登陆失败,请重试!");
 			}

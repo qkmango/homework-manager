@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>上传作业</title>
+<base href="http://localhost:80/hm/">
+<link rel="stylesheet" href="lib/layui/css/layui.css" />
+<script src="lib/jquery-3.5.1.js"></script>
+<script src="lib/layui/layui.js"></script>
+<script src="lib/laymd/marked.min.js"></script>
+</head>
+<body>
+
+
+
+<form class="layui-form layui-form-pane" action="admin/addHomework.do" method="post">
+    <div class="layui-form-item">
+        <label class="layui-form-label">作业标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">学科</label>
+        <div class="layui-input-inline">
+            <select name="courseId" lay-filter="aihao" lay-verify="required">
+                <option value=""></option>
+                <option value="0">Java</option>
+                <option value="1">PHP</option>
+                <option value="2">HTML</option>
+                <option value="3">微机原理</option>
+                <option value="4">数据库</option>
+            </select>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">截止日期</label>
+            <div class="layui-input-inline">
+                <input type="text" name="deadline" class="layui-input" id="data" lay-verify="date" placeholder="yyyy-MM-dd">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">简略信息</label>
+        <div class="layui-input-block">
+            <textarea name="briefInfo" placeholder="请输入内容" lay-verify="required" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">详细信息</label>
+        <div class="layui-input-block">
+            <div class="markdown layui-textarea"></div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <button class="layui-btn" lay-submit lay-filter="formSubmit">确认发布</button>
+    </div>
+
+</form>
+
+</body>
+</html>
+
+<script>
+    layui.use(['form','laydate'], function(){
+        var form = layui.form;
+        var laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#data' //指定元素
+        });
+
+        //监听提交
+        form.on('submit(formSubmit)', function (data) {
+            // data.field.shstate = 1;
+            // return false;
+            console.log(data.field)
+            $.ajax({
+                url: 'admin/addHomework.do',
+                data: data.field,
+                type:'post',
+                async:false,
+                dataType:'json',
+                success: function (data) {
+                    if (data.success) {
+                        layer.msg("提交成功");
+                    }else {
+                        layer.msg("提交失败！");
+                    }
+                },
+                error:function () {
+                    layer.msg("提交失败！")
+                }
+            });
+            //如果返回true，就会刷新跳转页面了，所以固定false
+            return false;
+        });
+
+    });
+</script>
+<script>
+    layui.config({base: 'lib/laymd/'}).use(['laymd'], function(){
+        var laymd = layui.laymd;
+
+        //实例化编辑器,可以多个实例
+        //改用css选择器,去除init冗余
+        var md = laymd('.markdown', {name:'detailInfo'});
+
+        //内容改变事件
+        md.on('change', function () {
+            //这里借用marked.js解析效率比HyperDown快,用户可自行找解析器
+            this.setPreview(marked(this.getText()));
+        });
+
+        //初始化数据预览
+        md.do('change');
+    });
+</script>
+

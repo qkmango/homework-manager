@@ -1,34 +1,49 @@
+$(function () {
+
 var $inputFile = $('#inputFile');
 var $startBtn = $("#startBtn");
 var $resetBtn = $("#resetBtn");
 var $suspendBtn = $("#suspendBtn");
 
-// var $progress = $('#progress');
-
-
-// OSS配置
-let ossConfig = {
-	region: 'oss-cn-beijing',
-	accessKeyId: 'LTAI4GBrZSGmGBHKLW9NsrpZ',
-	accessKeySecret: 'JG2eVcbSh0Urye19SQrTD063ltHEW2',
-	bucket: 'qkmango'
-}
-
-
 //断点记录变量
 let tempCheckpoint;
-// 
+//
 let client;
 // flag标志，
 // 新的未上传的文件true，可继续上传的文件false
 let flag = true;
+//OSS_STS配置
+let ossConfig;
+
+$.ajax({
+	url:'system/oss/getOssSts.do',
+	data:{},
+	type:'get',
+	dataType:'json',
+	success:function (data) {
+		// OSS配置
+		ossConfig = {
+			region: data.region,
+			accessKeyId: data.accessKeyId,
+			accessKeySecret: data.accessKeySecret,
+			bucket: data.bucket,
+			stsToken:data.stsToken
+		}
+	},
+	error:function () {
+		// alert('请登陆');
+		// window.location.href = 'system/login.html';
+	}
+})
+
+
 
 
 // 上传方法
 async function multipartUpload (fileName, data) {
 	client = new OSS(ossConfig);
 	try {
-		let result = await client.multipartUpload(fileName, data, { 
+		let result = await client.multipartUpload(fileName, data, {
 			progress: function (p, checkpoint) {
 				// 断点记录点。浏览器重启后无法直接继续上传，您需要手动触发上传操作。
 				tempCheckpoint = checkpoint;
@@ -36,15 +51,11 @@ async function multipartUpload (fileName, data) {
 				element.progress('uploadProgress', (p*100).toFixed(2)+'%');
 			}
 		})
-		changeDisable({
-			inputFile:true,
-			startBtn:true,
-			suspendBtn:true,
-			resetBtn:true
-		})
 		console.log(result);
+		uploadSuccess();
 	} catch(e){
 		console.log(e);
+		alert('上传失败！请刷新页面');
 	}
 }
 
@@ -60,16 +71,24 @@ async function resumeUpload(fileName, data) {
 			},
 			checkpoint: tempCheckpoint
 		})
-		changeDisable({
-			inputFile:true,
-			startBtn:true,
-			suspendBtn:true,
-			resetBtn:true
-		})
 		console.log(result);
+		uploadSuccess();
 	} catch (e) {
 		console.log(e);
+		alert('上传失败！请刷新页面');
 	}
+}
+
+//上传完成调用
+function uploadSuccess() {
+	changeDisable({
+		inputFile:true,
+		startBtn:true,
+		suspendBtn:true,
+		resetBtn:true
+	});
+	alert('上传成功');
+	$('.layui-card .layui-card-header i').html('&#xe6af;');
 }
 
 
@@ -112,7 +131,7 @@ function changeDisable(disableConf) {
 //开始上传
 function startUpload () {
 	const data = inputFile.files[0];
-	var fileName = data.name;	
+	var fileName = data.name;
 	multipartUpload(fileName, data);
 }
 
@@ -138,7 +157,7 @@ resetBtn.onclick = function() {
 		suspendBtn:true,
 		resetBtn:true
 	})
-	
+
 	element.progress('uploadProgress', 0+'%');
 	flag = true;
 }
@@ -188,3 +207,8 @@ suspendBtn.onclick = function() {
 		resetBtn:false
 	})
 }
+
+
+
+
+})
