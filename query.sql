@@ -1,12 +1,6 @@
+-- 某个用户已经提交的作业
+SELECT hid,uid from commit_homework WHERE uid='aaa';
 
--- 查询未提交的作业
-SELECT *
-FROM homework h
-LEFT JOIN commit_homework ch
-ON h.id=ch.hid
-WHERE h.id not in(select hid from commit_homework);
-
-SELECT *
-FROM homework h
-         JOIN commit_homework ch
-WHERE h.id not in(ch.hid)
+-- 某个用户未提交的作业
+select * from homework
+where id not in(SELECT hid from commit_homework WHERE uid='aaa');
