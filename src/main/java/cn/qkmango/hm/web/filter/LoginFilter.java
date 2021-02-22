@@ -32,6 +32,7 @@ public class LoginFilter implements Filter {
             "/system/user/login.do".equals(path)||
             "/system/user/logout.do".equals(path)||
             "/homework/getCourseList.do".equals(path)||
+            "/homework/getHomeworkById.do".equals(path)||
             "/system/user/getUserinfo.do".equals(path)) {
             chain.doFilter(req,resp);
         } else {

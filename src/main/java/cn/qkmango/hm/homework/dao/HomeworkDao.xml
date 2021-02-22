@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.qkmango.hm.admin.dao.HomeworkDao">
+<mapper namespace="cn.qkmango.hm.homework.dao.HomeworkDao">
+
+    <select id="getHomeworkById" resultType="cn.qkmango.hm.homework.domain.Homework">
+        select
+            h.id,
+            h.title,
+            c.name as course,
+            h.deadline,
+            h.briefInfo,
+            h.detailInfo
+        from homework h
+        join course c
+        on h.course=c.id
+        where h.id=#{id};
+    </select>
 
     <insert id="addHomeWork">
         insert into homework(
             id,
             title,
-            courseId,
+            course,
             deadline,
             briefInfo,
             detailInfo
@@ -15,7 +29,7 @@
         values (
            #{id},
            #{title},
-           #{courseId},
+           #{course},
            #{deadline},
            #{briefInfo},
            #{detailInfo}

@@ -44,22 +44,14 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>AdminController</servlet-name>
-    <servlet-class>cn.qkmango.hm.admin.web.controller.AdminController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminController</servlet-name>
-    <url-pattern>/admin/addHomework.do</url-pattern>
-  </servlet-mapping>
-
-
-  <servlet>
     <servlet-name>HomeworkController</servlet-name>
     <servlet-class>cn.qkmango.hm.homework.web.controller.HomeworkController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>HomeworkController</servlet-name>
     <url-pattern>/homework/getCourseList.do</url-pattern>
+    <url-pattern>/homework/getHomeworkById.do</url-pattern>
+    <url-pattern>/homework/addHomework.do</url-pattern>
   </servlet-mapping>
 
 

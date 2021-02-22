@@ -1,4 +1,4 @@
-package cn.qkmango.hm.Exception;
+package cn.qkmango.hm.exception;
 
 /**
  * @version 1.0

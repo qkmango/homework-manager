@@ -1,4 +1,4 @@
-package cn.qkmango.hm.admin.dao;
+package cn.qkmango.hm.homework.dao;
 
 import cn.qkmango.hm.homework.domain.Homework;
 
@@ -13,4 +13,6 @@ import cn.qkmango.hm.homework.domain.Homework;
  */
 public interface HomeworkDao {
     int addHomeWork(Homework homework);
+
+    Homework getHomeworkById(String id);
 }

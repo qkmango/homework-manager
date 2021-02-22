@@ -10,7 +10,7 @@ package cn.qkmango.hm.homework.domain;
 public class Homework {
     private String id;          //id
     private String title;       //标题
-    private String courseId;    //学科
+    private String course;      //学科（上传作业时为学科id，获取作业时为学科名）
     private String deadline;    //截止日期
     private String briefInfo;   //简略信息
     private String detailInfo;  //详细信息
@@ -31,12 +31,12 @@ public class Homework {
         this.title = title;
     }
 
-    public String getCourseId() {
-        return courseId;
+    public String getCourse() {
+        return course;
     }
 
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
+    public void setCourse(String course) {
+        this.course = course;
     }
 
     public String getDeadline() {
@@ -68,7 +68,7 @@ public class Homework {
         return "Homework{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
-                ", courseId='" + courseId + '\'' +
+                ", course='" + course + '\'' +
                 ", deadline='" + deadline + '\'' +
                 ", briefInfo='" + briefInfo + '\'' +
                 ", detailInfo='" + detailInfo + '\'' +
