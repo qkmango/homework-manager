@@ -84,8 +84,10 @@ layui.use('element', function(){
 </script>
 
 <script>
-$(function() {
 
+var global;
+
+$(function() {
 	// 左侧导航控制iframe
 	var iframe = $('#iframe-box iframe')[0];
 	$('#left-nav .item').click(function() {

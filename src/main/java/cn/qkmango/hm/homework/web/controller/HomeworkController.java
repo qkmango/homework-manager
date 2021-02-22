@@ -65,7 +65,7 @@ public class HomeworkController extends HttpServlet {
         homework.setBriefInfo(request.getParameter("briefInfo"));
         homework.setDetailInfo(request.getParameter("detailInfo"));
 
-        System.out.println(homework);
+        System.out.println(homework.getDetailInfo());
 
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
 

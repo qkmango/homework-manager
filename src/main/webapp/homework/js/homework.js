@@ -27,5 +27,6 @@ layui.use('laypage', function(){
 
 //详情跳转
 $('#homework-list a').click(function () {
+	window.parent.frames.global = this.id;
 	window.location.href = '/hm/homework/details.html'
 })
