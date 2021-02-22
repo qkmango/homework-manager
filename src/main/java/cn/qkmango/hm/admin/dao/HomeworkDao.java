@@ -1,6 +1,6 @@
 package cn.qkmango.hm.admin.dao;
 
-import cn.qkmango.hm.pub.domain.Homework;
+import cn.qkmango.hm.homework.domain.Homework;
 
 /**
  * @version 1.0

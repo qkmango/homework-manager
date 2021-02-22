@@ -53,6 +53,16 @@
   </servlet-mapping>
 
 
+  <servlet>
+    <servlet-name>HomeworkController</servlet-name>
+    <servlet-class>cn.qkmango.hm.homework.web.controller.HomeworkController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HomeworkController</servlet-name>
+    <url-pattern>/homework/getCourseList.do</url-pattern>
+  </servlet-mapping>
+
+
 
 
 </web-app>

@@ -1,10 +1,10 @@
 package cn.qkmango.hm.admin.service.impl;
 
 import cn.qkmango.hm.Exception.HomeworkException;
+import cn.qkmango.hm.homework.dao.CourseDao;
 import cn.qkmango.hm.admin.dao.HomeworkDao;
 import cn.qkmango.hm.admin.service.AdminService;
-import cn.qkmango.hm.pub.domain.Homework;
-import cn.qkmango.hm.system.dao.UserDao;
+import cn.qkmango.hm.homework.domain.Homework;
 import cn.qkmango.hm.utils.SqlSessionUtil;
 
 /**
@@ -19,16 +19,17 @@ import cn.qkmango.hm.utils.SqlSessionUtil;
 public class AdminServiceImpl implements AdminService {
 
     private HomeworkDao homeworkDao = SqlSessionUtil.getSqlSession().getMapper(HomeworkDao.class);
+    private CourseDao   courseDao   = SqlSessionUtil.getSqlSession().getMapper(CourseDao.class);
 
     @Override
     public boolean addHomeWork(Homework homework) throws HomeworkException {
-
         int count = homeworkDao.addHomeWork(homework);
-
         if (count != 1) {
             throw new HomeworkException("添加Homework失败！");
         }
-
         return true;
     }
+
+
+
 }

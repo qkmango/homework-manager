@@ -1,7 +1,7 @@
 package cn.qkmango.hm.admin.service;
 
 import cn.qkmango.hm.Exception.HomeworkException;
-import cn.qkmango.hm.pub.domain.Homework;
+import cn.qkmango.hm.homework.domain.Homework;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -15,4 +15,5 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface AdminService {
     boolean addHomeWork(@Param("homework") Homework homework) throws HomeworkException;
+
 }

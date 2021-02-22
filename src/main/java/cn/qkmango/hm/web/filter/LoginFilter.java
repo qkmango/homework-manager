@@ -31,9 +31,9 @@ public class LoginFilter implements Filter {
         if (session != null ||
             "/system/user/login.do".equals(path)||
             "/system/user/logout.do".equals(path)||
+            "/homework/getCourseList.do".equals(path)||
             "/system/user/getUserinfo.do".equals(path)) {
             chain.doFilter(req,resp);
-
         } else {
             /*说明未登陆，重定向到login.jsp
 

@@ -25,5 +25,6 @@
     <mappers>
         <package name="cn.qkmango.hm.system.dao"/>
         <package name="cn.qkmango.hm.admin.dao"/>
+        <package name="cn.qkmango.hm.homework.dao"/>
     </mappers>
 </configuration>

@@ -3,7 +3,7 @@ package cn.qkmango.hm.admin.web.controller;
 import cn.qkmango.hm.Exception.HomeworkException;
 import cn.qkmango.hm.admin.service.AdminService;
 import cn.qkmango.hm.admin.service.impl.AdminServiceImpl;
-import cn.qkmango.hm.pub.domain.Homework;
+import cn.qkmango.hm.homework.domain.Homework;
 import cn.qkmango.hm.utils.PrintJson;
 import cn.qkmango.hm.utils.ServiceFactory;
 import cn.qkmango.hm.utils.UUIDUtil;
@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @version 1.0
@@ -29,16 +27,14 @@ public class AdminController extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String path = request.getServletPath();
-
         if ("/admin/addHomework.do".equals(path)) {
             addHomework(request,response);
-        } else if ("/system/user/login.do".equals(path)) {
+        } else if ("".equals(path)) {
 
         }
-
     }
+
 
     private void addHomework(HttpServletRequest request, HttpServletResponse response) {
 

@@ -1,4 +1,4 @@
-package cn.qkmango.hm.pub.domain;
+package cn.qkmango.hm.homework.domain;
 
 /**
  * @version 1.0
