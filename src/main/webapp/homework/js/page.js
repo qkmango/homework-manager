@@ -73,6 +73,7 @@ function getHomeworkPageList(){
  * 执行分页操作
  */
 function pagination(){
+
     layui.use('laypage', function(){
         var laypage = layui.laypage;
         laypage.render({
@@ -86,7 +87,6 @@ function pagination(){
                 page = obj.curr;
                 limit = obj.limit;
                 if(!first){
-                    // obj.count=count;
                     getHomeworkPageList();
                 }
             }
