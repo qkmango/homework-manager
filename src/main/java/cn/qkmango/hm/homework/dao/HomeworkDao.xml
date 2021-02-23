@@ -3,12 +3,56 @@
 
 <mapper namespace="cn.qkmango.hm.homework.dao.HomeworkDao">
 
+
+    <select id="getHomeworkIsCommit" resultType="int">
+        select count(*)
+        from commit_homework
+        where hid=#{hid} and uid=#{uid};
+    </select>
+
+    <select id="getHomeworkPageList" resultType="cn.qkmango.hm.homework.domain.Homework">
+        select SQL_CALC_FOUND_ROWS
+            h.id,
+            h.title,
+            c.name as course,
+            h.lastCommitDate,
+            h.createDate,
+            h.briefInfo
+        from homework h
+        JOIN course c
+        on h.course=c.id
+
+        <where>
+            <if test="status!='0' and status!=0">
+                (h.id
+                    <if test="status=='2' or status==2">not</if>
+                        in(SELECT hid from commit_homework WHERE uid=#{uid}))
+            </if>
+
+            <if test="course!='0' and course!=0">
+                and c.id=#{course}
+            </if>
+            <if test="title!=null and title!=''">
+                and h.title like '%' #{title} '%'
+            </if>
+        </where>
+
+        order by h.id desc
+        LIMIT #{skipCount},#{pageSize}
+    </select>
+
+    <!-- 获取未分页的总记录条数 -->
+    <select id="getTotalByCondition" resultType="int">
+        SELECT FOUND_ROWS()
+    </select>
+
     <select id="getHomeworkById" resultType="cn.qkmango.hm.homework.domain.Homework">
         select
             h.id,
             h.title,
             c.name as course,
-            h.deadline,
+            h.lastCommitDate,
+            h.createDate,
             h.briefInfo,
             h.detailInfo
         from homework h
@@ -19,18 +63,18 @@
 
     <insert id="addHomeWork">
         insert into homework(
-            id,
             title,
             course,
-            deadline,
+            lastCommitDate,
+            createDate,
             briefInfo,
             detailInfo
         )
         values (
-           #{id},
            #{title},
            #{course},
-           #{deadline},
+           #{lastCommitDate},
+           #{createDate},
            #{briefInfo},
            #{detailInfo}
         )

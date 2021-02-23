@@ -4,6 +4,9 @@ var $inputFile = $('#inputFile');
 var $startBtn = $("#startBtn");
 var $resetBtn = $("#resetBtn");
 var $suspendBtn = $("#suspendBtn");
+//上传的文件链接头
+var fileLinkHeader = '';
+var user = '';
 
 //断点记录变量
 let tempCheckpoint;
@@ -15,13 +18,14 @@ let flag = true;
 //OSS_STS配置
 let ossConfig;
 
+//获取OSS STS配置
 $.ajax({
 	url:'system/oss/getOssSts.do',
-	data:{},
 	type:'get',
 	dataType:'json',
 	success:function (data) {
 		// OSS配置
+		fileLinkHeader = 'https://'+data.bucket+'.'+data.region+'.aliyuncs.com/';
 		ossConfig = {
 			region: data.region,
 			accessKeyId: data.accessKeyId,
@@ -31,8 +35,26 @@ $.ajax({
 		}
 	},
 	error:function () {
-		// alert('请登陆');
-		// window.location.href = 'system/login.html';
+		alert('请求失败，请刷新页面！');
+	}
+})
+
+//获userinfo
+$.ajax({
+	url:'system/user/getUserinfo.do',
+	type:'get',
+	dataType:'json',
+	success:function (data) {
+		if (data.success) {
+			user = data.user;
+		} else {
+			alert("请登陆");
+			window.location.href='system/login.html'
+		}
+	},
+	onerror:function () {
+		alert("请登陆");
+		window.location.href='system/login.html'
 	}
 })
 
@@ -52,7 +74,7 @@ async function multipartUpload (fileName, data) {
 			}
 		})
 		console.log(result);
-		uploadSuccess();
+		uploadSuccess(fileName);
 	} catch(e){
 		console.log(e);
 		alert('上传失败！请刷新页面');
@@ -72,7 +94,7 @@ async function resumeUpload(fileName, data) {
 			checkpoint: tempCheckpoint
 		})
 		console.log(result);
-		uploadSuccess();
+		uploadSuccess(fileName);
 	} catch (e) {
 		console.log(e);
 		alert('上传失败！请刷新页面');
@@ -80,13 +102,20 @@ async function resumeUpload(fileName, data) {
 }
 
 //上传完成调用
-function uploadSuccess() {
+function uploadSuccess(fileName) {
 	changeDisable({
 		inputFile:true,
 		startBtn:true,
 		suspendBtn:true,
 		resetBtn:true
 	});
+
+	// fileLinkHeader
+
+	// $.ajax({
+	//
+	// })
+
 	alert('上传成功');
 	$('.layui-card .layui-card-header i').html('&#xe6af;');
 }
@@ -131,14 +160,22 @@ function changeDisable(disableConf) {
 //开始上传
 function startUpload () {
 	const data = inputFile.files[0];
-	var fileName = data.name;
+
+	// var fileName = data.name;
+	let fileType = getFileType(data.name);
+	let homework = window.parent.frames.global_homework;
+	let fileName = homework.course+'/'+homework.id+'/'+user.id+'.'+fileType;
+
 	multipartUpload(fileName, data);
 }
 
 //开始断点续传（继续上传）
 function startMultipartUpload () {
 	const data = inputFile.files[0];
-	var fileName = data.name;
+	// var fileName = data.name;
+	let fileType = getFileType(data.name);
+	let homework = window.parent.frames.global_homework;
+	let fileName = homework.course+'/'+homework.id+'/'+user.id+'.'+fileType;
 	resumeUpload(fileName, data);
 }
 
@@ -207,8 +244,11 @@ suspendBtn.onclick = function() {
 		resetBtn:false
 	})
 }
-
-
-
-
 })
+
+//获取文件类型
+function getFileType(filePath) {
+	let index = filePath.lastIndexOf(".");
+	let ext = filePath.substr(index+1);
+	return ext;
+}

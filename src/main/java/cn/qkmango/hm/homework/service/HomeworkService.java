@@ -24,4 +24,7 @@ public interface HomeworkService {
 
     boolean addHomeWork(@Param("homework") Homework homework) throws HomeworkException;
 
+    Map<String, Object> getHomeworkPageList(Map<String, Object> map);
+
+    boolean getHomeworkIsCommit(String uid, String hid);
 }

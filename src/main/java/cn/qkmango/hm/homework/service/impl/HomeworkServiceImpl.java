@@ -56,4 +56,29 @@ public class HomeworkServiceImpl implements HomeworkService {
         return true;
     }
 
+    @Override
+    public Map<String, Object> getHomeworkPageList(Map<String, Object> map) {
+        List<Homework> list = homeworkDao.getHomeworkPageList(map);
+        int count = homeworkDao.getTotalByCondition();
+
+        HashMap<String, Object> resultMap = new HashMap<>();
+        resultMap.put("count",count);
+        resultMap.put("list",list);
+
+        return resultMap;
+    }
+
+    @Override
+    public boolean getHomeworkIsCommit(String uid, String hid) {
+
+        int count = homeworkDao.getHomeworkIsCommit(uid, hid);
+
+        if (count==0) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
 }

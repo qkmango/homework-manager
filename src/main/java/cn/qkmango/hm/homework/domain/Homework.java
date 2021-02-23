@@ -8,12 +8,13 @@ package cn.qkmango.hm.homework.domain;
  * @date: 2021-02-21 18:35
  */
 public class Homework {
-    private String id;          //id
-    private String title;       //标题
-    private String course;      //学科（上传作业时为学科id，获取作业时为学科名）
-    private String deadline;    //截止日期
-    private String briefInfo;   //简略信息
-    private String detailInfo;  //详细信息
+    private String id;              //id
+    private String title;           //标题
+    private String course;          //学科（上传作业时为学科id，获取作业时为学科名）
+    private String lastCommitDate;  //截止日期
+    private String createDate;      //创建日期
+    private String briefInfo;       //简略信息
+    private String detailInfo;      //详细信息
 
     public String getId() {
         return id;
@@ -39,12 +40,20 @@ public class Homework {
         this.course = course;
     }
 
-    public String getDeadline() {
-        return deadline;
+    public String getLastCommitDate() {
+        return lastCommitDate;
     }
 
-    public void setDeadline(String deadline) {
-        this.deadline = deadline;
+    public void setLastCommitDate(String lastCommitDate) {
+        this.lastCommitDate = lastCommitDate;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 
     public String getBriefInfo() {
@@ -69,7 +78,8 @@ public class Homework {
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", course='" + course + '\'' +
-                ", deadline='" + deadline + '\'' +
+                ", lastCommitDate='" + lastCommitDate + '\'' +
+                ", createDate='" + createDate + '\'' +
                 ", briefInfo='" + briefInfo + '\'' +
                 ", detailInfo='" + detailInfo + '\'' +
                 '}';

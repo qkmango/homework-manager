@@ -5,6 +5,8 @@ import cn.qkmango.hm.homework.domain.Course;
 import cn.qkmango.hm.homework.domain.Homework;
 import cn.qkmango.hm.homework.service.HomeworkService;
 import cn.qkmango.hm.homework.service.impl.HomeworkServiceImpl;
+import cn.qkmango.hm.system.domain.User;
+import cn.qkmango.hm.utils.DateTimeUtil;
 import cn.qkmango.hm.utils.PrintJson;
 import cn.qkmango.hm.utils.ServiceFactory;
 import cn.qkmango.hm.utils.UUIDUtil;
@@ -13,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +40,70 @@ public class HomeworkController extends HttpServlet {
             getHomeworkById(request,response);
         } else if ("/homework/addHomework.do".equals(path)) {
             addHomework(request,response);
+        } else if ("/homework/getHomeworkPageList.do".equals(path)) {
+            getHomeworkPageList(request,response);
+        } else if ("/homework/getHomeworkIsCommit.do".equals(path)) {
+            getHomeworkIsCommit(request,response);
         }
+    }
+
+    private void getHomeworkIsCommit(HttpServletRequest request, HttpServletResponse response) {
+        String uid = ((User)request.getSession(false).getAttribute("user")).getId();
+        String hid = request.getParameter("hid");
+        HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
+
+        boolean flag = hs.getHomeworkIsCommit(uid, hid);
+
+        PrintJson.printJsonFlag(response,flag);
+
+    }
+
+    private void getHomeworkPageList(HttpServletRequest request, HttpServletResponse response) {
+
+
+        HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("user");
+        // System.out.println("=======>>>>>>> " + user);
+
+        String  course      = request.getParameter("course");
+        String  status      = request.getParameter("status");
+        String  title       = request.getParameter("title");
+        int     pageNo      = Integer.valueOf(request.getParameter("pageNo"));
+        int     pageSize    = Integer.valueOf(request.getParameter("pageSize"));
+        //略过的记录条数
+        int     skipCount   = (pageNo-1)*pageSize;
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("uid",user.getId());
+        map.put("course",course);
+        map.put("status",status);
+        map.put("title",title);
+        map.put("skipCount",skipCount);
+        map.put("pageSize",pageSize);
+
+        System.out.println("uid="+user.getId());
+        System.out.println("course="+course);
+        System.out.println("status="+status);
+        System.out.println("title="+title);
+        System.out.println("skipCount="+skipCount);
+        System.out.println("pageSize="+pageSize);
+
+        HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
+        Map<String, Object> resultMap = hs.getHomeworkPageList(map);
+
+
+        /*
+        {
+            count:1000,
+            list:[
+                {},
+                {},
+                {},
+                {},
+            ]
+        }
+         */
+        PrintJson.printJsonObj(response,resultMap);
     }
 
     private void getHomeworkById(HttpServletRequest request, HttpServletResponse response) {
@@ -58,10 +124,11 @@ public class HomeworkController extends HttpServlet {
 
         Homework homework = new Homework();
 
-        homework.setId(UUIDUtil.getUUID());
+        // homework.setId(UUIDUtil.getUUID());
         homework.setTitle(request.getParameter("title"));
         homework.setCourse(request.getParameter("course"));
-        homework.setDeadline(request.getParameter("deadline"));
+        homework.setLastCommitDate(request.getParameter("lastCommitDate"));
+        homework.setCreateDate(DateTimeUtil.getSysDate());
         homework.setBriefInfo(request.getParameter("briefInfo"));
         homework.setDetailInfo(request.getParameter("detailInfo"));
 
@@ -78,8 +145,6 @@ public class HomeworkController extends HttpServlet {
         } finally {
             PrintJson.printJsonFlag(response,flag);
         }
-
-
     }
 
 }
