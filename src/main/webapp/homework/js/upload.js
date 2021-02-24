@@ -4,9 +4,11 @@ var $inputFile = $('#inputFile');
 var $startBtn = $("#startBtn");
 var $resetBtn = $("#resetBtn");
 var $suspendBtn = $("#suspendBtn");
+
 //上传的文件链接头
 var fileLinkHeader = '';
 var user = '';
+var hid = getUrlParam('hid');
 
 //断点记录变量
 let tempCheckpoint;
@@ -17,6 +19,15 @@ let client;
 let flag = true;
 //OSS_STS配置
 let ossConfig;
+
+
+
+//如果获取hid失败，则返回作业列表页面
+if (hid==null) {
+	alert("获取作业id失败，请重试！")
+	window.location.href='homework/homework.html';
+}
+
 
 //获取OSS STS配置
 $.ajax({
@@ -116,7 +127,7 @@ function uploadSuccess(fileName) {
 		url:'homework/commitHomework.do',
 		data:{
 			fileLink:fileLinkHeader+fileName,
-			hid:user.id
+			hid:hid
 		},
 		type:'post',
 		dataType:'json',

@@ -99,6 +99,10 @@ function getHomeworkPageList(){
                 html += '</p><p>'+n.briefInfo+'</p></div></div></div>';
             })
             $('#homework-list').html(html);
+        },
+        error:function () {
+            alert("请先登陆");
+            window.location.href = 'system/login.html';
         }
     });
 

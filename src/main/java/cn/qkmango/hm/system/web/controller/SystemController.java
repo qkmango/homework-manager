@@ -1,8 +1,8 @@
 package cn.qkmango.hm.system.web.controller;
 
-import cn.qkmango.hm.system.domain.AliOss;
+import cn.qkmango.hm.system.domain.AliOssSts;
 import cn.qkmango.hm.system.domain.User;
-import cn.qkmango.hm.system.service.OSSService;
+import cn.qkmango.hm.system.service.impl.OSSServiceImpl;
 import cn.qkmango.hm.system.service.UserService;
 import cn.qkmango.hm.system.service.impl.UserServiceImpl;
 import cn.qkmango.hm.utils.PrintJson;
@@ -99,7 +99,7 @@ public class SystemController extends HttpServlet {
      * @param response
      */
     private void getOssSts(HttpServletRequest request, HttpServletResponse response) {
-        AliOss ossSTS = OSSService.getOssSTS();
+        AliOssSts ossSTS = OSSServiceImpl.getOssSTS();
         PrintJson.printJsonObj(response, ossSTS);
     }
 
