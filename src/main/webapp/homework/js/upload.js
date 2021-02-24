@@ -112,9 +112,22 @@ function uploadSuccess(fileName) {
 
 	// fileLinkHeader
 
-	// $.ajax({
-	//
-	// })
+	$.ajax({
+		url:'homework/commitHomework.do',
+		data:{
+			fileLink:fileLinkHeader+fileName,
+			hid:user.id
+		},
+		type:'post',
+		dataType:'json',
+		success:function (data) {
+			if (data.success) {
+				alert("提交成功")
+			} else {
+				alert("提交失败")
+			}
+		}
+	})
 
 	alert('上传成功');
 	$('.layui-card .layui-card-header i').html('&#xe6af;');
@@ -159,23 +172,22 @@ function changeDisable(disableConf) {
 
 //开始上传
 function startUpload () {
-	const data = inputFile.files[0];
-
-	// var fileName = data.name;
+	let data = inputFile.files[0];
 	let fileType = getFileType(data.name);
-	let homework = window.parent.frames.global_homework;
-	let fileName = homework.course+'/'+homework.id+'/'+user.id+'.'+fileType;
+	let hid = getUrlParam('hid');
+	let course = getUrlParam('course');
+	let fileName = course+'/'+hid+'/'+user.id+'.'+fileType;
 
 	multipartUpload(fileName, data);
 }
 
 //开始断点续传（继续上传）
 function startMultipartUpload () {
-	const data = inputFile.files[0];
-	// var fileName = data.name;
+	let data = inputFile.files[0];
 	let fileType = getFileType(data.name);
-	let homework = window.parent.frames.global_homework;
-	let fileName = homework.course+'/'+homework.id+'/'+user.id+'.'+fileType;
+	let hid = getUrlParam('hid');
+	let course = getUrlParam('course');
+	let fileName = course+'/'+hid+'/'+user.id+'.'+fileType;
 	resumeUpload(fileName, data);
 }
 

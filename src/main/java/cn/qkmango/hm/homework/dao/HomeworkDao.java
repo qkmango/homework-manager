@@ -3,6 +3,7 @@ package cn.qkmango.hm.homework.dao;
 import cn.qkmango.hm.homework.domain.Homework;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,4 +26,6 @@ public interface HomeworkDao {
     int getTotalByCondition();
 
     int getHomeworkIsCommit(@Param("uid") String uid, @Param("hid") String hid);
+
+    void commitHomework(HashMap<String, String> map);
 }

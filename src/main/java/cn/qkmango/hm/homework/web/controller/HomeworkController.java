@@ -26,7 +26,7 @@ import java.util.Map;
  * @Description: //TODO
  * <p>类简介</p>
  * <p>类详细介绍</p>
- * @className HomeworkControllerHomeworkControllerController
+ * @className HomeworkController
  * @author: Mango
  * @date: 2021-02-22 10:06
  */
@@ -44,7 +44,31 @@ public class HomeworkController extends HttpServlet {
             getHomeworkPageList(request,response);
         } else if ("/homework/getHomeworkIsCommit.do".equals(path)) {
             getHomeworkIsCommit(request,response);
+        } else if ("/homework/commitHomework.do".equals(path)) {
+            commitHomework(request,response);
         }
+    }
+
+    private void commitHomework(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            PrintJson.printJsonFlag(response,false);
+            return;
+        }
+
+        String uid = ((User) session.getAttribute("user")).getId();
+        String fileLink = request.getParameter("fileLink");
+        String hid = request.getParameter("hid");
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("uid",uid);
+        map.put("hid",hid);
+        map.put("fileLink",fileLink);
+
+        HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
+        boolean flag = hs.commitHomework(map);
+
+        PrintJson.printJsonFlag(response,flag);
     }
 
     private void getHomeworkIsCommit(HttpServletRequest request, HttpServletResponse response) {

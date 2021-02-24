@@ -3,6 +3,9 @@
 
 <mapper namespace="cn.qkmango.hm.homework.dao.HomeworkDao">
 
+    <insert id="commitHomework">
+        insert into commit_homework(uid, hid, filelink) VALUES (#{uid},#{hid},#{fileLink})
+    </insert>
 
     <select id="getHomeworkIsCommit" resultType="int">
         select count(*)

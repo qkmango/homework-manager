@@ -1,15 +1,17 @@
 $(function () {
 
+    let hid = getUrlParam('hid');
+    let course = getUrlParam('course');
     $.ajax({
         url:'homework/getHomeworkIsCommit.do',
-        data:{hid:window.parent.frames.global_homework_id},
+        data:{hid:hid},
         type:'get',
         dataType:'json',
         success:function(data){
             if (data.success) {
                 $('#btn-box').html('<a class="layui-btn layui-layout-right"><i class="layui-icon">&#x1006;</i>撤销提交</a>')
             } else {
-                $('#btn-box').html('<a href="homework/upload.html" class="layui-btn layui-layout-right"><i class="layui-icon">&#xe681;</i>去提交</a>')
+                $('#btn-box').html('<a href="homework/upload.html?hid='+hid+'&course='+course+'" class="layui-btn layui-layout-right"><i class="layui-icon">&#xe681;</i>去提交</a>')
             }
         },
         error:function () {
@@ -21,7 +23,7 @@ $(function () {
 
     $.ajax({
         url:'homework/getHomeworkById.do',
-        data:{id:window.parent.frames.global_homework_id},
+        data:{id:getUrlParam('hid')},
         type:'get',
         dataType:'json',
         success:function(data){

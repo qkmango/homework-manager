@@ -1,5 +1,6 @@
 package cn.qkmango.hm.homework.service.impl;
 
+import cn.qkmango.hm.exception.CommitHomeworkException;
 import cn.qkmango.hm.exception.HomeworkException;
 import cn.qkmango.hm.homework.dao.CourseDao;
 import cn.qkmango.hm.homework.dao.HomeworkDao;
@@ -79,6 +80,21 @@ public class HomeworkServiceImpl implements HomeworkService {
             return true;
         }
 
+    }
+
+    @Override
+    public boolean commitHomework(HashMap<String, String> map) {
+        boolean flag = false;
+
+        try {
+            homeworkDao.commitHomework(map);
+            flag = true;
+        } catch (Exception e) {
+            //说明插入失败，违反主键
+            e.printStackTrace();
+        } finally {
+            return flag;
+        }
     }
 
 }

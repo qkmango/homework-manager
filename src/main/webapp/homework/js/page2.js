@@ -92,7 +92,7 @@ function getHomeworkPageList(){
                 html += '<div class="layui-card-header '+color+'">'+n.course;
                 html += '<span class="layui-layout-right">'+n.createDate;
                 html += '<i class="layui-icon">&#xe642;</i>';
-                html += '<a href="/hm/homework/details.html" id="'+n.id+'" onclick="window.parent.frames.global_homework_id = this.id">详情</a>';
+                html += '<a href="/hm/homework/details.html?hid='+n.id+'&course='+n.course+'">详情</a>';
                 html +=	'</span></div><div class="layui-card-body"><p>';
                 html += '<span>'+n.title+'</span>';
                 html += '<span class="layui-layout-right">最后提交日期:'+n.lastCommitDate+'</span>';
