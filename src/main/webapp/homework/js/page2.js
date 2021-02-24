@@ -1,18 +1,47 @@
-window.onload = function () {
-    getHomeworkPageList()   //请求数据
-    pagination()            //分页操作
-}
 var page=1; //设置首页页码
 var limit=12;  //设置一页显示的条数
 var count;    //总条数
 var queryParam = new Object();
+var laypage
+
+
+
+
+layui.use('laypage', function(){
+    laypage = layui.laypage;
+    pagination();
+});
 
 
 $("#query-btn").on('click',function () {
     page=1;
-    getHomeworkPageList()  //请求数据
     pagination()   //分页操作
 })
+
+
+function pagination() {
+    getHomeworkPageList();
+    laypage.render({
+        elem: 'pagination'
+        ,count: count
+        ,limit:limit
+        ,groups:10
+        ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+        ,limits:[12,24,36]
+        ,jump: function(obj, first){
+            page = obj.curr;
+            limit = obj.limit;
+            $('#selectCourse').val(queryParam.course);
+            $('#status').val(queryParam.status);
+            $('#title').val(queryParam.title);
+            if(!first){
+                form.render('select');
+                getHomeworkPageList();
+                obj.count=count;
+            }
+        }
+    });
+}
 
 
 /**
@@ -28,10 +57,6 @@ function getHomeworkPageList(){
     queryParam.course = course;
     queryParam.status = status;
     queryParam.title = title;
-
-    console.log(course)
-    console.log(status)
-    console.log(title)
 
     $.ajax({
         url:'homework/getHomeworkPageList.do',
@@ -76,32 +101,6 @@ function getHomeworkPageList(){
             $('#homework-list').html(html);
         }
     });
-}
 
 
-/**
- * 执行分页操作
- */
-function pagination(){
-    layui.use('laypage', function(){
-        var laypage = layui.laypage;
-        laypage.render({
-            elem: 'pagination'
-            ,count: count
-            ,limit:limit
-		    ,groups:10
-            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
-            ,limits:[12,24,36]
-            ,jump: function(obj, first){
-                page = obj.curr;
-                limit = obj.limit;
-                $('#selectCourse').val(queryParam.course);
-                $('#status').val(queryParam.status);
-                $('#title').val(queryParam.title);
-                if(!first){
-                    getHomeworkPageList();
-                }
-            }
-        });
-    });
 }
