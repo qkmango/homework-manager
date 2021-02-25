@@ -1,11 +1,9 @@
 package cn.qkmango.hm.system.web.controller;
 
 import cn.qkmango.hm.system.domain.AliOssSts;
-import cn.qkmango.hm.system.domain.QiniuConf;
 import cn.qkmango.hm.system.domain.User;
 import cn.qkmango.hm.system.service.impl.OSSServiceImpl;
 import cn.qkmango.hm.system.service.UserService;
-import cn.qkmango.hm.system.service.impl.QiniuServiceImpl;
 import cn.qkmango.hm.system.service.impl.UserServiceImpl;
 import cn.qkmango.hm.utils.PrintJson;
 import cn.qkmango.hm.utils.ServiceFactory;
@@ -40,14 +38,7 @@ public class SystemController extends HttpServlet {
             logout(request,response);
         } else if ("/system/user/getUserinfo.do".equals(path)) {
             getUserinfo(request,response);
-        } else if ("/system/qiniu/getQiniuTokenAndConf.do".equals(path)) {
-            getQiniuTokenAndConf(request,response);
         }
-    }
-
-    private void getQiniuTokenAndConf(HttpServletRequest request, HttpServletResponse response) {
-        Map<String, String> tokenAndConf = QiniuServiceImpl.getQiniuTokenAndConf();
-        PrintJson.printJsonObj(response,tokenAndConf);
     }
 
     private void logout(HttpServletRequest request, HttpServletResponse response) {
