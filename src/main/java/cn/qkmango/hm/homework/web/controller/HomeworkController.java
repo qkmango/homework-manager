@@ -1,6 +1,7 @@
 package cn.qkmango.hm.homework.web.controller;
 
 import cn.qkmango.hm.exception.HomeworkException;
+import cn.qkmango.hm.homework.domain.CommitHomework;
 import cn.qkmango.hm.homework.domain.Course;
 import cn.qkmango.hm.homework.domain.Homework;
 import cn.qkmango.hm.homework.service.HomeworkService;
@@ -66,13 +67,18 @@ public class HomeworkController extends HttpServlet {
         String filePath = request.getParameter("filePath");
         String hid = request.getParameter("hid");
 
-        HashMap<String, String> map = new HashMap<>();
-        map.put("uid",uid);
-        map.put("hid",hid);
-        map.put("filePath",filePath);
+        // HashMap<String, String> map = new HashMap<>();
+        // map.put("uid",uid);
+        // map.put("hid",hid);
+        // map.put("filePath",filePath);
+
+        CommitHomework ch = new CommitHomework();
+        ch.setUid(uid);
+        ch.setHid(hid);
+        ch.setFilePath(filePath);
 
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
-        boolean flag = hs.commitHomework(map);
+        boolean flag = hs.commitHomework(ch);
 
         PrintJson.printJsonFlag(response,flag);
     }

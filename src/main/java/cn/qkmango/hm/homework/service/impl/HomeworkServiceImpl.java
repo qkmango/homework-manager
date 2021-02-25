@@ -4,6 +4,7 @@ import cn.qkmango.hm.exception.CommitHomeworkException;
 import cn.qkmango.hm.exception.HomeworkException;
 import cn.qkmango.hm.homework.dao.CourseDao;
 import cn.qkmango.hm.homework.dao.HomeworkDao;
+import cn.qkmango.hm.homework.domain.CommitHomework;
 import cn.qkmango.hm.homework.domain.Course;
 import cn.qkmango.hm.homework.domain.Homework;
 import cn.qkmango.hm.homework.service.HomeworkService;
@@ -83,11 +84,11 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public boolean commitHomework(HashMap<String, String> map) {
+    public boolean commitHomework(CommitHomework ch) {
         boolean flag = false;
 
         try {
-            homeworkDao.commitHomework(map);
+            homeworkDao.commitHomework(ch);
             flag = true;
         } catch (Exception e) {
             //说明插入失败，违反主键

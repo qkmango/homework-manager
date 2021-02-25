@@ -1,5 +1,6 @@
 package cn.qkmango.hm.homework.dao;
 
+import cn.qkmango.hm.homework.domain.CommitHomework;
 import cn.qkmango.hm.homework.domain.Homework;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,5 +28,5 @@ public interface HomeworkDao {
 
     int getHomeworkIsCommit(@Param("uid") String uid, @Param("hid") String hid);
 
-    void commitHomework(HashMap<String, String> map);
+    void commitHomework(CommitHomework ch);
 }
