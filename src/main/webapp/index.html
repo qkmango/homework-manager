@@ -5,6 +5,7 @@
 <title></title>
 <base href="http://localhost:80/hm/">
 <link rel="stylesheet" href="lib/layui/css/layui.css" />
+<script src="lib/coco-message/coco-message.js"></script>
 <style>
 	
 	html,body,
@@ -79,7 +80,9 @@ layui.use('element', function(){
 
 <script>
 
-// var global;
+	cocoMessage.success(3000, "请先登录！", function() {
+		console.log("close");
+	});
 
 $(function() {
 	// 左侧导航控制iframe
@@ -105,6 +108,5 @@ $(function() {
 			}
 		}
 	})
-
 })
 </script>

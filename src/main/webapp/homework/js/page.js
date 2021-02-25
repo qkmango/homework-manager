@@ -1,18 +1,46 @@
-window.onload = function () {
-    getHomeworkPageList()   //请求数据
-    pagination()            //分页操作
-}
 var page=1; //设置首页页码
 var limit=12;  //设置一页显示的条数
 var count;    //总条数
 var queryParam = new Object();
+var laypage
+
+layui.use('laypage', function(){
+    laypage = layui.laypage;
+    pagination();
+});
 
 
 $("#query-btn").on('click',function () {
     page=1;
-    getHomeworkPageList()  //请求数据
     pagination()   //分页操作
 })
+
+
+function pagination() {
+    getHomeworkPageList();
+    laypage.render({
+        elem: 'pagination'
+        ,count: count
+        ,limit:limit
+        ,groups:10
+        ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+        ,limits:[12,24,36]
+        ,jump: function(obj, first){
+            page = obj.curr;
+            limit = obj.limit;
+            if(!first){
+
+                form.val('queryParams', {
+                    "status": queryParam.status
+                    ,"title": queryParam.title
+                    ,"course": queryParam.course
+                });
+                getHomeworkPageList();
+                obj.count=count;
+            }
+        }
+    });
+}
 
 
 /**
@@ -28,10 +56,6 @@ function getHomeworkPageList(){
     queryParam.course = course;
     queryParam.status = status;
     queryParam.title = title;
-
-    console.log(course)
-    console.log(status)
-    console.log(title)
 
     $.ajax({
         url:'homework/getHomeworkPageList.do',
@@ -67,41 +91,19 @@ function getHomeworkPageList(){
                 html += '<div class="layui-card-header '+color+'">'+n.course;
                 html += '<span class="layui-layout-right">'+n.createDate;
                 html += '<i class="layui-icon">&#xe642;</i>';
-                html += '<a href="/hm/homework/details.html" id="'+n.id+'" onclick="window.parent.frames.global_homework_id = this.id">详情</a>';
+                html += '<a href="/hm/homework/details.html?hid='+n.id+'&course='+n.course+'">详情</a>';
                 html +=	'</span></div><div class="layui-card-body"><p>';
                 html += '<span>'+n.title+'</span>';
                 html += '<span class="layui-layout-right">最后提交日期:'+n.lastCommitDate+'</span>';
                 html += '</p><p>'+n.briefInfo+'</p></div></div></div>';
             })
             $('#homework-list').html(html);
+        },
+        error:function () {
+            alert("请先登陆");
+            window.location.href = 'system/login.html';
         }
     });
-}
 
 
-/**
- * 执行分页操作
- */
-function pagination(){
-    layui.use('laypage', function(){
-        var laypage = layui.laypage;
-        laypage.render({
-            elem: 'pagination'
-            ,count: count
-            ,limit:limit
-		    ,groups:10
-            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
-            ,limits:[12,24,36]
-            ,jump: function(obj, first){
-                page = obj.curr;
-                limit = obj.limit;
-                $('#selectCourse').val(queryParam.course);
-                $('#status').val(queryParam.status);
-                $('#title').val(queryParam.title);
-                if(!first){
-                    getHomeworkPageList();
-                }
-            }
-        });
-    });
 }
