@@ -6,7 +6,7 @@ var $resetBtn = $("#resetBtn");
 var $suspendBtn = $("#suspendBtn");
 
 //上传的文件链接头
-var fileLinkHeader = '';
+// var fileLinkHeader = '';
 var user = '';
 var hid = getUrlParam('hid');
 
@@ -82,10 +82,10 @@ $.ajax({
 
 
 // 上传方法
-async function multipartUpload (fileName, data) {
+async function multipartUpload (filePath, data) {
 	client = new OSS(ossConfig);
 	try {
-		let result = await client.multipartUpload(fileName, data, {
+		let result = await client.multipartUpload(filePath, data, {
 			progress: function (p, checkpoint) {
 				// 断点记录点。浏览器重启后无法直接继续上传，您需要手动触发上传操作。
 				tempCheckpoint = checkpoint;
@@ -94,7 +94,7 @@ async function multipartUpload (fileName, data) {
 			}
 		})
 		console.log(result);
-		uploadSuccess(fileName);
+		uploadSuccess(filePath);
 	} catch(e){
 		console.log(e);
 		// alert('上传失败！请刷新页面');
@@ -103,10 +103,10 @@ async function multipartUpload (fileName, data) {
 }
 
 // 断点续传方法
-async function resumeUpload(fileName, data) {
+async function resumeUpload(filePath, data) {
 	client = new OSS(ossConfig);
 	try {
-		let result = await client.multipartUpload(fileName,data,{
+		let result = await client.multipartUpload(filePath,data,{
 			progress: function (p, checkpoint) {
 				tempCheckpoint = checkpoint;
 				console.log(p);
@@ -115,7 +115,7 @@ async function resumeUpload(fileName, data) {
 			checkpoint: tempCheckpoint
 		})
 		console.log(result);
-		uploadSuccess(fileName);
+		uploadSuccess(filePath);
 	} catch (e) {
 		console.log(e);
 		// alert('上传失败！请刷新页面');
@@ -124,7 +124,7 @@ async function resumeUpload(fileName, data) {
 }
 
 //上传完成调用
-function uploadSuccess(fileName) {
+function uploadSuccess(filePath) {
 	changeDisable({
 		inputFile:true,
 		startBtn:true,
@@ -132,12 +132,10 @@ function uploadSuccess(fileName) {
 		resetBtn:true
 	});
 
-	// fileLinkHeader
-
 	$.ajax({
 		url:'homework/commitHomework.do',
 		data:{
-			fileLink:fileLinkHeader+fileName,
+			filePath:filePath,
 			hid:hid
 		},
 		type:'post',
@@ -196,23 +194,23 @@ function changeDisable(disableConf) {
 
 //开始上传
 function startUpload () {
-	let data = inputFile.files[0];
+	let data = $inputFile[0].files[0];
 	let fileType = getFileType(data.name);
 	let hid = getUrlParam('hid');
 	let course = getUrlParam('course');
-	let fileName = course+'/'+hid+'/'+user.id+'.'+fileType;
+	let filePath = course+'/'+hid+'/'+user.id+'.'+fileType;
 
-	multipartUpload(fileName, data);
+	multipartUpload(filePath, data);
 }
 
 //开始断点续传（继续上传）
 function startMultipartUpload () {
-	let data = inputFile.files[0];
+	let data = $inputFile[0].files[0];
 	let fileType = getFileType(data.name);
 	let hid = getUrlParam('hid');
 	let course = getUrlParam('course');
-	let fileName = course+'/'+hid+'/'+user.id+'.'+fileType;
-	resumeUpload(fileName, data);
+	let filePath = course+'/'+hid+'/'+user.id+'.'+fileType;
+	resumeUpload(filePath, data);
 }
 
 // 暂停上传

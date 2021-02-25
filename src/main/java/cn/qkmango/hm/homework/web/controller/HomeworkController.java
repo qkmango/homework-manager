@@ -63,13 +63,13 @@ public class HomeworkController extends HttpServlet {
         }
 
         String uid = ((User) session.getAttribute("user")).getId();
-        String fileLink = request.getParameter("fileLink");
+        String filePath = request.getParameter("filePath");
         String hid = request.getParameter("hid");
 
         HashMap<String, String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("hid",hid);
-        map.put("fileLink",fileLink);
+        map.put("filePath",filePath);
 
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
         boolean flag = hs.commitHomework(map);
