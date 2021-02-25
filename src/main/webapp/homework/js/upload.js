@@ -32,7 +32,9 @@ if (hid==null) {
 }
 
 //设置标题title
-$('#title').text(course+' '+title);
+$('#title').text(title);
+//设置徽章：学科
+$('#badge-course').attr('src','https://img.shields.io/badge/学科-'+course+'-5FB878.svg');
 
 
 

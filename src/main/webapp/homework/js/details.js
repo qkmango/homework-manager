@@ -6,6 +6,7 @@ function deleteCommitHomework(){
     if (code!='yes') {
         return;
     }
+    window.parent.cocoMessage.loading("删除中...");
 
     $.ajax({
         url:'homework/deleteCommitHomework.do',
@@ -15,13 +16,18 @@ function deleteCommitHomework(){
         type:'post',
         dataType:'json',
         success:function (data) {
+            //关闭提醒
+            window.parent.cocoMessage.destroyAll();
             if (data.success) {
-                window.parent.cocoMessage.success(2000, "删除成功");
+                window.parent.cocoMessage.success(2000, "删除成功",function () {
+                    location.reload();
+                });
             } else {
                 window.parent.cocoMessage.error(2000, "删除失败！");
             }
         },
         error:function () {
+            window.parent.cocoMessage.destroyAll();
             window.parent.cocoMessage.error(2000, "服务器请求失败！");
         }
     })
@@ -35,6 +41,7 @@ $(function () {
         });
     }
 
+    //调用这两个函数获取作业信息 以及当前用户是否已经提交了作业
     homework = getHomeworkById(hid);
     getHomeworkIsCommit(homework);
 
