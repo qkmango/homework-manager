@@ -100,8 +100,11 @@ function getHomeworkPageList(){
             $('#homework-list').html(html);
         },
         error:function () {
-            alert("请先登陆");
-            window.location.href = 'system/login.html';
+            // alert("请先登陆");
+            // window.location.href = 'system/login.html';
+            window.parent.cocoMessage.error(3000, "请先登录！", function() {
+                window.location.href = 'system/login.html';
+            });
         }
     });
 
