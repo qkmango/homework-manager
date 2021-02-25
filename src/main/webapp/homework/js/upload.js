@@ -5,10 +5,13 @@ var $startBtn = $("#startBtn");
 var $resetBtn = $("#resetBtn");
 var $suspendBtn = $("#suspendBtn");
 
-//上传的文件链接头
-// var fileLinkHeader = '';
+//用户信息 json
 var user = '';
+//homework id（从url中获取）
 var hid = getUrlParam('hid');
+//homework course（充URL中获取）
+var course = getUrlParam('course');
+
 
 //断点记录变量
 let tempCheckpoint;
@@ -39,7 +42,6 @@ $.ajax({
 	dataType:'json',
 	success:function (data) {
 		// OSS配置
-		fileLinkHeader = 'https://'+data.bucket+'.'+data.region+'.aliyuncs.com/';
 		ossConfig = {
 			region: data.region,
 			accessKeyId: data.accessKeyId,
@@ -196,8 +198,6 @@ function changeDisable(disableConf) {
 function startUpload () {
 	let data = $inputFile[0].files[0];
 	let fileType = getFileType(data.name);
-	let hid = getUrlParam('hid');
-	let course = getUrlParam('course');
 	let filePath = course+'/'+hid+'/'+user.id+'.'+fileType;
 
 	multipartUpload(filePath, data);
@@ -207,8 +207,6 @@ function startUpload () {
 function startMultipartUpload () {
 	let data = $inputFile[0].files[0];
 	let fileType = getFileType(data.name);
-	let hid = getUrlParam('hid');
-	let course = getUrlParam('course');
 	let filePath = course+'/'+hid+'/'+user.id+'.'+fileType;
 	resumeUpload(filePath, data);
 }

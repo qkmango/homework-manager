@@ -33,9 +33,6 @@ $(function () {
 
                 let hw = data.homework;
 
-                //将homework信息存入父窗口变量
-                // window.parent.frames.global_homework = hw;
-
                 let dl =hw.lastCommitDate.split('-');
 
                 $('#title').text(hw.title);
