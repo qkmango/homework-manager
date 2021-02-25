@@ -28,9 +28,6 @@ function pagination() {
         ,jump: function(obj, first){
             page = obj.curr;
             limit = obj.limit;
-            // $('#selectCourse').val(queryParam.course);
-            // $('#status').val(queryParam.status);
-            // $('#title').val(queryParam.title);
             if(!first){
 
                 form.val('queryParams', {
@@ -38,9 +35,6 @@ function pagination() {
                     ,"title": queryParam.title
                     ,"course": queryParam.course
                 });
-
-                // queryParam=JSON.stringify(form.val('queryParams'));
-                // form.render('select');
                 getHomeworkPageList();
                 obj.count=count;
             }
