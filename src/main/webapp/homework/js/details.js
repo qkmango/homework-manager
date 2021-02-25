@@ -6,7 +6,6 @@ $(function () {
     homework = getHomeworkById(hid);
     getHomeworkIsCommit(homework);
 
-
     /**
      * 通过id获取homework信息
      */
@@ -43,7 +42,6 @@ $(function () {
         return homework;
     }
 
-
     /**
      * 获取此homework是否已经提交
      */
@@ -65,8 +63,5 @@ $(function () {
             }
         })
     }
-
-
-
 
 })
