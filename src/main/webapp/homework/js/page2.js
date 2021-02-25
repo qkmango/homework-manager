@@ -4,9 +4,6 @@ var count;    //总条数
 var queryParam = new Object();
 var laypage
 
-
-
-
 layui.use('laypage', function(){
     laypage = layui.laypage;
     pagination();
@@ -31,11 +28,19 @@ function pagination() {
         ,jump: function(obj, first){
             page = obj.curr;
             limit = obj.limit;
-            $('#selectCourse').val(queryParam.course);
-            $('#status').val(queryParam.status);
-            $('#title').val(queryParam.title);
+            // $('#selectCourse').val(queryParam.course);
+            // $('#status').val(queryParam.status);
+            // $('#title').val(queryParam.title);
             if(!first){
-                form.render('select');
+
+                form.val('queryParams', {
+                    "status": queryParam.status
+                    ,"title": queryParam.title
+                    ,"course": queryParam.course
+                });
+
+                // queryParam=JSON.stringify(form.val('queryParams'));
+                // form.render('select');
                 getHomeworkPageList();
                 obj.count=count;
             }

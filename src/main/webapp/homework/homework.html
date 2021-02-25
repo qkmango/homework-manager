@@ -26,11 +26,11 @@
 				<div id="pagination"></div>
 				
 				<!-- 条件查询 -->
-				<form class="layui-form layui-form-pane" action="">
+				<form class="layui-form layui-form-pane" lay-filter="queryParams" name="queryParams">
 					<div class="layui-form-item layui-input-inline">
 						<label class="layui-form-label">学科</label>
 						<div class="layui-input-inline">
-							<select id="selectCourse" lay-verify="required">
+							<select id="selectCourse" name="course" lay-verify="required">
 							</select>
 						</div>
 					</div>
@@ -38,7 +38,7 @@
 					<div class="layui-form-item layui-input-inline">
 						<label class="layui-form-label">状态</label>
 						<div class="layui-input-inline">
-							<select id="status" lay-verify="required">
+							<select id="status" name="status" lay-verify="required">
 								<option value="0">全部</option>
 								<option value="1">已完成</option>
 								<option value="2">未完成</option>
@@ -50,7 +50,7 @@
 					    <div class="layui-inline">
 							<label class="layui-form-label">标题</label>
 							<div class="layui-input-inline">
-								<input id="title" type="text" class="layui-input">
+								<input id="title" name="title" type="text" class="layui-input">
 							</div>
 					    </div>
 					</div>
