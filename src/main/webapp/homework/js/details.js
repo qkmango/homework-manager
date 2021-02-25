@@ -15,7 +15,6 @@ $(function () {
             }
         },
         error:function () {
-            // alert("获取失败，请刷新页面！");
             window.parent.cocoMessage.error(2000, "服务器请求失败，请刷新页面！");
         }
     })
@@ -41,15 +40,12 @@ $(function () {
                 //渲染 markdown
                 document.getElementById("content").innerHTML=marked(hw.detailInfo);
             } else {
-                // alert('获取作业详情失败！')
-                // window.location.href='/hm/homework/homework.html';
                 window.parent.cocoMessage.error(2000, "获取作业列表失败，请刷新页面！",function (){
                     window.location.href='/hm/homework/homework.html';
                 });
             }
         },
         error:function () {
-            // alert('连接超时，请重试！')
             window.parent.cocoMessage.error(2000, "连接超时，请重试！")
         }
     })

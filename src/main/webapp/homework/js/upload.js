@@ -24,11 +24,8 @@ let flag = true;
 let ossConfig;
 
 
-
 //如果从url中获取hid失败，则返回作业列表页面
 if (hid==null) {
-	// alert("获取作业id失败，请重试！")
-	// window.location.href='homework/homework.html';
 	window.parent.cocoMessage.error(2000, "获取作业id失败，请重试！",function () {
 		window.location.href='homework/homework.html';
 	})
@@ -51,7 +48,6 @@ $.ajax({
 		}
 	},
 	error:function () {
-		// alert('请求失败，请刷新页面！');
 		window.parent.cocoMessage.error(2000, "请求失败，请刷新页面！")
 	}
 })
@@ -65,8 +61,6 @@ $.ajax({
 		if (data.success) {
 			user = data.user;
 		} else {
-			// alert("请登陆");
-			// window.location.href='system/login.html'
 			window.parent.cocoMessage.error(2000, "请登陆！",function () {
 				window.location.href='system/login.html'
 			})
@@ -74,8 +68,6 @@ $.ajax({
 		}
 	},
 	onerror:function () {
-		// alert("请登陆");
-		// window.location.href='system/login.html'
 		window.parent.cocoMessage.error(2000, "请登陆！",function () {
 			window.location.href='system/login.html'
 		})
@@ -99,7 +91,6 @@ async function multipartUpload (filePath, data) {
 		uploadSuccess(filePath);
 	} catch(e){
 		console.log(e);
-		// alert('上传失败！请刷新页面');
 		window.parent.cocoMessage.error(2000, "上传失败,请刷新页面!")
 	}
 }
@@ -120,7 +111,6 @@ async function resumeUpload(filePath, data) {
 		uploadSuccess(filePath);
 	} catch (e) {
 		console.log(e);
-		// alert('上传失败！请刷新页面');
 		window.parent.cocoMessage.error(2000, "上传失败,请刷新页面!")
 	}
 }
@@ -144,16 +134,13 @@ function uploadSuccess(filePath) {
 		dataType:'json',
 		success:function (data) {
 			if (data.success) {
-				// alert("提交成功")
 				window.parent.cocoMessage.success(2000, "提交成功")
 			} else {
-				// alert("提交失败")
 				window.parent.cocoMessage.error(2000, "提交失败")
 			}
 		}
 	})
 
-	// alert('上传成功');
 	window.parent.cocoMessage.success(2000, "上传成功")
 }
 
