@@ -2,7 +2,7 @@ var page=1; //设置首页页码
 var limit=12;  //设置一页显示的条数
 var count;    //总条数
 var queryParam = new Object();
-var laypage
+var laypage;
 
 layui.use('laypage', function(){
     laypage = layui.laypage;
@@ -91,7 +91,7 @@ function getHomeworkPageList(){
                 html += '<div class="layui-card-header '+color+'">'+n.course;
                 html += '<span class="layui-layout-right">'+n.createDate;
                 html += '<i class="layui-icon">&#xe642;</i>';
-                html += '<a href="/hm/homework/details.html?hid='+n.id+'&course='+n.course+'">详情</a>';
+                html += '<a href="/hm/homework/details.html?hid='+n.id+'">详情</a>';
                 html +=	'</span></div><div class="layui-card-body"><p>';
                 html += '<span>'+n.title+'</span>';
                 html += '<span class="layui-layout-right">最后提交日期:'+n.lastCommitDate+'</span>';

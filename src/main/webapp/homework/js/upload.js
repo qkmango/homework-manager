@@ -7,11 +7,11 @@ var $suspendBtn = $("#suspendBtn");
 
 //用户信息 json
 var user = '';
-//homework id（从url中获取）
-var hid = getUrlParam('hid');
-//homework course（充URL中获取）
-var course = getUrlParam('course');
 
+//homework id、course、title（从url中获取）
+var hid = getUrlParam('hid');
+var course = getUrlParam('course');
+var title = getUrlParam('title');
 
 //断点记录变量
 let tempCheckpoint;
@@ -30,6 +30,10 @@ if (hid==null) {
 		window.location.href='homework/homework.html';
 	})
 }
+
+//设置标题title
+$('#title').text(course+' '+title);
+
 
 
 //获取OSS STS配置

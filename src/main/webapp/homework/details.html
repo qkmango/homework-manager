@@ -2,7 +2,6 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
-<!--<base href="http://localhost:80/hm/">-->
 <base href="/hm/">
 <script src="lib/layui/layui.js"></script>
 <link rel="stylesheet" href="lib/layui/css/layui.css" />
@@ -17,14 +16,9 @@
 	<div class="layui-card">
 		<div class="layui-card-header">
 			<h1 id="title" style="font-weight: bold">java 实验报告一</h1>
-			<span id="btn-box">
-				<a href="homework/upload.html" class="layui-btn layui-layout-right"><i class="layui-icon">&#xe681;</i>去提交</a>
-			</span>
+			<span id="btn-box"></span>
 		</div>
-		<div class="layui-card-body">
-<!--			<img id="badge-course" src="https://img.shields.io/badge/学科-java-5FB878.svg">-->
-<!--			<img id="badge-deadline" src="https://img.shields.io/badge/最后提交日期-2020&#45;&#45;02&#45;&#45;10-5FB878.svg">-->
-			<img id="badge-course">
+		<div class="layui-card-body"><img id="badge-course">
 			<img id="badge-deadline">
 			<hr>
 			<!--markdown内容-->
@@ -34,19 +28,12 @@
 
 </body>
 </html>
-<!--<script src="homework/js/upload.js"></script>-->
 <script>
-	// //渲染 markdown
-	// window.onload = function() {
-	// 	document.getElementById("content").innerHTML=marked('# 小星星');
-	// }
-
 	var element;
 	layui.use(['element','form'],function () {
 		var form = layui.form;
 		element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
 		element.init();
-		// element.progress('demo', 50+'%');
 	});
 </script>
 <script src="lib/utils/utils.js"></script>
