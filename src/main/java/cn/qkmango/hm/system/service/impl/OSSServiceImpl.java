@@ -1,7 +1,10 @@
 package cn.qkmango.hm.system.service.impl;
 
+import cn.qkmango.hm.system.domain.AliOss;
 import cn.qkmango.hm.system.domain.AliOssSts;
 import cn.qkmango.hm.system.service.OSSService;
+import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClientBuilder;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.http.MethodType;
@@ -122,10 +125,27 @@ public class OSSServiceImpl implements OSSService {
         return aliOssSts;
     }
 
-    public static void main(String[] args) {
-        System.out.println(ALIOSS_TIME_STAMP);
-        System.out.println(ALIOSS_STS);
+    /**
+     * 删除OSS中的Object（文件对象）
+     * @param objectPath
+     */
+    public static void deleteObject(String objectPath) {
+        AliOss instance = AliOss.getInstance();
+        String endpoint = instance.getEndpoint();
+        String accessKeyId = instance.getAccessKeyId();
+        String accessKeySecret = instance.getAccessKeySecret();
+
+        String bucketName = instance.getBucket();;
+        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+        ossClient.deleteObject(bucketName, objectPath);
+        ossClient.shutdown();
     }
+
+    public static void main(String[] args) {
+        // deleteObject("微机原理/30022/100000.html");
+    }
+
+
 
 
 }

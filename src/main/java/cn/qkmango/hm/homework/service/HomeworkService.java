@@ -31,5 +31,4 @@ public interface HomeworkService {
 
     boolean getHomeworkIsCommit(String uid, String hid);
 
-    boolean commitHomework(CommitHomework ch);
 }

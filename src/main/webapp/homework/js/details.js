@@ -1,7 +1,39 @@
-$(function () {
+let hid = getUrlParam('hid');
+let homework;
 
-    let hid = getUrlParam('hid');
-    let homework;
+function deleteCommitHomework(){
+    let code = prompt("确认要删除吗？确认请输入：yes");
+    if (code!='yes') {
+        return;
+    }
+
+    $.ajax({
+        url:'homework/deleteCommitHomework.do',
+        data:{
+            hid:hid
+        },
+        type:'post',
+        dataType:'json',
+        success:function (data) {
+            if (data.success) {
+                window.parent.cocoMessage.success(2000, "删除成功");
+            } else {
+                window.parent.cocoMessage.error(2000, "删除失败！");
+            }
+        },
+        error:function () {
+            window.parent.cocoMessage.error(2000, "服务器请求失败！");
+        }
+    })
+
+}
+
+$(function () {
+    if (hid==null) {
+        window.parent.cocoMessage.error(2000, "获取作业id失败！",function (){
+            window.location.href='/hm/homework/homework.html';
+        });
+    }
 
     homework = getHomeworkById(hid);
     getHomeworkIsCommit(homework);
@@ -35,7 +67,9 @@ $(function () {
                 }
             },
             error:function (error) {
-                window.parent.cocoMessage.error(2000, "请求失败，请重试！")
+                window.parent.cocoMessage.error(2000, "请求失败，请重试！",function () {
+                    window.location.href='/hm/homework/homework.html';
+                })
             }
         })
 
@@ -53,7 +87,7 @@ $(function () {
             dataType:'json',
             success:function(data){
                 if (data.success) {
-                    $('#btn-box').html('<a class="layui-btn layui-layout-right"><i class="layui-icon">&#x1006;</i>撤销提交</a>')
+                    $('#btn-box').html('<a class="layui-btn layui-layout-right" onclick="deleteCommitHomework()"><i class="layui-icon">&#x1006;</i>撤销提交</a>')
                 } else {
                     $('#btn-box').html('<a href="homework/upload.html?hid='+homework.id+'&course='+homework.course+'&title='+homework.title+'" class="layui-btn layui-layout-right"><i class="layui-icon">&#xe681;</i>去提交</a>')
                 }

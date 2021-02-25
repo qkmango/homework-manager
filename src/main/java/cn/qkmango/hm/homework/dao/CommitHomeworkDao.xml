@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.qkmango.hm.homework.dao.CommitHomeworkDao">
+
+    <select id="getCommitHomeworkByUidAndHid" resultType="cn.qkmango.hm.homework.domain.CommitHomework">
+        select
+            uid,
+            hid,
+            filepath
+        from commit_homework
+        where hid=#{hid} and uid=#{uid}
+    </select>
+
+    <delete id="deleteCommitHomework">
+        delete from commit_homework where uid=#{uid} and hid=#{hid}
+    </delete>
+
+    <insert id="commitHomework">
+        insert into commit_homework(uid, hid, filepath) VALUES (#{uid},#{hid},#{filePath})
+    </insert>
+
+</mapper>

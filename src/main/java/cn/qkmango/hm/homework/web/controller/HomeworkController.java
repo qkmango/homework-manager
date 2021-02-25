@@ -4,7 +4,9 @@ import cn.qkmango.hm.exception.HomeworkException;
 import cn.qkmango.hm.homework.domain.CommitHomework;
 import cn.qkmango.hm.homework.domain.Course;
 import cn.qkmango.hm.homework.domain.Homework;
+import cn.qkmango.hm.homework.service.CommitHomeworkService;
 import cn.qkmango.hm.homework.service.HomeworkService;
+import cn.qkmango.hm.homework.service.impl.CommitHomeworkServiceImpl;
 import cn.qkmango.hm.homework.service.impl.HomeworkServiceImpl;
 import cn.qkmango.hm.system.domain.User;
 import cn.qkmango.hm.utils.DateTimeUtil;
@@ -53,7 +55,30 @@ public class HomeworkController extends HttpServlet {
     }
 
     private void deleteCommitHomework(HttpServletRequest request, HttpServletResponse response) {
-        
+
+        HttpSession session = request.getSession(false);
+        if (session==null) {
+            PrintJson.printJsonFlag(response,false);
+            return;
+        }
+        String hid = request.getParameter("hid");
+        String uid = ((User) session.getAttribute("user")).getId();
+
+        CommitHomework ch = new CommitHomework();
+        ch.setHid(hid);
+        ch.setUid(uid);
+
+        CommitHomeworkService chs = (CommitHomeworkService) ServiceFactory.getService(new CommitHomeworkServiceImpl());
+
+        boolean flag = false;
+        try {
+            flag = chs.deleteCommitHomework(ch);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        PrintJson.printJsonFlag(response,flag);
+
     }
 
     private void commitHomework(HttpServletRequest request, HttpServletResponse response) {
@@ -67,18 +92,14 @@ public class HomeworkController extends HttpServlet {
         String filePath = request.getParameter("filePath");
         String hid = request.getParameter("hid");
 
-        // HashMap<String, String> map = new HashMap<>();
-        // map.put("uid",uid);
-        // map.put("hid",hid);
-        // map.put("filePath",filePath);
-
         CommitHomework ch = new CommitHomework();
         ch.setUid(uid);
         ch.setHid(hid);
         ch.setFilePath(filePath);
 
-        HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
-        boolean flag = hs.commitHomework(ch);
+        // HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
+        CommitHomeworkService chs = (CommitHomeworkService) ServiceFactory.getService(new CommitHomeworkServiceImpl());
+        boolean flag = chs.commitHomework(ch);
 
         PrintJson.printJsonFlag(response,flag);
     }

@@ -82,20 +82,4 @@ public class HomeworkServiceImpl implements HomeworkService {
         }
 
     }
-
-    @Override
-    public boolean commitHomework(CommitHomework ch) {
-        boolean flag = false;
-
-        try {
-            homeworkDao.commitHomework(ch);
-            flag = true;
-        } catch (Exception e) {
-            //说明插入失败，违反主键
-            e.printStackTrace();
-        } finally {
-            return flag;
-        }
-    }
-
 }

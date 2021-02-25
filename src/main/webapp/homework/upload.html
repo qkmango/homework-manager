@@ -6,8 +6,8 @@
 <base href="/hm/">
 <link rel="stylesheet" href="lib/layui/css/layui.css" />
 <link rel="stylesheet" href="homework/css/upload.css" />
-    <script src="lib/jquery-3.5.1.js"></script>
-    <script src="lib/alioss/oss.js"></script>
+<script src="lib/jquery-3.5.1.js"></script>
+<script src="lib/alioss/oss.js"></script>
 </head>
 <body>
     <div class="layui-card">
@@ -31,10 +31,17 @@
         </div>
     </div>
 
+    <div style="display: none">
+        <button id="startConfetti">启动</button>
+        <button id="stopConfetti">停止</button>
+        <button id="restartConfetti">重启</button>
+    </div>
+
 </body>
 </html>
 
 <script src="lib/layui/layui.js"></script>
+<script src="lib/jquery.confetti.js"></script>
 <script src="lib/utils/utils.js"></script>
 <script src="homework/js/upload.js"></script>
 <script>
@@ -43,4 +50,16 @@
         element = layui.element;
         element.init();
     });
+</script>
+<script>
+    //撒花
+    function sh() {
+        $('#restartConfetti').click()
+        function sleep(ms, callback) {
+            setTimeout(callback, ms)
+        }
+        sleep(5000, () => {
+            $('#stopConfetti').click()
+        })
+    }
 </script>

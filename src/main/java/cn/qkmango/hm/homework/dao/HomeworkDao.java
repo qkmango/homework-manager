@@ -28,5 +28,4 @@ public interface HomeworkDao {
 
     int getHomeworkIsCommit(@Param("uid") String uid, @Param("hid") String hid);
 
-    void commitHomework(CommitHomework ch);
 }

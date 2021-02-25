@@ -121,6 +121,8 @@ async function resumeUpload(filePath, data) {
 
 //上传完成调用
 function uploadSuccess(filePath) {
+	//撒花
+	sh();
 	changeDisable({
 		inputFile:true,
 		startBtn:true,

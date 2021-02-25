@@ -5,7 +5,7 @@ package cn.qkmango.hm.homework.domain;
  * @Description: //TODO
  * <p>类简介</p>
  * <p>类详细介绍</p>
- * @className CommitHomework
+ * @className CommitHomeworkService
  * @author: Mango
  * @date: 2021-02-25 14:16
  */
@@ -40,7 +40,7 @@ public class CommitHomework {
 
     @Override
     public String toString() {
-        return "CommitHomework{" +
+        return "CommitHomeworkService{" +
                 "uid='" + uid + '\'' +
                 ", hid='" + hid + '\'' +
                 ", filePath='" + filePath + '\'' +
