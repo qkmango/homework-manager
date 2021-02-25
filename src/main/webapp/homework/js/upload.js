@@ -12,7 +12,7 @@ var hid = getUrlParam('hid');
 
 //断点记录变量
 let tempCheckpoint;
-//
+//上传客户端对象
 let client;
 // flag标志，
 // 新的未上传的文件true，可继续上传的文件false
@@ -22,11 +22,11 @@ let ossConfig;
 
 
 
-//如果获取hid失败，则返回作业列表页面
+//如果从url中获取hid失败，则返回作业列表页面
 if (hid==null) {
 	// alert("获取作业id失败，请重试！")
 	// window.location.href='homework/homework.html';
-	window.parent.cocoMessage.error(3000, "获取作业id失败，请重试！",function () {
+	window.parent.cocoMessage.error(2000, "获取作业id失败，请重试！",function () {
 		window.location.href='homework/homework.html';
 	})
 }
@@ -50,7 +50,7 @@ $.ajax({
 	},
 	error:function () {
 		// alert('请求失败，请刷新页面！');
-		window.parent.cocoMessage.error(3000, "请求失败，请刷新页面！")
+		window.parent.cocoMessage.error(2000, "请求失败，请刷新页面！")
 	}
 })
 
@@ -65,7 +65,7 @@ $.ajax({
 		} else {
 			// alert("请登陆");
 			// window.location.href='system/login.html'
-			window.parent.cocoMessage.error(3000, "请登陆！",function () {
+			window.parent.cocoMessage.error(2000, "请登陆！",function () {
 				window.location.href='system/login.html'
 			})
 
@@ -74,13 +74,11 @@ $.ajax({
 	onerror:function () {
 		// alert("请登陆");
 		// window.location.href='system/login.html'
-		window.parent.cocoMessage.error(3000, "请登陆！",function () {
+		window.parent.cocoMessage.error(2000, "请登陆！",function () {
 			window.location.href='system/login.html'
 		})
 	}
 })
-
-
 
 
 // 上传方法
@@ -100,7 +98,7 @@ async function multipartUpload (fileName, data) {
 	} catch(e){
 		console.log(e);
 		// alert('上传失败！请刷新页面');
-		window.parent.cocoMessage.error(3000, "上传失败,请刷新页面!")
+		window.parent.cocoMessage.error(2000, "上传失败,请刷新页面!")
 	}
 }
 
@@ -121,7 +119,7 @@ async function resumeUpload(fileName, data) {
 	} catch (e) {
 		console.log(e);
 		// alert('上传失败！请刷新页面');
-		window.parent.cocoMessage.error(3000, "上传失败,请刷新页面!")
+		window.parent.cocoMessage.error(2000, "上传失败,请刷新页面!")
 	}
 }
 
@@ -147,17 +145,16 @@ function uploadSuccess(fileName) {
 		success:function (data) {
 			if (data.success) {
 				// alert("提交成功")
-				window.parent.cocoMessage.success(3000, "提交成功")
+				window.parent.cocoMessage.success(2000, "提交成功")
 			} else {
 				// alert("提交失败")
-				window.parent.cocoMessage.error(3000, "提交失败")
+				window.parent.cocoMessage.error(2000, "提交失败")
 			}
 		}
 	})
 
 	// alert('上传成功');
-	window.parent.cocoMessage.success(3000, "上传成功")
-	$('.layui-card .layui-card-header i').html('&#xe6af;');
+	window.parent.cocoMessage.success(2000, "上传成功")
 }
 
 
@@ -262,6 +259,7 @@ startBtn.onclick = function() {
 		resetBtn:true
 	})
 
+	//判断是否为断点续传
 	if(flag) {
 		flag = false;
 		// 开始上传

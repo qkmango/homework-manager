@@ -1,6 +1,4 @@
 import cn.qkmango.hm.system.domain.AliOss;
-import cn.qkmango.hm.system.domain.AliOssSts;
-import cn.qkmango.hm.system.service.impl.OSSServiceImpl;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 
@@ -21,7 +19,7 @@ public class Main {
         String accessKeySecret = instance.getAccessKeySecret();
 
         String bucketName = "qkmango";
-        String objectName = "index.html";
+        String objectName = "java/30021/100000.txt";
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
         ossClient.deleteObject(bucketName, objectName);
         ossClient.shutdown();

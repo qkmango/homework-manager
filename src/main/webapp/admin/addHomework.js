@@ -52,13 +52,16 @@ $(function () {
                 dataType:'json',
                 success: function (data) {
                     if (data.success) {
-                        layer.msg("提交成功");
+                        // layer.msg("提交成功");
+                        window.parent.cocoMessage.success(2000, "提交成功");
                     }else {
-                        layer.msg("提交失败！");
+                        // layer.msg("提交失败！");
+                        window.parent.cocoMessage.error(2000, "提交失败");
                     }
                 },
                 error:function () {
-                    layer.msg("提交失败！")
+                    // layer.msg("提交失败！")
+                    window.parent.cocoMessage.error(2000, "提交失败");
                 }
             });
             //如果返回true，就会刷新跳转页面了，所以固定false

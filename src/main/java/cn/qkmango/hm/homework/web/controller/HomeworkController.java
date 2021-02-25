@@ -46,7 +46,13 @@ public class HomeworkController extends HttpServlet {
             getHomeworkIsCommit(request,response);
         } else if ("/homework/commitHomework.do".equals(path)) {
             commitHomework(request,response);
+        } else if ("/homework/deleteCommitHomework.do".equals(path)) {
+            deleteCommitHomework(request,response);
         }
+    }
+
+    private void deleteCommitHomework(HttpServletRequest request, HttpServletResponse response) {
+        
     }
 
     private void commitHomework(HttpServletRequest request, HttpServletResponse response) {

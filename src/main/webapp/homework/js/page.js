@@ -102,7 +102,7 @@ function getHomeworkPageList(){
         error:function () {
             // alert("请先登陆");
             // window.location.href = 'system/login.html';
-            window.parent.cocoMessage.error(3000, "请先登录！", function() {
+            window.parent.cocoMessage.info(2000, "请先登录！", function() {
                 window.location.href = 'system/login.html';
             });
         }
