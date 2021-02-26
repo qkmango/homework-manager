@@ -25,13 +25,22 @@ public class AliOss {
         InputStream in = AliOss.class.getClassLoader().getResourceAsStream("alioss.properties");
         try {
             properties.load(in);
+            accessKeyId      = properties.getProperty("AccessKeyId");
+            accessKeySecret  = properties.getProperty("accessKeySecret");
+            endpoint         = properties.getProperty("endpoint");
+            bucket           = properties.getProperty("bucket");
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        accessKeyId      = properties.getProperty("AccessKeyId");
-        accessKeySecret  = properties.getProperty("accessKeySecret");
-        endpoint         = properties.getProperty("endpoint");
-        bucket           = properties.getProperty("bucket");
+
     }
 
     private static AliOss instance = new AliOss();

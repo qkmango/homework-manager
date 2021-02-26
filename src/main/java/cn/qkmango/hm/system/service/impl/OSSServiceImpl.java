@@ -62,34 +62,25 @@ public class OSSServiceImpl implements OSSService {
     private static AliOssSts getSTS() {
 
         AliOssSts aliOssSts = new AliOssSts();
-
-        /**
-         * 加载配置文件，获取配置
-         */
         Properties properties = new Properties();
-        // 使用ClassLoader加载properties配置文件生成对应的输入流
         InputStream in = OSSServiceImpl.class.getClassLoader().getResourceAsStream("alioss.properties");
-        // 使用properties对象加载输入流
-        try {
-            properties.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String stsEndpoint      = properties.getProperty("sts.endpoint");
-        String endpoint         = properties.getProperty("endpoint");
-        String AccessKeyId      = properties.getProperty("AccessKeyId");
-        String accessKeySecret  = properties.getProperty("accessKeySecret");
-        String roleArn          = properties.getProperty("roleArn");
-        String roleSessionName  = properties.getProperty("roleSessionName");
-        String stsPolicy           = properties.getProperty("sts.policy");
-        String region           = properties.getProperty("region");
-        String bucket           = properties.getProperty("bucket");
 
         /**
          * 获取STS
          */
         try {
+
+            properties.load(in);
+            String stsEndpoint      = properties.getProperty("sts.endpoint");
+            String endpoint         = properties.getProperty("endpoint");
+            String AccessKeyId      = properties.getProperty("AccessKeyId");
+            String accessKeySecret  = properties.getProperty("accessKeySecret");
+            String roleArn          = properties.getProperty("roleArn");
+            String roleSessionName  = properties.getProperty("roleSessionName");
+            String stsPolicy           = properties.getProperty("sts.policy");
+            String region           = properties.getProperty("region");
+            String bucket           = properties.getProperty("bucket");
+
             DefaultProfile.addEndpoint("", "", "Sts", stsEndpoint);
             IClientProfile profile = DefaultProfile.getProfile("", AccessKeyId, accessKeySecret);
             // 用profile构造client
@@ -120,6 +111,16 @@ public class OSSServiceImpl implements OSSService {
             System.out.println("Error code: " + e.getErrCode());
             System.out.println("Error message: " + e.getErrMsg());
             System.out.println("RequestId: " + e.getRequestId());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         return aliOssSts;
