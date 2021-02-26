@@ -152,43 +152,6 @@ function uploadSuccess(filePath) {
 	window.parent.cocoMessage.success(2000, "上传成功")
 }
 
-
-//更改禁用DOM
-function changeDisable(disableConf) {
-	if (disableConf['inputFile']) {
-		$inputFile.attr("disabled",true);
-		$inputFile.addClass('layui-disabled');
-	} else {
-		$inputFile.attr("disabled",false);
-		$inputFile.removeClass('layui-disabled');
-	}
-
-	if (disableConf['startBtn']) {
-		$startBtn.attr("disabled",true);
-		$startBtn.addClass('layui-disabled');
-	} else {
-		$startBtn.attr("disabled",false);
-		$startBtn.removeClass('layui-disabled');
-	}
-
-	if (disableConf['suspendBtn']) {
-		$suspendBtn.attr("disabled",true);
-		$suspendBtn.addClass('layui-disabled');
-	} else {
-		$suspendBtn.attr("disabled",false);
-		$suspendBtn.removeClass('layui-disabled');
-	}
-
-	if (disableConf['resetBtn']) {
-		$resetBtn.attr("disabled",true);
-		$resetBtn.addClass('layui-disabled');
-	} else {
-		$resetBtn.attr("disabled",false);
-		$resetBtn.removeClass('layui-disabled');
-	}
-}
-
-
 //开始上传
 function startUpload () {
 	let data = $inputFile[0].files[0];
@@ -273,6 +236,41 @@ suspendBtn.onclick = function() {
 	})
 }
 })
+
+//更改禁用DOM
+function changeDisable(disableConf) {
+	if (disableConf['inputFile']) {
+		$inputFile.attr("disabled",true);
+		$inputFile.addClass('layui-disabled');
+	} else {
+		$inputFile.attr("disabled",false);
+		$inputFile.removeClass('layui-disabled');
+	}
+
+	if (disableConf['startBtn']) {
+		$startBtn.attr("disabled",true);
+		$startBtn.addClass('layui-disabled');
+	} else {
+		$startBtn.attr("disabled",false);
+		$startBtn.removeClass('layui-disabled');
+	}
+
+	if (disableConf['suspendBtn']) {
+		$suspendBtn.attr("disabled",true);
+		$suspendBtn.addClass('layui-disabled');
+	} else {
+		$suspendBtn.attr("disabled",false);
+		$suspendBtn.removeClass('layui-disabled');
+	}
+
+	if (disableConf['resetBtn']) {
+		$resetBtn.attr("disabled",true);
+		$resetBtn.addClass('layui-disabled');
+	} else {
+		$resetBtn.attr("disabled",false);
+		$resetBtn.removeClass('layui-disabled');
+	}
+}
 
 //获取文件类型
 function getFileType(filePath) {

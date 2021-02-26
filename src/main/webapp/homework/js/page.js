@@ -48,14 +48,7 @@ function pagination() {
  */
 function getHomeworkPageList(){
 
-    let course = $('#selectCourse').val();
-    let status = $('#status').val();
-    let title = $.trim($('#title').val());
-
-    //保存参数
-    queryParam.course = course;
-    queryParam.status = status;
-    queryParam.title = title;
+    queryParam = $('form').serializeObject();
 
     $.ajax({
         url:'homework/getHomeworkPageList.do',
@@ -63,9 +56,9 @@ function getHomeworkPageList(){
         data:{
             pageNo: 	page,		//当前页页码
             pageSize: 	limit,	//每页条数
-            course:		course,		//学科
-            status:		status,		//状态（是否已经提交？已提交1 未提交0）
-            title:		title		//标题关键字
+            course:		queryParam.course,		//学科
+            status:		queryParam.status,		//状态（是否已经提交？已提交1 未提交0）
+            title:		queryParam.title		//标题关键字
         },
         type:'post',
         dataType:'json',
