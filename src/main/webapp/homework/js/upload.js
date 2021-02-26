@@ -235,7 +235,6 @@ suspendBtn.onclick = function() {
 		resetBtn:false
 	})
 }
-})
 
 //更改禁用DOM
 function changeDisable(disableConf) {
@@ -271,6 +270,9 @@ function changeDisable(disableConf) {
 		$resetBtn.removeClass('layui-disabled');
 	}
 }
+
+
+})
 
 //获取文件类型
 function getFileType(filePath) {
