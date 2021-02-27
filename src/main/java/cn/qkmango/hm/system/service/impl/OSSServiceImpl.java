@@ -72,7 +72,6 @@ public class OSSServiceImpl implements OSSService {
 
             properties.load(in);
             String stsEndpoint      = properties.getProperty("sts.endpoint");
-            String endpoint         = properties.getProperty("endpoint");
             String AccessKeyId      = properties.getProperty("AccessKeyId");
             String accessKeySecret  = properties.getProperty("accessKeySecret");
             String roleArn          = properties.getProperty("roleArn");
