@@ -104,7 +104,6 @@ public class OSSServiceImpl implements OSSService {
             aliOssSts.setRegion(region);
             aliOssSts.setBucket(bucket);
             aliOssSts.setStsEndpoint(stsEndpoint);
-            aliOssSts.setEndpoint(endpoint);
 
         } catch (ClientException e) {
             System.out.println("Failed：");

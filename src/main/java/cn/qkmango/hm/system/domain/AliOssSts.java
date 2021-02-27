@@ -14,7 +14,7 @@ public class AliOssSts {
     private String accessKeyId;
     private String accessKeySecret;
     private String bucket;
-    private String endpoint;
+    // private String endpoint;
     private String stsEndpoint;
     private String stsToken;
 
@@ -59,14 +59,6 @@ public class AliOssSts {
         this.bucket = bucket;
     }
 
-    public String getEndpoint() {
-        return endpoint;
-    }
-
-    public void setEndpoint(String endpoint) {
-        this.endpoint = endpoint;
-    }
-
     public String getStsEndpoint() {
         return stsEndpoint;
     }
@@ -82,7 +74,6 @@ public class AliOssSts {
                 ", accessKeyId='" + accessKeyId + '\'' +
                 ", accessKeySecret='" + accessKeySecret + '\'' +
                 ", bucket='" + bucket + '\'' +
-                ", endpoint='" + endpoint + '\'' +
                 ", stsEndpoint='" + stsEndpoint + '\'' +
                 ", stsToken='" + stsToken + '\'' +
                 '}';
