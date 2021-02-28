@@ -86,6 +86,9 @@ $(function () {
 			//这个innerConfig其实就是调用uploadOSS函数传入的此json，再加入了一个fileType而已
 			return innerConf.course+'/'+innerConf.hid+'/'+innerConf.user.id+'.'+innerConf.fileType;
 		},
+		"changeProgressCallback":function (p) {
+			element.progress('uploadProgress', (p*100).toFixed(2)+'%');
+		},
 		"uploadSuccessCallBack":function () {
 			window.parent.cocoMessage.success(2000, "上传成功")
 		},

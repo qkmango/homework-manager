@@ -66,6 +66,9 @@ config {
     "getFilePath":function (innerConf) {
         return innerConf.course+'/'+innerConf.hid+'/'+innerConf.user.id+'.'+innerConf.fileType;
     },
+    "changeProgressCallback":function (p) {
+        element.progress('uploadProgress', (p*100).toFixed(2)+'%');
+    },
     "uploadSuccessCallBack":function (innerConf) {
         window.parent.cocoMessage.success(2000, "上传成功")
     },
@@ -100,6 +103,7 @@ config中值的解读：
     getFilePath：        function(innerConf)，获取给上传文件指定文件上传后的路径
     CallBack：           function(innerConf)，回调函数系类
     uploadSuccessTodo：  function(innerConf)：上传完成后要去做...下面的配置中是发送了ajax告诉后端
+    changeProgressCallback:function (p) 进度条回调函数，传入的p，取值为 0~1
 
     innerConf 是什么？：innerConf就是调用uploadOSS(config)函数传入的此json配置，
         不过在不同的阶段，此config中又加入了如 fileType、filePath等配置，就形成了innerConf
@@ -143,7 +147,7 @@ function uploadOSS(config) {
                 progress: function (p, checkpoint) {
                     // 断点记录点。浏览器重启后无法直接继续上传，您需要手动触发上传操作。
                     tempCheckpoint = checkpoint;
-                    element.progress('uploadProgress', (p*100).toFixed(2)+'%');
+                    config.changeProgressCallback(p)
                 }
             })
             config.filePath = filePath;
@@ -164,7 +168,7 @@ function uploadOSS(config) {
                 progress: function (p, checkpoint) {
                     tempCheckpoint = checkpoint;
                     console.log(p);
-                    element.progress('uploadProgress', (p*100).toFixed(2)+'%');
+                    config.changeProgressCallback(p)
                 },
                 checkpoint: tempCheckpoint
             })
