@@ -11,7 +11,6 @@
 	html,body,
 	#left-nav,
 	#left-nav-box,
-	#main,
 	#iframe-box{
 		height: 100%;
 	}
@@ -25,7 +24,13 @@
 	#left-nav{
 		width: 100%;
 	}
-	
+
+	#user {
+		padding: 10px;
+		height: 40px;
+		line-height: 40px;
+	}
+
 </style>
 </head>
 <body class="layui-box layui-row">
@@ -35,7 +40,7 @@
 		<ul id="left-nav" class="layui-nav layui-nav-tree layui-inline" lay-filter="left-nav">
 
 			<!--左上角 用户名-->
-			<li id="user" style="padding: 10px;">
+			<li id="user">
 				<span id="realname"></span>
 				<a id="loginFlag" style="color: #009E94; float: right;" ></a>
 			</li>
