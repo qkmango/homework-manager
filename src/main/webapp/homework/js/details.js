@@ -94,7 +94,7 @@ $(function () {
             dataType:'json',
             success:function(data){
                 if (data.success) {
-                    $('#btn-box').html('<a class="layui-btn layui-layout-right" onclick="deleteCommitHomework()"><i class="layui-icon">&#x1006;</i>撤销提交</a>')
+                    $('#btn-box').html('<a class="layui-btn layui-btn-danger layui-layout-right" onclick="deleteCommitHomework()"><i class="layui-icon">&#x1006;</i>撤销提交</a>')
                 } else {
                     $('#btn-box').html('<a href="homework/upload.html?hid='+homework.id+'&course='+homework.course+'&title='+homework.title+'" class="layui-btn layui-layout-right"><i class="layui-icon">&#xe681;</i>去提交</a>')
                 }
