@@ -31,4 +31,5 @@ public interface HomeworkService {
 
     boolean getHomeworkIsCommit(String uid, String hid);
 
+    boolean deleteHomework(String hid) throws Exception;
 }

@@ -51,7 +51,29 @@ public class HomeworkController extends HttpServlet {
             commitHomework(request,response);
         } else if ("/homework/deleteCommitHomework.do".equals(path)) {
             deleteCommitHomework(request,response);
+        } else if ("/homework/deleteHomework.do".equals(path)) {
+            deleteHomework(request,response);
         }
+    }
+
+    private void deleteHomework(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+        if (session==null) {
+            PrintJson.printJsonFlag(response,false);
+            return;
+        }
+        String hid = request.getParameter("hid");
+
+        HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
+
+        boolean flag = false;
+        try {
+            flag = hs.deleteHomework(hid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        PrintJson.printJsonFlag(response,flag);
     }
 
     private void deleteCommitHomework(HttpServletRequest request, HttpServletResponse response) {

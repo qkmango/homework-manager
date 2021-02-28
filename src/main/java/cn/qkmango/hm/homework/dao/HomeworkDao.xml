@@ -3,6 +3,11 @@
 
 <mapper namespace="cn.qkmango.hm.homework.dao.HomeworkDao">
 
+
+    <delete id="deleteHomework">
+        delete from homework where id=#{hid}
+    </delete>
+
     <select id="getHomeworkIsCommit" resultType="int">
         select count(*)
         from commit_homework

@@ -1,6 +1,4 @@
 package cn.qkmango.hm.homework.service.impl;
-
-import cn.qkmango.hm.exception.CommitHomeworkException;
 import cn.qkmango.hm.exception.HomeworkException;
 import cn.qkmango.hm.homework.dao.CourseDao;
 import cn.qkmango.hm.homework.dao.HomeworkDao;
@@ -8,7 +6,9 @@ import cn.qkmango.hm.homework.domain.CommitHomework;
 import cn.qkmango.hm.homework.domain.Course;
 import cn.qkmango.hm.homework.domain.Homework;
 import cn.qkmango.hm.homework.service.HomeworkService;
+import cn.qkmango.hm.system.service.impl.OSSServiceImpl;
 import cn.qkmango.hm.utils.SqlSessionUtil;
+import sun.plugin2.os.windows.FLASHWINFO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -82,4 +82,21 @@ public class HomeworkServiceImpl implements HomeworkService {
         }
 
     }
+
+    @Override
+    public boolean deleteHomework(String hid) {
+        boolean flag  = true;
+        try {
+            int count = homeworkDao.deleteHomework(hid);
+            if (count!=1) {
+                flag  = false;
+                throw new Exception("删除作业失败！");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            return flag;
+        }
+    }
+
 }

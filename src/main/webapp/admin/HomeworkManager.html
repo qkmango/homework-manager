@@ -10,31 +10,106 @@
 </head>
 <body>
 
-    <table id="demo" lay-filter="test"></table>
+    <div class="demoTable layui-form layui-form-pane">
+
+        <div class="layui-form-item layui-input-inline">
+            <div class="layui-inline">
+                <label class="layui-form-label">标题</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="query_id" id="query_id">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-input-inline">
+            <div class="layui-inline">
+                <label class="layui-form-label">标题</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="query_title" id="query_title">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-input-inline">
+            <div class="layui-inline">
+                <button class="layui-btn" data-type="reload">搜索</button>
+            </div>
+        </div>
+    </div>
+
+    <table id="homeworkPage" lay-filter="homeworkPage"></table>
 
 </body>
 </html>
 <script src="lib/layui/layui.js"></script>
+<script type="text/html" id="bar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
 <script>
     layui.use('table', function(){
         var table = layui.table;
 
-        //第一个实例
+        //表格渲染
         table.render({
-            elem: '#demo'
-            // ,height: 312
+            id:'homeworkPage'
+            ,elem: '#homeworkPage'
+            // ,cellMinWidth: 'auto'
+            // ,cellWidth: 'auto'
             ,url: 'page.json' //数据接口
             ,page: true //开启分页
             ,cols: [[ //表头
-                {type: 'checkbox', title: '选择',sort: true, fixed: 'left'}
-                ,{field: 'id', title: 'ID',sort: true, fixed: 'left'}
+                {type: 'checkbox'}
+                ,{field: 'id', title: 'ID',sort: true}
                 ,{field: 'title', title: '标题'}
-                ,{field: 'course', title: '性别',sort: true}
-                ,{field: 'lastCommitDate', title: '最后提交时间'}
-                ,{field: 'createDate', title: '创建时间', width: 177}
-                ,{field: 'briefInfo', title: '简略信息',sort: true}
-                ,{field: 'detailInfo', title: '详细信息',sort: true}
+                ,{field: 'course', title: '学科',sort: true}
+                ,{field: 'lastCommitDate', title: '最后提交时间',sort: true}
+                ,{field: 'createDate', title: '创建时间',sort: true}
+                ,{field: 'briefInfo', title: '简略信息'}
+                ,{field: 'detailInfo', title: '详细信息'}
+                ,{toolbar: '#bar',title: '操作'}
             ]]
+        });
+
+        //监听工具条（右侧 查看、编辑、删除）
+        table.on('tool(homeworkPage)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'detail'){
+                layer.msg('ID：'+ data.id + ' 的查看操作');
+            } else if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                    // url: /homework/deleteHomework.do
+                });
+            } else if(obj.event === 'edit'){
+                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+            }
+        });
+
+
+
+        //搜索条件
+        active = {
+            reload: function(){
+                var query_id = $('#query_id');
+                var query_title = $('#query_title');
+
+                //执行重载
+                table.reload('homeworkPage', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        id: query_id.val(),
+                        title: query_title.val(),
+                    }
+                }, 'data');
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
         });
 
     });
