@@ -54,8 +54,8 @@ function getHomeworkPageList(){
         url:'homework/getHomeworkPageList.do',
         async:false,
         data:{
-            pageNo: 	page,		//当前页页码
-            pageSize: 	limit,	//每页条数
+            page: 	    page,		//当前页页码
+            limit: 	    limit,	//每页条数
             course:		queryParam.course,		//学科
             status:		queryParam.status,		//状态（是否已经提交？已提交1 未提交0）
             title:		queryParam.title		//标题关键字

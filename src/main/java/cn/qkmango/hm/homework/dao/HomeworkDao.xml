@@ -27,13 +27,13 @@
         on h.course=c.id
 
         <where>
-            <if test="status!='0' and status!=0">
+            <if test="(status!='0' and status!=0) and status!=null">
                 (h.id
                     <if test="status=='2' or status==2">not</if>
                         in(SELECT hid from commit_homework WHERE uid=#{uid}))
             </if>
 
-            <if test="course!='0' and course!=0">
+            <if test="(course!='0' and course!=0) and course!=null">
                 and c.id=#{course}
             </if>
             <if test="title!=null and title!=''">
@@ -42,7 +42,7 @@
         </where>
 
         order by h.id desc
-        LIMIT #{skipCount},#{pageSize}
+        LIMIT #{skipCount},#{limit}
     </select>
 
     <!-- 获取未分页的总记录条数 -->

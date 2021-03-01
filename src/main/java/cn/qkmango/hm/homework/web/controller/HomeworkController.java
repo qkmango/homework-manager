@@ -146,10 +146,10 @@ public class HomeworkController extends HttpServlet {
         String  course      = request.getParameter("course");
         String  status      = request.getParameter("status");
         String  title       = request.getParameter("title");
-        int     pageNo      = Integer.valueOf(request.getParameter("pageNo"));
-        int     pageSize    = Integer.valueOf(request.getParameter("pageSize"));
+        int     page        = Integer.valueOf(request.getParameter("page"));
+        int     limit       = Integer.valueOf(request.getParameter("limit"));
         //略过的记录条数
-        int     skipCount   = (pageNo-1)*pageSize;
+        int     skipCount   = (page-1)*limit;
 
         Map<String, Object> map = new HashMap<>();
         map.put("uid",user.getId());
@@ -157,14 +157,14 @@ public class HomeworkController extends HttpServlet {
         map.put("status",status);
         map.put("title",title);
         map.put("skipCount",skipCount);
-        map.put("pageSize",pageSize);
+        map.put("limit",limit);
 
         System.out.println("uid="+user.getId());
         System.out.println("course="+course);
         System.out.println("status="+status);
         System.out.println("title="+title);
         System.out.println("skipCount="+skipCount);
-        System.out.println("pageSize="+pageSize);
+        System.out.println("limit="+limit);
 
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
         Map<String, Object> resultMap = hs.getHomeworkPageList(map);
