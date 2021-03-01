@@ -21,19 +21,17 @@ layui.use('table', function(){
         id:'homeworkPage'
         ,elem: '#homeworkPage'
         // ,cellMinWidth: 'auto'
-        // ,cellWidth: 'auto'
+        ,cellWidth: 'auto'
         ,method:'post'
         ,url: 'homework/getHomeworkPageList.do' //数据接口
         ,page: true //开启分页
         ,cols: [[ //表头
-            {type: 'checkbox'}
-            ,{field: 'id', title: 'ID',sort: true}
+            {field: 'id', title: 'ID',sort: true}
             ,{field: 'title', title: '标题'}
             ,{field: 'course', title: '学科',sort: true}
             ,{field: 'lastCommitDate', title: '最后提交时间',sort: true}
             ,{field: 'createDate', title: '创建时间',sort: true}
             ,{field: 'briefInfo', title: '简略信息'}
-            // ,{field: 'detailInfo', title: '详细信息'}
             ,{toolbar: '#bar',title: '操作'}
         ]]
     });
@@ -43,7 +41,9 @@ layui.use('table', function(){
         var data = obj.data;
         if(obj.event === 'detail'){
             layer.msg('ID：'+ data.id + ' 的查看操作');
-        } else if(obj.event === 'del'){
+            window.location.href="homework/details.html?hid="+data.id;
+        }
+        else if(obj.event === 'del'){
             layer.confirm('确认要删除么？ ID='+data.id, function(index){
                 window.parent.cocoMessage.loading("删除中...");
                 $.ajax({
@@ -67,7 +67,8 @@ layui.use('table', function(){
                 })
                 // url: homework/deleteHomework.do
             });
-        } else if(obj.event === 'edit'){
+        }
+        else if(obj.event === 'edit'){
             layer.alert('编辑行：<br>'+ JSON.stringify(data))
         }
     });
@@ -84,15 +85,13 @@ layui.use('table', function(){
                 page: { curr: 1 } //重新从第 1 页开始
                 ,where: {
                     course: selectCourse.val(),
-                    title: title.val(),
-                    status:0//所有状态
-                    // course:0//所有学科
+                    title: title.val()
                 }
             }, 'data');
         }
     };
-
-    $('.demoTable .layui-btn').on('click', function(){
+    //条件搜索 按钮绑定事件
+    $('.queryParamTable .layui-btn').on('click', function(){
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
