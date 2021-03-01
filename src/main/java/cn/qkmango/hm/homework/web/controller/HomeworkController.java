@@ -142,7 +142,6 @@ public class HomeworkController extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
-        // System.out.println("=======>>>>>>> " + user);
 
         String  course      = request.getParameter("course");
         String  status      = request.getParameter("status");
@@ -173,8 +172,9 @@ public class HomeworkController extends HttpServlet {
 
         /*
         {
+            code:0
             count:1000,
-            list:[
+            data:[
                 {},
                 {},
                 {},

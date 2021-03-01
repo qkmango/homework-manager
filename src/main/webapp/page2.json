@@ -1,0 +1,68 @@
+{
+  "count": 7,
+  "list": [
+    {
+      "id": "30009",
+      "title": "PHP",
+      "course": "php",
+      "lastCommitDate": "2021-02-17",
+      "createDate": "2021-02-23",
+      "briefInfo": "3",
+      "detailInfo": null
+    },
+    {
+      "id": "30008",
+      "title": "Java实验报告一",
+      "course": "java",
+      "lastCommitDate": "2021-02-23",
+      "createDate": "2021-02-23",
+      "briefInfo": "2",
+      "detailInfo": null
+    },
+    {
+      "id": "30007",
+      "title": "TEST",
+      "course": "java",
+      "lastCommitDate": "2020-20-20",
+      "createDate": "2021-02-23",
+      "briefInfo": "TEST",
+      "detailInfo": null
+    },
+    {
+      "id": "30006",
+      "title": "PHP2",
+      "course": "php",
+      "lastCommitDate": "2021-02-17",
+      "createDate": "2021-02-23",
+      "briefInfo": "3",
+      "detailInfo": null
+    },
+    {
+      "id": "30002",
+      "title": "PHP",
+      "course": "php",
+      "lastCommitDate": "2021-02-17",
+      "createDate": "2021-02-23",
+      "briefInfo": "3",
+      "detailInfo": null
+    },
+    {
+      "id": "30001",
+      "title": "Java实验报告一",
+      "course": "java",
+      "lastCommitDate": "2021-02-23",
+      "createDate": "2021-02-23",
+      "briefInfo": "2",
+      "detailInfo": null
+    },
+    {
+      "id": "30000",
+      "title": "TEST",
+      "course": "java",
+      "lastCommitDate": "2020-20-20",
+      "createDate": "2021-02-23",
+      "briefInfo": "TEST",
+      "detailInfo": null
+    }
+  ]
+}

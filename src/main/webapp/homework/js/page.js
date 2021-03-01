@@ -66,7 +66,7 @@ function getHomeworkPageList(){
             count=data.count;  //设置总条数
             let html = '';
             let nowDate = new Date();
-            $.each(data.list,function (i, n) {
+            $.each(data.data,function (i, n) {
                 let thisLastCommitDate = new Date(n.lastCommitDate);
                 let color;
                 let distance = nowDate-thisLastCommitDate;

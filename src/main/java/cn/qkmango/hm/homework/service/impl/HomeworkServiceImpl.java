@@ -2,13 +2,10 @@ package cn.qkmango.hm.homework.service.impl;
 import cn.qkmango.hm.exception.HomeworkException;
 import cn.qkmango.hm.homework.dao.CourseDao;
 import cn.qkmango.hm.homework.dao.HomeworkDao;
-import cn.qkmango.hm.homework.domain.CommitHomework;
 import cn.qkmango.hm.homework.domain.Course;
 import cn.qkmango.hm.homework.domain.Homework;
 import cn.qkmango.hm.homework.service.HomeworkService;
-import cn.qkmango.hm.system.service.impl.OSSServiceImpl;
 import cn.qkmango.hm.utils.SqlSessionUtil;
-import sun.plugin2.os.windows.FLASHWINFO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -64,8 +61,9 @@ public class HomeworkServiceImpl implements HomeworkService {
         int count = homeworkDao.getTotalByCondition();
 
         HashMap<String, Object> resultMap = new HashMap<>();
+        resultMap.put("code",0);
         resultMap.put("count",count);
-        resultMap.put("list",list);
+        resultMap.put("data",list);
 
         return resultMap;
     }

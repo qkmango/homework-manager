@@ -14,9 +14,10 @@
 
         <div class="layui-form-item layui-input-inline">
             <div class="layui-inline">
-                <label class="layui-form-label">标题</label>
+                <label class="layui-form-label">学科</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" name="query_id" id="query_id">
+                    <select id="selectCourse" name="course" lay-verify="required">
+                    </select>
                 </div>
             </div>
         </div>
@@ -24,10 +25,11 @@
             <div class="layui-inline">
                 <label class="layui-form-label">标题</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" name="query_title" id="query_title">
+                    <input class="layui-input" name="title" id="title">
                 </div>
             </div>
         </div>
+
         <div class="layui-form-item layui-input-inline">
             <div class="layui-inline">
                 <button class="layui-btn" data-type="reload">搜索</button>
@@ -44,6 +46,21 @@
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    $.ajax({
+        url:'homework/getCourseList.do',
+        type:'get',
+        dataType:'json',
+        async:false,
+        success:function (data){
+            let html = '<option value="0">全部</option>';
+            $.each(data,function (i,n) {
+                html += '<option value="'+n.id+'">'+n.name+'</option>'
+            })
+            $('#selectCourse').html(html);
+        }
+    })
 </script>
 <script>
     layui.use('table', function(){
@@ -76,10 +93,28 @@
             if(obj.event === 'detail'){
                 layer.msg('ID：'+ data.id + ' 的查看操作');
             } else if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    obj.del();
-                    layer.close(index);
-                    // url: /homework/deleteHomework.do
+                layer.confirm('确认要删除么？', function(index){
+                    window.parent.cocoMessage.loading("删除中...");
+                    $.ajax({
+                        url:'homework/deleteHomework.do',
+                        data:{hid:data.id},
+                        type:'post',
+                        dataType:'json',
+                        success:function (data) {
+                            window.parent.cocoMessage.destroyAll();
+                            if (data.success) {
+                                obj.del();
+                                layer.close(index);
+                                window.parent.cocoMessage.success(2000, "删除成功")
+                            } else {
+                                window.parent.cocoMessage.error(2000, "删除失败")
+                            }
+                        },error:function () {
+                            window.parent.cocoMessage.destroyAll();
+                            window.parent.cocoMessage.error(2000, "删除失败")
+                        }
+                    })
+                    // url: homework/deleteHomework.do
                 });
             } else if(obj.event === 'edit'){
                 layer.alert('编辑行：<br>'+ JSON.stringify(data))
@@ -91,8 +126,8 @@
         //搜索条件
         active = {
             reload: function(){
-                var query_id = $('#query_id');
-                var query_title = $('#query_title');
+                let selectCourse = $('#selectCourse');
+                let title = $('#title');
 
                 //执行重载
                 table.reload('homeworkPage', {
@@ -100,8 +135,8 @@
                         curr: 1 //重新从第 1 页开始
                     }
                     ,where: {
-                        id: query_id.val(),
-                        title: query_title.val(),
+                        course: selectCourse.val(),
+                        title: title.val(),
                     }
                 }, 'data');
             }
