@@ -41,7 +41,7 @@ layui.use('table', function(){
         var data = obj.data;
         if(obj.event === 'detail'){
             layer.msg('ID：'+ data.id + ' 的查看操作');
-            window.location.href="homework/details.html?hid="+data.id;
+            window.location.href="homework/details.html?power=admin&hid="+data.id;
         }
         else if(obj.event === 'del'){
             layer.confirm('确认要删除么？ ID='+data.id, function(index){
@@ -69,7 +69,8 @@ layui.use('table', function(){
             });
         }
         else if(obj.event === 'edit'){
-            layer.alert('编辑行：<br>'+ JSON.stringify(data))
+            // layer.alert('编辑行：<br>'+ JSON.stringify(data))
+            window.location.href="admin/editHomework.html?power=admin&hid="+data.id;
         }
     });
 

@@ -97,4 +97,20 @@ public class HomeworkServiceImpl implements HomeworkService {
         }
     }
 
+    @Override
+    public Map<String, Object> getHomeworkByIdOfEdit(String hid) {
+
+        Homework homework = homeworkDao.getHomeworkByIdOfEdit(hid);
+        HashMap<String, Object> map = new HashMap<>();
+
+        if (homework != null) {
+            map.put("success",true);
+            map.put("homework",homework);
+        } else {
+            map.put("success",false);
+        }
+
+        return map;
+    }
+
 }

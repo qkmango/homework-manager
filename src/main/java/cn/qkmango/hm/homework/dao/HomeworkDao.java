@@ -29,4 +29,6 @@ public interface HomeworkDao {
     int getHomeworkIsCommit(@Param("uid") String uid, @Param("hid") String hid);
 
     int deleteHomework(String hid);
+
+    Homework getHomeworkByIdOfEdit(String hid);
 }

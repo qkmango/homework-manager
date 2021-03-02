@@ -3,6 +3,18 @@
 
 <mapper namespace="cn.qkmango.hm.homework.dao.HomeworkDao">
 
+    <select id="getHomeworkByIdOfEdit" resultType="cn.qkmango.hm.homework.domain.Homework">
+        select
+            id,
+            title,
+            course,
+            lastCommitDate,
+            createDate,
+            briefInfo,
+            detailInfo
+        from homework
+        where id=#{id};
+    </select>
 
     <delete id="deleteHomework">
         delete from homework where id=#{hid}

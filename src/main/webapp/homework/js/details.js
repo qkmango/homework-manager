@@ -87,6 +87,10 @@ $(function () {
      * 获取此homework是否已经提交
      */
     function getHomeworkIsCommit(homework) {
+        //判断权限 power=admin（管理员权限）,则没有 提交/撤销提交 按钮
+        if (getUrlParam('power')=='admin') {
+            return;
+        }
         $.ajax({
             url:'homework/getHomeworkIsCommit.do',
             data:{hid:homework.id},

@@ -53,7 +53,19 @@ public class HomeworkController extends HttpServlet {
             deleteCommitHomework(request,response);
         } else if ("/homework/deleteHomework.do".equals(path)) {
             deleteHomework(request,response);
+        } else if ("/homework/getHomeworkByIdOfEdit.do".equals(path)) {
+            getHomeworkByIdOfEdit(request,response);
         }
+    }
+
+    private void getHomeworkByIdOfEdit(HttpServletRequest request, HttpServletResponse response) {
+
+        String hid = request.getParameter("hid");
+        HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
+        Map<String, Object> map = hs.getHomeworkByIdOfEdit(hid);
+
+        PrintJson.printJsonObj(response,map);
+
     }
 
     private void deleteHomework(HttpServletRequest request, HttpServletResponse response) {

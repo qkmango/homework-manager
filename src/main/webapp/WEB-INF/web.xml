@@ -57,6 +57,7 @@
     <url-pattern>/homework/commitHomework.do</url-pattern>
     <url-pattern>/homework/deleteCommitHomework.do</url-pattern>
     <url-pattern>/homework/deleteHomework.do</url-pattern>
+    <url-pattern>/homework/getHomeworkByIdOfEdit.do</url-pattern>
   </servlet-mapping>
 
 

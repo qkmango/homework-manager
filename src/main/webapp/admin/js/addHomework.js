@@ -17,6 +17,7 @@ $(function () {
         md.do('change');
     });
 
+    //获取学科列表
     $.ajax({
         url:'homework/getCourseList.do',
         type:'get',
