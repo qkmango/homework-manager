@@ -28,6 +28,7 @@
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
     <url-pattern>*.do</url-pattern>
+    <url-pattern>*.admin</url-pattern>
   </filter-mapping>
 
   <!-- 是否为管理员过滤器 -->
@@ -37,8 +38,7 @@
   </filter>
   <filter-mapping>
     <filter-name>AdminFilter</filter-name>
-    <url-pattern>*.admin.do</url-pattern>
-<!--    <url-pattern>/addHomework.admin.do</url-pattern>-->
+    <url-pattern>*.admin</url-pattern>
   </filter-mapping>
 
   
@@ -67,10 +67,10 @@
     <url-pattern>/homework/commitHomework.do</url-pattern>
     <url-pattern>/homework/deleteCommitHomework.do</url-pattern>
 
-    <url-pattern>/homework/addHomework.admin.do</url-pattern>
-    <url-pattern>/homework/deleteHomework.admin.do</url-pattern>
-    <url-pattern>/homework/getHomeworkByIdOfEdit.admin.do</url-pattern>
-    <url-pattern>/homework/editHomework.admin.do</url-pattern>
+    <url-pattern>/homework/addHomework.admin</url-pattern>
+    <url-pattern>/homework/deleteHomework.admin</url-pattern>
+    <url-pattern>/homework/getHomeworkByIdOfEdit.admin</url-pattern>
+    <url-pattern>/homework/editHomework.admin</url-pattern>
   </servlet-mapping>
 
 

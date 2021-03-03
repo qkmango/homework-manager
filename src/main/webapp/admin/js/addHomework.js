@@ -46,7 +46,7 @@ $(function () {
             // return false;
             // console.log(data.field)
             $.ajax({
-                url: 'homework/addHomework.admin.do',
+                url: 'homework/addHomework.admin',
                 data: data.field,
                 type:'post',
                 async:false,
@@ -60,9 +60,12 @@ $(function () {
                         // window.parent.cocoMessage.error(2000, "提交失败");
                     }
                 },
-                error:function (jqXHR) {
+                error:function (jqXHR,status,error) {
                     // layer.msg("提交失败！")
-                    window.parent.cocoMessage.error(2000, jqXHR.statusText+": "+jqXHR.responseText);
+                    window.parent.cocoMessage.error(2000, jqXHR.status+": "+jqXHR.responseText);
+                    console.log(jqXHR)
+                    console.log(status)
+                    console.log(error)
                 }
             });
             //如果返回true，就会刷新跳转页面了，所以固定false

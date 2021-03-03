@@ -37,13 +37,14 @@ public class HomeworkController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getServletPath();
+
+        System.out.println("进入到HomeworkController");
+
         if ("/homework/getCourseList.do".equals(path)) {
             getCourseList(request,response);
         } else if ("/homework/getHomeworkById.do".equals(path)) {
             getHomeworkById(request,response);
-        } else if ("/homework/addHomework.admin.do".equals(path)) {
-            addHomework(request,response);
-        } else if ("/homework/getHomeworkPageList.do".equals(path)) {
+        }  else if ("/homework/getHomeworkPageList.do".equals(path)) {
             getHomeworkPageList(request,response);
         } else if ("/homework/getHomeworkIsCommit.do".equals(path)) {
             getHomeworkIsCommit(request,response);
@@ -51,12 +52,14 @@ public class HomeworkController extends HttpServlet {
             commitHomework(request,response);
         } else if ("/homework/deleteCommitHomework.do".equals(path)) {
             deleteCommitHomework(request,response);
-        } else if ("/homework/deleteHomework.admin.do".equals(path)) {
+        } else if ("/homework/deleteHomework.admin".equals(path)) {
             deleteHomework(request,response);
-        } else if ("/homework/getHomeworkByIdOfEdit.admin.do".equals(path)) {
+        } else if ("/homework/getHomeworkByIdOfEdit.admin".equals(path)) {
             getHomeworkByIdOfEdit(request,response);
-        } else if ("/homework/editHomework.admin.do".equals(path)) {
+        } else if ("/homework/editHomework.admin".equals(path)) {
             editHomework(request,response);
+        } else if ("/homework/addHomework.admin".equals(path)) {
+            addHomework(request,response);
         }
     }
 

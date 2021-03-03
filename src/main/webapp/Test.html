@@ -1,47 +1,46 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>简易Markdown编辑器</title>
-	</head>
-	<link rel="stylesheet" href="lib/layui/css/layui.css">
-	<link rel="stylesheet" href="easyeditor/css/easyeditor.css">
-	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_1531710_xb357ub1wmg.css" />
-	<body>
+<!doctype html>
+<html lang="zh">
+<head><title>HTTP状态 403 - 被禁止</title>
+    <style type="text/css">body {
+        font-family: Tahoma, Arial, sans-serif;
+    }
 
-		<!-- Markdown编辑器元素 -->
-		<textarea id="L_content" name="content" style="" required lay-verify="required" placeholder="请输入发表内容" class="layui-textarea editor"></textarea>
+    h1, h2, h3, b {
+        color: white;
+        background-color: #525D76;
+    }
 
-		<script src="easyeditor/js/marked.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="easyeditor/layui/layui.js"></script>
-		<script>
-			layui.config({
-				base: 'easyeditor/mods/' //存放layui拓展模块的目录位置
-			}).extend({
-				easyeditor: 'easyeditor'
-			}).use(['easyeditor'], function() {
-				var easyeditor = layui.easyeditor;
-				//初始化Markdown编辑器
-				easyeditor.init({
-					elem: '.editor' //textarea 元素class
-					,uploadUrl: '/upload' //图片上传地址
-                                       ,videoUploadUrl : '/upload' //视频上传地址
-					,videoUploadSize:'102400' //限制的上传大小 单位kb 默认 10240 kb 
-					,uploadSize: '' //限制的上传大小 单位kb 默认 1024k 
-					//,codeSkin:'notepad' //代码框样式 默认不填 与notepad
-					//,style:'fange' //内置样式  目前只有默认 和 方格两种
-					//,buttonColor:'#FFB800' //自定义按钮颜色
-					//,hoverBgColor:'red'  // 自定义鼠标悬浮背景颜色
-					//,hoverColor:'#000000' // 自定义鼠标悬浮按钮颜色
-				});
-				//upload 接口要求返回的数据格式 
-				// 				{
-				// 					code:0   ,//code=0代表文件保存成功 其他code值 则认为失败
-				// 					msg:'图片保存失败' ,//搭配code使用 当code不等于 0 时,做出提示信息
-				// 					url:'http://xxx.com/images/xxx.jpg' //图片上传成功后,图片的访问路径/保存路径,使用图片全路径
-				// 				}
+    h1 {
+        font-size: 22px;
+    }
 
-			});
-		</script>
-	</body>
+    h2 {
+        font-size: 16px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    a {
+        color: black;
+    }
+
+    .line {
+        height: 1px;
+        background-color: #525D76;
+        border: none;
+    }</style>
+</head>
+<body><h1>HTTP状态 403 - 被禁止</h1>
+<hr class="line"/>
+<p><b>类型</b> 状态报告</p>
+<p><b>消息</b> 您没有权限</p>
+<p><b>描述</b> 服务器理解该请求但拒绝授权。</p>
+<hr class="line"/>
+<h3>Apache Tomcat/7.0.105</h3></body>
 </html>
