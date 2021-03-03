@@ -113,4 +113,13 @@ public class HomeworkServiceImpl implements HomeworkService {
         return map;
     }
 
+    @Override
+    public boolean editHomework(Homework homework) throws HomeworkException {
+        int count = homeworkDao.editHomework(homework);
+        if (count != 1) {
+            throw new HomeworkException("编辑Homework失败！");
+        }
+        return true;
+    }
+
 }

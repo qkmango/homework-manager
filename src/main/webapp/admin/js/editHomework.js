@@ -2,11 +2,12 @@
  * 通过id获取homework信息
  */
 var form;
+var hid = getUrlParam('hid')
 
 function getHomeworkById(hid) {
     let homework;
     $.ajax({
-        url:'homework/getHomeworkByIdOfEdit.do',
+        url:'homework/getHomeworkByIdOfEdit.admin.do',
         async:false,
         data:{hid:hid},
         type:'get',
@@ -25,7 +26,7 @@ function getHomeworkById(hid) {
     return homework;
 }
 // 获取homework 数据
-var homework = getHomeworkById(getUrlParam('hid'));
+var homework = getHomeworkById(hid);
 
 $(function () {
 
@@ -48,31 +49,28 @@ $(function () {
     layui.use(['form','laydate'], function(){
         form = layui.form;
         var laydate = layui.laydate;
-        //执行一个laydate实例
         laydate.render({
             elem: '#data' //指定元素
         });
 
         //监听提交
         form.on('submit(formSubmit)', function (data) {
+            data.field.id=hid;
             $.ajax({
-                url: 'homework/addHomework.do',
+                url: 'homework/editHomework.admin.do',
                 data: data.field,
                 type:'post',
                 async:false,
                 dataType:'json',
                 success: function (data) {
                     if (data.success) {
-                        // layer.msg("提交成功");
-                        window.parent.cocoMessage.success(2000, "提交成功");
+                        window.parent.cocoMessage.success(2000, "修改作业成功");
                     }else {
-                        // layer.msg("提交失败！");
-                        window.parent.cocoMessage.error(2000, "提交失败");
+                        window.parent.cocoMessage.error(2000, "修改作业失败!");
                     }
                 },
                 error:function () {
-                    // layer.msg("提交失败！")
-                    window.parent.cocoMessage.error(2000, "提交失败");
+                    window.parent.cocoMessage.error(2000, "修改作业失败!");
                 }
             });
             //如果返回true，就会刷新跳转页面了，所以固定false

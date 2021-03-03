@@ -3,6 +3,17 @@
 
 <mapper namespace="cn.qkmango.hm.homework.dao.HomeworkDao">
 
+    <update id="editHomework">
+        UPDATE homework set
+            title=#{title},
+            course=#{course},
+            lastCommitDate=#{lastCommitDate},
+            briefInfo=#{briefInfo},
+            detailInfo=#{detailInfo}
+        WHERE id=#{id}
+    </update>
+
+
     <select id="getHomeworkByIdOfEdit" resultType="cn.qkmango.hm.homework.domain.Homework">
         select
             id,

@@ -34,4 +34,6 @@ public interface HomeworkService {
     boolean deleteHomework(String hid) throws Exception;
 
     Map<String, Object> getHomeworkByIdOfEdit(String hid);
+
+    boolean editHomework(@Param("homework") Homework homework) throws HomeworkException;
 }

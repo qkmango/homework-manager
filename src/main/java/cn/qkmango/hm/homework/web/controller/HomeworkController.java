@@ -41,7 +41,7 @@ public class HomeworkController extends HttpServlet {
             getCourseList(request,response);
         } else if ("/homework/getHomeworkById.do".equals(path)) {
             getHomeworkById(request,response);
-        } else if ("/homework/addHomework.do".equals(path)) {
+        } else if ("/homework/addHomework.admin.do".equals(path)) {
             addHomework(request,response);
         } else if ("/homework/getHomeworkPageList.do".equals(path)) {
             getHomeworkPageList(request,response);
@@ -51,11 +51,40 @@ public class HomeworkController extends HttpServlet {
             commitHomework(request,response);
         } else if ("/homework/deleteCommitHomework.do".equals(path)) {
             deleteCommitHomework(request,response);
-        } else if ("/homework/deleteHomework.do".equals(path)) {
+        } else if ("/homework/deleteHomework.admin.do".equals(path)) {
             deleteHomework(request,response);
-        } else if ("/homework/getHomeworkByIdOfEdit.do".equals(path)) {
+        } else if ("/homework/getHomeworkByIdOfEdit.admin.do".equals(path)) {
             getHomeworkByIdOfEdit(request,response);
+        } else if ("/homework/editHomework.admin.do".equals(path)) {
+            editHomework(request,response);
         }
+    }
+
+    private void editHomework(HttpServletRequest request, HttpServletResponse response) {
+
+        Homework homework = new Homework();
+
+        homework.setId(request.getParameter("id"));
+        homework.setTitle(request.getParameter("title"));
+        homework.setCourse(request.getParameter("course"));
+        homework.setLastCommitDate(request.getParameter("lastCommitDate"));
+        homework.setBriefInfo(request.getParameter("briefInfo"));
+        homework.setDetailInfo(request.getParameter("detailInfo"));
+
+
+        HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
+
+        boolean flag = false;
+        try {
+            hs.editHomework(homework);
+            flag = true;
+        } catch (HomeworkException e) {
+            e.printStackTrace();
+        } finally {
+            PrintJson.printJsonFlag(response,flag);
+        }
+
+
     }
 
     private void getHomeworkByIdOfEdit(HttpServletRequest request, HttpServletResponse response) {

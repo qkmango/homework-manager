@@ -47,7 +47,7 @@ layui.use('table', function(){
             layer.confirm('确认要删除么？ ID='+data.id, function(index){
                 window.parent.cocoMessage.loading("删除中...");
                 $.ajax({
-                    url:'homework/deleteHomework.do',
+                    url:'homework/deleteHomework.admin.do',
                     data:{hid:data.id},
                     type:'post',
                     dataType:'json',

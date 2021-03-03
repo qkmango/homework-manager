@@ -46,7 +46,7 @@ $(function () {
             // return false;
             // console.log(data.field)
             $.ajax({
-                url: 'homework/addHomework.do',
+                url: 'homework/addHomework.admin.do',
                 data: data.field,
                 type:'post',
                 async:false,

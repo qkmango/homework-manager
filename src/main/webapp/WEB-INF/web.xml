@@ -51,13 +51,15 @@
     <servlet-name>HomeworkController</servlet-name>
     <url-pattern>/homework/getCourseList.do</url-pattern>
     <url-pattern>/homework/getHomeworkById.do</url-pattern>
-    <url-pattern>/homework/addHomework.do</url-pattern>
     <url-pattern>/homework/getHomeworkPageList.do</url-pattern>
     <url-pattern>/homework/getHomeworkIsCommit.do</url-pattern>
     <url-pattern>/homework/commitHomework.do</url-pattern>
     <url-pattern>/homework/deleteCommitHomework.do</url-pattern>
-    <url-pattern>/homework/deleteHomework.do</url-pattern>
-    <url-pattern>/homework/getHomeworkByIdOfEdit.do</url-pattern>
+
+    <url-pattern>/homework/addHomework.admin.do</url-pattern>
+    <url-pattern>/homework/deleteHomework.admin.do</url-pattern>
+    <url-pattern>/homework/getHomeworkByIdOfEdit.admin.do</url-pattern>
+    <url-pattern>/homework/editHomework.admin.do</url-pattern>
   </servlet-mapping>
 
 

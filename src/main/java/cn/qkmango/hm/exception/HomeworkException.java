@@ -11,5 +11,6 @@ package cn.qkmango.hm.exception;
  */
 public class HomeworkException extends Exception{
     public HomeworkException(String s) {
+        super(s);
     }
 }

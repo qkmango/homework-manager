@@ -31,4 +31,6 @@ public interface HomeworkDao {
     int deleteHomework(String hid);
 
     Homework getHomeworkByIdOfEdit(String hid);
+
+    int editHomework(Homework homework);
 }
