@@ -4,7 +4,7 @@
 <mapper namespace="cn.qkmango.hm.system.dao.UserDao">
 
     <select id="login" resultType="cn.qkmango.hm.system.domain.User">
-        select id,username,realname
+        select id,username,realname,power
         from user
         where username=#{username} and password=#{password};
     </select>

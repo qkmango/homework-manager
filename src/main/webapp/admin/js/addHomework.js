@@ -57,12 +57,12 @@ $(function () {
                         window.parent.cocoMessage.success(2000, "提交成功");
                     }else {
                         // layer.msg("提交失败！");
-                        window.parent.cocoMessage.error(2000, "提交失败");
+                        // window.parent.cocoMessage.error(2000, "提交失败");
                     }
                 },
-                error:function () {
+                error:function (jqXHR) {
                     // layer.msg("提交失败！")
-                    window.parent.cocoMessage.error(2000, "提交失败");
+                    window.parent.cocoMessage.error(2000, jqXHR.statusText+": "+jqXHR.responseText);
                 }
             });
             //如果返回true，就会刷新跳转页面了，所以固定false

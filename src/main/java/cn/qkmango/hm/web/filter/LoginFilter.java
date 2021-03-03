@@ -32,11 +32,10 @@ public class LoginFilter implements Filter {
             "/system/user/login.do".equals(path)||
             "/system/user/logout.do".equals(path)||
             "/homework/getCourseList.do".equals(path)||
-            "/homework/getHomeworkById.do".equals(path)||
-            "/system/user/getUserinfo.do".equals(path)) {
+            "/homework/getHomeworkById.do".equals(path)) {
             chain.doFilter(req,resp);
         } else {
-            /*说明未登陆，重定向到login.jsp
+            /*说明未登陆，重定向
 
             在实际项目开发中，对于路径的使用，不论操作的是前端还是后端，应该一律使用绝对路径
             转发：
@@ -49,7 +48,9 @@ public class LoginFilter implements Filter {
                 "crm/login.jsp"
             */
 
-            response.sendRedirect(request.getContextPath()+"/system/login.html");
+            // response.sendRedirect(request.getContextPath()+"/system/login.html");
+            response.setStatus(200);//设置状态码；
+            response.sendError(403,"您未登陆，请登录！");
         }
     }
 

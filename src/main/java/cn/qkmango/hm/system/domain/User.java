@@ -14,6 +14,7 @@ public class User {
     private String username;
     private String realName;
     private String id;
+    private String power;
 
     public String getUsername() {
         return username;
@@ -39,12 +40,21 @@ public class User {
         this.id = id;
     }
 
+    public String getPower() {
+        return power;
+    }
+
+    public void setPower(String power) {
+        this.power = power;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
                 ", realName='" + realName + '\'' +
                 ", id='" + id + '\'' +
+                ", power='" + power + '\'' +
                 '}';
     }
 }

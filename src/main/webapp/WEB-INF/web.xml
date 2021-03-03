@@ -28,8 +28,19 @@
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
     <url-pattern>*.do</url-pattern>
-<!--    <url-pattern>*.html</url-pattern>-->
   </filter-mapping>
+
+  <!-- 是否为管理员过滤器 -->
+  <filter>
+    <filter-name>AdminFilter</filter-name>
+    <filter-class>cn.qkmango.hm.web.filter.AdminFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AdminFilter</filter-name>
+    <url-pattern>*.admin.do</url-pattern>
+<!--    <url-pattern>/addHomework.admin.do</url-pattern>-->
+  </filter-mapping>
+
   
   <servlet>
     <servlet-name>SystemController</servlet-name>

@@ -105,11 +105,12 @@ $(function() {
 				$('#realname').text(data.user.realName);
 				$('#loginFlag').text('退出');
 				$('#loginFlag').attr('href','system/user/logout.do');
-			} else {
-				$('#realname').text('未登录');
-				$('#loginFlag').text('去登陆');
-				$('#loginFlag').attr('href','system/login.html');
 			}
+		},
+		error:function (jqXHR) {
+			$('#realname').text('未登录');
+			$('#loginFlag').text('去登陆');
+			$('#loginFlag').attr('href','system/login.html');
 		}
 	})
 })
