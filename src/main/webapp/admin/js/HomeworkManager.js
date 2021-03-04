@@ -47,7 +47,7 @@ layui.use('table', function(){
             layer.confirm('确认要删除么？ ID='+data.id, function(index){
                 window.parent.cocoMessage.loading("删除中...");
                 $.ajax({
-                    url:'homework/deleteHomework.admin.do',
+                    url:'homework/deleteHomework.admin',
                     data:{hid:data.id},
                     type:'post',
                     dataType:'json',
@@ -56,14 +56,15 @@ layui.use('table', function(){
                         if (data.success) {
                             obj.del();
                             layer.close(index);
-                            window.parent.cocoMessage.success(2000, "删除成功")
+                            window.parent.cocoMessage.success(2000, data.msg)
                         } else {
-                            window.parent.cocoMessage.error(2000, "删除失败")
+                            window.parent.cocoMessage.error(2000, data.msg)
                         }
-                    },error:function () {
-                        window.parent.cocoMessage.destroyAll();
-                        window.parent.cocoMessage.error(2000, "删除失败")
                     }
+                    // ,error:function () {
+                    //     window.parent.cocoMessage.destroyAll();
+                    //     window.parent.cocoMessage.error(2000, "删除失败")
+                    // }
                 })
                 // url: homework/deleteHomework.do
             });

@@ -19,17 +19,18 @@ function deleteCommitHomework(){
             //关闭提醒
             window.parent.cocoMessage.destroyAll();
             if (data.success) {
-                window.parent.cocoMessage.success(2000, "删除成功",function () {
+                window.parent.cocoMessage.success(2000, data.msg,function () {
                     location.reload();
                 });
             } else {
-                window.parent.cocoMessage.error(2000, "删除失败！");
+                window.parent.cocoMessage.error(2000, data.msg);
             }
-        },
-        error:function () {
-            window.parent.cocoMessage.destroyAll();
-            window.parent.cocoMessage.error(2000, "服务器请求失败！");
         }
+        // ,
+        // error:function () {
+        //     window.parent.cocoMessage.destroyAll();
+        //     window.parent.cocoMessage.error(2000, "服务器请求失败！");
+        // }
     })
 
 }
@@ -68,16 +69,17 @@ $(function () {
                     //渲染 markdown
                     document.getElementById("content").innerHTML=marked(homework.detailInfo);
                 } else {
-                    window.parent.cocoMessage.error(2000, "获取作业列表失败，请刷新页面！",function (){
+                    window.parent.cocoMessage.error(2000, data.msg,function (){
                         window.location.href='/hm/homework/homework.html';
                     });
                 }
-            },
-            error:function (error) {
-                window.parent.cocoMessage.error(2000, "请求失败，请重试！",function () {
-                    window.location.href='/hm/homework/homework.html';
-                })
             }
+            // ,
+            // error:function (error) {
+            //     window.parent.cocoMessage.error(2000, "请求失败，请重试！",function () {
+            //         window.location.href='/hm/homework/homework.html';
+            //     })
+            // }
         })
 
         return homework;

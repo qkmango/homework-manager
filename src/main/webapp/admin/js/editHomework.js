@@ -7,7 +7,7 @@ var hid = getUrlParam('hid')
 function getHomeworkById(hid) {
     let homework;
     $.ajax({
-        url:'homework/getHomeworkByIdOfEdit.admin.do',
+        url:'homework/getHomeworkByIdOfEdit.admin',
         async:false,
         data:{hid:hid},
         type:'get',
@@ -57,20 +57,17 @@ $(function () {
         form.on('submit(formSubmit)', function (data) {
             data.field.id=hid;
             $.ajax({
-                url: 'homework/editHomework.admin.do',
+                url: 'homework/editHomework.admin',
                 data: data.field,
                 type:'post',
                 async:false,
                 dataType:'json',
                 success: function (data) {
                     if (data.success) {
-                        window.parent.cocoMessage.success(2000, "修改作业成功");
+                        window.parent.cocoMessage.success(2000, data.msg);
                     }else {
-                        window.parent.cocoMessage.error(2000, "修改作业失败!");
+                        window.parent.cocoMessage.error(2000, data.msg);
                     }
-                },
-                error:function () {
-                    window.parent.cocoMessage.error(2000, "修改作业失败!");
                 }
             });
             //如果返回true，就会刷新跳转页面了，所以固定false

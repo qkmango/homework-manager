@@ -42,11 +42,6 @@ public class SystemController extends HttpServlet {
     }
 
     private void logout(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
-
         try {
             request.getRequestDispatcher("/index.html").forward(request, response);
         } catch (ServletException e) {
@@ -68,8 +63,6 @@ public class SystemController extends HttpServlet {
         } else {
             map.put("success",false);
         }
-
-
 
         PrintJson.printJsonObj(response,map);
     }

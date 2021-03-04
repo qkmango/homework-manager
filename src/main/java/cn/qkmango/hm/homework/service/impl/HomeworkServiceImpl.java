@@ -5,6 +5,8 @@ import cn.qkmango.hm.homework.dao.HomeworkDao;
 import cn.qkmango.hm.homework.domain.Course;
 import cn.qkmango.hm.homework.domain.Homework;
 import cn.qkmango.hm.homework.service.HomeworkService;
+import cn.qkmango.hm.utils.RespMap;
+import cn.qkmango.hm.utils.RespStatusMsg;
 import cn.qkmango.hm.utils.SqlSessionUtil;
 
 import java.util.HashMap;
@@ -34,25 +36,40 @@ public class HomeworkServiceImpl implements HomeworkService {
     public Map<String, Object> getHomeworkById(String id) {
 
         Homework homework = homeworkDao.getHomeworkById(id);
-        HashMap<String, Object> map = new HashMap<>();
+        RespMap<Object> map = new RespMap<>();
 
         if (homework != null) {
-            map.put("success",true);
+            map.putSuccess(true);
+            map.putMsg(RespStatusMsg.Get_Homework_Success);
             map.put("homework",homework);
         } else {
             map.put("success",false);
+            map.putMsg(RespStatusMsg.Get_Homework_Fail);
         }
 
         return map;
     }
 
     @Override
-    public boolean addHomeWork(Homework homework) throws HomeworkException {
+    public HashMap<String, Object> addHomeWork(Homework homework) throws Throwable {
         int count = homeworkDao.addHomeWork(homework);
-        if (count != 1) {
-            throw new HomeworkException("添加Homework失败！");
+        HashMap<String, Object> map = new HashMap<>();
+
+        try {
+            if (count==1) {
+                map.put("success",true);
+                map.put("msg",RespStatusMsg.Homework_Add_Success);
+            }else {
+                map.put("success",false);
+                map.put("msg",RespStatusMsg.Homework_Add_Fail);
+                throw new HomeworkException(RespStatusMsg.Homework_Add_Fail);
+            }
+        } catch (HomeworkException e) {
+            e.printStackTrace();
+            throw e.getCause();
+        } finally {
+            return map;
         }
-        return true;
     }
 
     @Override
@@ -82,18 +99,26 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public boolean deleteHomework(String hid) {
-        boolean flag  = true;
+    public Map<String, Object> deleteHomework(String hid) {
+
+        RespMap<Object> map = new RespMap<>();
+
         try {
             int count = homeworkDao.deleteHomework(hid);
-            if (count!=1) {
-                flag  = false;
-                throw new Exception("删除作业失败！");
+
+            if (count==1) {
+                map.putSuccess(true);
+                map.putMsg(RespStatusMsg.Del_Homework_Success);
+            } else {
+                map.putSuccess(false);
+                map.putMsg(RespStatusMsg.Del_Homework_Fail);
+                throw new HomeworkException(RespStatusMsg.Del_Homework_Fail);
             }
-        } catch (Exception e){
+        } catch (HomeworkException e){
             e.printStackTrace();
+            throw e.getCause();
         } finally {
-            return flag;
+            return map;
         }
     }
 
@@ -114,12 +139,27 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public boolean editHomework(Homework homework) throws HomeworkException {
-        int count = homeworkDao.editHomework(homework);
-        if (count != 1) {
-            throw new HomeworkException("编辑Homework失败！");
+    public Map<String, Object> editHomework(Homework homework) throws Throwable {
+
+        RespMap<Object> map = new RespMap<>();
+
+        try {
+            int count = homeworkDao.editHomework(homework);
+            if (count == 1) {
+                map.putSuccess(true);
+                map.putMsg(RespStatusMsg.Edit_Homework_Success);
+            } else {
+                map.putSuccess(false);
+                map.putMsg(RespStatusMsg.Edit_Homework_Fail);
+                throw new HomeworkException(RespStatusMsg.Edit_Homework_Fail);
+            }
+
+        } catch (HomeworkException e) {
+            e.printStackTrace();
+            throw e.getCause();
+        } finally {
+            return map;
         }
-        return true;
     }
 
 }

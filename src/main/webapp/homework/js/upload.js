@@ -59,17 +59,18 @@ $(function () {
 			if (data.success) {
 				user = data.user;
 			} else {
-				window.parent.cocoMessage.error(2000, "请登陆！",function () {
+				window.parent.cocoMessage.error(2000, data.msg,function () {
 					window.location.href='system/login.html'
 				})
 
 			}
-		},
-		onerror:function () {
-			window.parent.cocoMessage.error(2000, "请登陆！",function () {
-				window.location.href='system/login.html'
-			})
 		}
+		// ,
+		// onerror:function () {
+		// 	window.parent.cocoMessage.error(2000, "请登陆！",function () {
+		// 		window.location.href='system/login.html'
+		// 	})
+		// }
 	})
 
 
@@ -95,12 +96,13 @@ $(function () {
 		"uploadErrorCallback":function () {
 			window.parent.cocoMessage.error(2000, "上传失败,请刷新页面!")
 		},
-		"commitSuccessCallback":function () {
-			window.parent.cocoMessage.success(2000, "提交成功")
-		},
-		"commitErrorCallback":function (){
-			window.parent.cocoMessage.error(2000, "提交失败")
-		},
+
+		// "commitSuccessCallback":function () {
+		// 	window.parent.cocoMessage.success(2000, "提交成功")
+		// },
+		// "commitErrorCallback":function (){
+		// 	window.parent.cocoMessage.error(2000, "提交失败")
+		// },
 		"uploadSuccessTodo":function (innerConf) {
 			console.log(innerConf.filePath)
 			console.log(innerConf.hid)
@@ -114,9 +116,9 @@ $(function () {
 				dataType:'json',
 				success:function (data) {
 					if (data.success) {
-						innerConf.commitSuccessCallback(innerConf);
+						window.parent.cocoMessage.success(2000, data.msg)
 					} else {
-						innerConf.commitErrorCallback(innerConf);
+						window.parent.cocoMessage.error(2000, data.msg)
 					}
 				}
 			})

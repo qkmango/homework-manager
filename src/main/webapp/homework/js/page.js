@@ -91,11 +91,6 @@ function getHomeworkPageList(){
                 html += '</p><p>'+n.briefInfo+'</p></div></div></div>';
             })
             $('#homework-list').html(html);
-        },
-        error:function () {
-            window.parent.cocoMessage.info(2000, "请先登录！", function() {
-                window.location.href = 'system/login.html';
-            });
         }
     });
 

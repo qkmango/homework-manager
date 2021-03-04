@@ -92,7 +92,6 @@ $(function() {
 	// 左侧导航控制iframe
 	var iframe = $('#iframe-box iframe')[0];
 	$('#left-nav .item').click(function() {
-		// alert(this.id)
 		iframe.src=this.id;
 	})
 
@@ -105,12 +104,14 @@ $(function() {
 				$('#realname').text(data.user.realName);
 				$('#loginFlag').text('退出');
 				$('#loginFlag').attr('href','system/user/logout.do');
+			} else {
+				$('#realname').text('未登录');
+				$('#loginFlag').text('去登陆');
+				$('#loginFlag').attr('href','system/login.html');
+				window.parent.cocoMessage.error(2000,data.msg,function () {
+					window.location.href = 'system/login.html';
+				});
 			}
-		},
-		error:function (jqXHR) {
-			$('#realname').text('未登录');
-			$('#loginFlag').text('去登陆');
-			$('#loginFlag').attr('href','system/login.html');
 		}
 	})
 })

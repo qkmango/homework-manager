@@ -6,6 +6,8 @@ import cn.qkmango.hm.homework.service.CommitHomeworkService;
 import cn.qkmango.hm.system.domain.AliOss;
 import cn.qkmango.hm.system.service.OSSService;
 import cn.qkmango.hm.system.service.impl.OSSServiceImpl;
+import cn.qkmango.hm.utils.RespMap;
+import cn.qkmango.hm.utils.RespStatusMsg;
 import cn.qkmango.hm.utils.SqlSessionUtil;
 
 import java.util.HashMap;
@@ -24,43 +26,51 @@ public class CommitHomeworkServiceImpl implements CommitHomeworkService {
 
     CommitHomeworkDao commitHomeworkDao = SqlSessionUtil.getSqlSession().getMapper(CommitHomeworkDao.class);
 
-    //TODO
     @Override
-    public boolean deleteCommitHomework(CommitHomework ch) throws Exception {
-        boolean flag  = false;
+    public HashMap<String, Object> deleteCommitHomework(CommitHomework ch) throws Exception {
+        // HashMap<String, Object> map = new HashMap<>();
+        RespMap<Object> map = new RespMap<>();
 
         try {
 
             CommitHomework commitHomework = commitHomeworkDao.getCommitHomeworkByUidAndHid(ch);
             if (commitHomework==null) {
-                throw new Exception("删除作业提交失败！");
+                throw new Exception(RespStatusMsg.Del_Homework_Fail);
             }
             int count = commitHomeworkDao.deleteCommitHomework(ch);
             OSSServiceImpl.deleteObject(commitHomework.getFilePath());
             if (count==1) {
-                flag = true;
+                map.putSuccess(true);
+                map.putMsg(RespStatusMsg.Del_Homework_Success);
             } else {
-                throw new Exception("删除作业提交失败！");
+                map.putSuccess(false);
+                map.putMsg(RespStatusMsg.Del_Homework_Fail);
+                throw new Exception(RespStatusMsg.Del_Homework_Fail);
             }
         } catch (Exception e){
             e.printStackTrace();
+            throw e.getCause();
         } finally {
-            return flag;
+            return map;
         }
     }
 
     @Override
-    public boolean commitHomework(CommitHomework ch) {
-        boolean flag = false;
+    public HashMap<String, Object> commitHomework(CommitHomework ch) {
 
+        RespMap<Object> map = new RespMap<>();
         try {
             commitHomeworkDao.commitHomework(ch);
-            flag = true;
+            map.putSuccess(true);
+            map.putMsg(RespStatusMsg.Commit_Homework_Success);
         } catch (Exception e) {
             //说明插入失败，违反主键
+            map.putSuccess(false);
+            map.putMsg(RespStatusMsg.Commit_Homework_Fail);
             e.printStackTrace();
+            throw e.getCause();
         } finally {
-            return flag;
+            return map;
         }
     }
 

@@ -9,10 +9,7 @@ import cn.qkmango.hm.homework.service.HomeworkService;
 import cn.qkmango.hm.homework.service.impl.CommitHomeworkServiceImpl;
 import cn.qkmango.hm.homework.service.impl.HomeworkServiceImpl;
 import cn.qkmango.hm.system.domain.User;
-import cn.qkmango.hm.utils.DateTimeUtil;
-import cn.qkmango.hm.utils.PrintJson;
-import cn.qkmango.hm.utils.ServiceFactory;
-import cn.qkmango.hm.utils.UUIDUtil;
+import cn.qkmango.hm.utils.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -74,20 +71,16 @@ public class HomeworkController extends HttpServlet {
         homework.setBriefInfo(request.getParameter("briefInfo"));
         homework.setDetailInfo(request.getParameter("detailInfo"));
 
-
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
 
-        boolean flag = false;
+        Map<String, Object> map = null;
         try {
-            hs.editHomework(homework);
-            flag = true;
-        } catch (HomeworkException e) {
+             map = hs.editHomework(homework);
+        } catch (Throwable e) {
             e.printStackTrace();
         } finally {
-            PrintJson.printJsonFlag(response,flag);
+            PrintJson.printJsonObj(response,map);
         }
-
-
     }
 
     private void getHomeworkByIdOfEdit(HttpServletRequest request, HttpServletResponse response) {
@@ -102,31 +95,26 @@ public class HomeworkController extends HttpServlet {
 
     private void deleteHomework(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
-        if (session==null) {
-            PrintJson.printJsonFlag(response,false);
-            return;
-        }
         String hid = request.getParameter("hid");
 
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
 
-        boolean flag = false;
+        Map<String, Object> map = null;
         try {
-            flag = hs.deleteHomework(hid);
+            map = hs.deleteHomework(hid);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            PrintJson.printJsonObj(response,map);
         }
 
-        PrintJson.printJsonFlag(response,flag);
+
+
     }
 
     private void deleteCommitHomework(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession(false);
-        if (session==null) {
-            PrintJson.printJsonFlag(response,false);
-            return;
-        }
         String hid = request.getParameter("hid");
         String uid = ((User) session.getAttribute("user")).getId();
 
@@ -136,23 +124,19 @@ public class HomeworkController extends HttpServlet {
 
         CommitHomeworkService chs = (CommitHomeworkService) ServiceFactory.getService(new CommitHomeworkServiceImpl());
 
-        boolean flag = false;
+        HashMap<String, Object> map = null;
         try {
-            flag = chs.deleteCommitHomework(ch);
+            map = chs.deleteCommitHomework(ch);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        PrintJson.printJsonFlag(response,flag);
+        PrintJson.printJsonObj(response,map);
 
     }
 
     private void commitHomework(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
-        if (session == null) {
-            PrintJson.printJsonFlag(response,false);
-            return;
-        }
 
         String uid = ((User) session.getAttribute("user")).getId();
         String filePath = request.getParameter("filePath");
@@ -163,11 +147,10 @@ public class HomeworkController extends HttpServlet {
         ch.setHid(hid);
         ch.setFilePath(filePath);
 
-        // HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
         CommitHomeworkService chs = (CommitHomeworkService) ServiceFactory.getService(new CommitHomeworkServiceImpl());
-        boolean flag = chs.commitHomework(ch);
+        HashMap<String, Object> map = chs.commitHomework(ch);
 
-        PrintJson.printJsonFlag(response,flag);
+        PrintJson.printJsonObj(response,map);
     }
 
     private void getHomeworkIsCommit(HttpServletRequest request, HttpServletResponse response) {
@@ -247,7 +230,6 @@ public class HomeworkController extends HttpServlet {
 
         Homework homework = new Homework();
 
-        // homework.setId(UUIDUtil.getUUID());
         homework.setTitle(request.getParameter("title"));
         homework.setCourse(request.getParameter("course"));
         homework.setLastCommitDate(request.getParameter("lastCommitDate"));
@@ -259,14 +241,13 @@ public class HomeworkController extends HttpServlet {
 
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
 
-        boolean flag = false;
+        HashMap<String, Object> map = null;
         try {
-            hs.addHomeWork(homework);
-            flag = true;
-        } catch (HomeworkException e) {
-            e.printStackTrace();
+            map = hs.addHomeWork(homework);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
         } finally {
-            PrintJson.printJsonFlag(response,flag);
+            PrintJson.printJsonObj(response,map);
         }
     }
 

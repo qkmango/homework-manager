@@ -42,9 +42,6 @@ $(function () {
 
         //监听提交
         form.on('submit(formSubmit)', function (data) {
-            // data.field.shstate = 1;
-            // return false;
-            // console.log(data.field)
             $.ajax({
                 url: 'homework/addHomework.admin',
                 data: data.field,
@@ -53,19 +50,10 @@ $(function () {
                 dataType:'json',
                 success: function (data) {
                     if (data.success) {
-                        // layer.msg("提交成功");
-                        window.parent.cocoMessage.success(2000, "提交成功");
+                        window.parent.cocoMessage.success(2000, data.msg);
                     }else {
-                        // layer.msg("提交失败！");
-                        // window.parent.cocoMessage.error(2000, "提交失败");
+                        window.parent.cocoMessage.error(2000, data.msg);
                     }
-                },
-                error:function (jqXHR,status,error) {
-                    // layer.msg("提交失败！")
-                    window.parent.cocoMessage.error(2000, jqXHR.status+": "+jqXHR.responseText);
-                    console.log(jqXHR)
-                    console.log(status)
-                    console.log(error)
                 }
             });
             //如果返回true，就会刷新跳转页面了，所以固定false

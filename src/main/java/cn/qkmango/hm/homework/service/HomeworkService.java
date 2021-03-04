@@ -25,15 +25,15 @@ public interface HomeworkService {
 
     Map<String, Object> getHomeworkById(String id);
 
-    boolean addHomeWork(@Param("homework") Homework homework) throws HomeworkException;
+    HashMap<String, Object> addHomeWork(@Param("homework") Homework homework) throws Throwable;
 
     Map<String, Object> getHomeworkPageList(Map<String, Object> map);
 
     boolean getHomeworkIsCommit(String uid, String hid);
 
-    boolean deleteHomework(String hid) throws Exception;
+    Map<String, Object> deleteHomework(String hid) throws Exception;
 
     Map<String, Object> getHomeworkByIdOfEdit(String hid);
 
-    boolean editHomework(@Param("homework") Homework homework) throws HomeworkException;
+    Map<String, Object> editHomework(@Param("homework") Homework homework) throws Throwable;
 }

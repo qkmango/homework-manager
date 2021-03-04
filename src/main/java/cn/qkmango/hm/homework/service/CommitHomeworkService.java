@@ -14,8 +14,8 @@ import java.util.HashMap;
  * @date: 2021-02-25 15:37
  */
 public interface CommitHomeworkService {
-    boolean deleteCommitHomework(CommitHomework ch) throws Exception;
-    boolean commitHomework(CommitHomework ch);
+    HashMap<String, Object> deleteCommitHomework(CommitHomework ch) throws Exception;
+    HashMap<String, Object> commitHomework(CommitHomework ch);
     HashMap<String, Object> getCommitHomeworkByUidAndHid(CommitHomework ch);
 
 }
