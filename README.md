@@ -1,6 +1,7 @@
 # homework-manager
 
-[![star](https://gitee.com/qkmango/homework-manager/badge/star.svg?theme=dark)](https://gitee.com/qkmango/homework-manager/stargazers)[![fork](https://gitee.com/qkmango/homework-manager/badge/fork.svg?theme=dark)](https://gitee.com/qkmango/homework-manager/members)
+[![star](https://gitee.com/qkmango/homework-manager/badge/star.svg?theme=dark)](https://gitee.com/qkmango/homework-manager/stargazers)
+[![fork](https://gitee.com/qkmango/homework-manager/badge/fork.svg?theme=dark)](https://gitee.com/qkmango/homework-manager/members)
 
 
 ## 介绍
