@@ -10,7 +10,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PrintJson {
-	
+
+	/**
+	 * 向前端响应 标志位 与 信息
+	 * @param response 响应
+	 * @param flag 标志位
+	 * @param msg 信息
+	 */
+	public static void printFlagAndMsg(HttpServletResponse response,boolean flag,String msg) {
+
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("success",flag);
+		map.put("msg",msg);
+
+		ObjectMapper om = new ObjectMapper();
+		try {
+			String json = om.writeValueAsString(map);
+			response.getWriter().print(json);
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
 	//将boolean值解析为json串
 	public static void printJsonFlag(HttpServletResponse response,boolean flag){
 		
