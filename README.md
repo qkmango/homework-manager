@@ -1,10 +1,6 @@
 # homework-manager
 
-[![芒果小洛/homework-manager](https://gitee.com/qkmango/homework-manager/widgets/widget_card.svg?colors=ffffff,1e252b,323d47,455059,d7deea,99a0ae)](https://gitee.com/qkmango/homework-manager)
-
-
-
-
+![](https://gitee.com/qkmango/homework-manager/widgets/widget_card.svg?colors=ffffff,1e252b,323d47,455059,d7deea,99a0ae)
 
 ## 介绍
 > homework-manager，即 作业管理（系统）
