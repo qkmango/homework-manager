@@ -17,10 +17,8 @@ function getHomeworkById(hid) {
             if (data.success) {
                 homework = data.homework;
             } else {
+                window.parent.cocoMessage.error(2000,data.msg);
             }
-        },
-        error:function (error) {
-
         }
     })
     return homework;
