@@ -29,9 +29,9 @@ import java.util.Properties;
  */
 public class OSSServiceImpl implements OSSService {
 
-    private static AliOssSts ALIOSS_STS;                //AliOSS对象，返回给前端的
-    private static long   ALIOSS_TIME_STAMP;            //AliOSS对象构造时，系统时间 （毫秒）
-    private static long   ALIOSS_EXPIRY_DATE = 1200L;   //AliOSS对象构造时，传入的有效期限（1200秒）
+    private static AliOssSts    ALIOSS_STS;                 //AliOSS对象，返回给前端的
+    private static long         ALIOSS_TIME_STAMP;          //AliOSS对象构造时，系统时间 （毫秒）
+    private static final long   ALIOSS_EXPIRY_DATE = 1200L; //AliOSS对象构造时，传入的有效期限（1200秒）
 
     static {
         ALIOSS_STS = getSTS();
@@ -139,12 +139,4 @@ public class OSSServiceImpl implements OSSService {
         ossClient.deleteObject(bucketName, objectPath);
         ossClient.shutdown();
     }
-
-    public static void main(String[] args) {
-        // deleteObject("微机原理/30022/100000.html");
-    }
-
-
-
-
 }
