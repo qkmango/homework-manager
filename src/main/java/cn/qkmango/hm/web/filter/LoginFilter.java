@@ -1,5 +1,8 @@
 package cn.qkmango.hm.web.filter;
 
+import cn.qkmango.hm.utils.PrintJson;
+import cn.qkmango.hm.utils.RespStatusMsg;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,22 +40,7 @@ public class LoginFilter implements Filter {
             "/homework/getHomeworkById.do".equals(path)) {
             chain.doFilter(req,resp);
         } else {
-            /*说明未登陆，重定向
-
-            在实际项目开发中，对于路径的使用，不论操作的是前端还是后端，应该一律使用绝对路径
-            转发：
-                使用的是一种特殊的绝对路径的使用方式，这种绝对路径的使用方式路径前面不加 /项目名，这种路径称为内部路径 /login.jsp
-            重定向：
-                使用的是传统的绝对路径的写法，前面必须以 /项目名 开头，后面跟具体的资源名
-
-            为了使项目更加灵活，项目名通过 request.getContextPath() 来获取 /crm
-                request.getContextPath()+"/login.jsp"
-                "crm/login.jsp"
-            */
-
-            // response.sendRedirect(request.getContextPath()+"/system/login.html");
-            response.setStatus(200);//设置状态码；
-            response.sendError(403,"您未登陆，请登录！");
+            PrintJson.printFlagAndMsg(response,false, RespStatusMsg.Not_Logged_In);
         }
     }
 

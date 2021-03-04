@@ -18,6 +18,7 @@
     <filter-name>EncodingFilter</filter-name>
     <!--匹配后缀名的，前面不要加开头斜杠-->
     <url-pattern>*.do</url-pattern>
+    <url-pattern>*.admin</url-pattern>
   </filter-mapping>
 
   <!--是否登陆的过滤器-->

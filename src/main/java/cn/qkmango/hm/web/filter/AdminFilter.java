@@ -1,6 +1,8 @@
 package cn.qkmango.hm.web.filter;
 
 import cn.qkmango.hm.system.domain.User;
+import cn.qkmango.hm.utils.PrintJson;
+import cn.qkmango.hm.utils.RespStatusMsg;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +31,7 @@ public class AdminFilter implements Filter {
         HttpSession session = request.getSession(false);
 
         if (session == null) {
-            response.setStatus(200);
-            response.sendError(403,"您没有权限");
+            PrintJson.printFlagAndMsg(response,false, RespStatusMsg.Insufficient_Permissions);
             return;
         }
 
@@ -38,8 +39,7 @@ public class AdminFilter implements Filter {
         if (user != null && "1".equals(user.getPower())) {
             chain.doFilter(req,resp);
         } else {
-            response.setStatus(200);
-            response.sendError(403,"您没有权限");
+            PrintJson.printFlagAndMsg(response,false, RespStatusMsg.Insufficient_Permissions);
         }
     }
 
