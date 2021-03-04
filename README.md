@@ -1,6 +1,7 @@
 # homework-manager
 
-![](https://gitee.com/qkmango/homework-manager/widgets/widget_card.svg?colors=ffffff,1e252b,323d47,455059,d7deea,99a0ae)
+[![star](https://gitee.com/qkmango/homework-manager/badge/star.svg?theme=dark)](https://gitee.com/qkmango/homework-manager/stargazers)[![fork](https://gitee.com/qkmango/homework-manager/badge/fork.svg?theme=dark)](https://gitee.com/qkmango/homework-manager/members)
+
 
 ## 介绍
 > homework-manager，即 作业管理（系统）
