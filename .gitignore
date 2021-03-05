@@ -2,4 +2,4 @@ target/
 .idea/
 homework-manager.iml
 bfg.jar
-
+src/main/resources/alioss.properties
