@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>登陆</title>
+<base href="/hm/">
+<link rel="stylesheet" type="text/css" href="system/login/style.css"/>
+<script type="text/javascript" src="lib/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="lib/coco-message/coco-message.js"></script>
+
+</head>
+<body>
+	<div class="welcome">
+		<span>欢迎登陆</span><br>
+		<span>Welcome to login</span>
+	</div>
+	<div class="main">
+		<form class="form" action="" method="post">
+			<div class="tip">用户名</div>
+			<span class="error_tip"></span>
+			<input type="text" id="username"/><br />
+			<div class="tip">密码</div>
+			<span class="error_tip"></span>
+			<input type="password" id="password" /><br />
+			<span class="info_tip">用户名和密码均为[5-10]位字母或数字组合</span>
+			<input type="button" value="Login Now" />
+		</form>
+	</div>
+</body>
+	
+<script type="text/javascript" src="system/login/login.js"></script>
+
+</html>

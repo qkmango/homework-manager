@@ -35,7 +35,7 @@ function login() {
 		success:function (data) {
 			if (data.success) {
 				console.log("登陆成功");
-				window.location.href = "../../hm/index.html";
+				window.location.href = "index.html";
 			} else{
 				alert("登陆失败,请重试!");
 			}

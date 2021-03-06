@@ -60,7 +60,7 @@ $(function () {
 				user = data.user;
 			} else {
 				window.parent.cocoMessage.error(2000, data.msg,function () {
-					window.location.href='system/login.html'
+					window.location.href='../../system/login2/login.html'
 				})
 
 			}

@@ -6,6 +6,8 @@ import cn.qkmango.hm.system.service.impl.OSSServiceImpl;
 import cn.qkmango.hm.system.service.UserService;
 import cn.qkmango.hm.system.service.impl.UserServiceImpl;
 import cn.qkmango.hm.utils.PrintJson;
+import cn.qkmango.hm.utils.RespMap;
+import cn.qkmango.hm.utils.RespStatusMsg;
 import cn.qkmango.hm.utils.ServiceFactory;
 
 import javax.servlet.ServletException;
@@ -42,8 +44,11 @@ public class SystemController extends HttpServlet {
     }
 
     private void logout(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("===> logout");
+        request.getSession().invalidate();
+
         try {
-            request.getRequestDispatcher("/index.html").forward(request, response);
+            request.getRequestDispatcher("/system/login/login.html").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

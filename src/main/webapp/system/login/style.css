@@ -1,0 +1,121 @@
+/* 解决高度塌陷 */
+.clearfix::after,
+.clearfix::before{
+	content: '';
+	display: table;
+	clear: both;
+}
+
+html,body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background-color: #2b3137;
+	/* background-image: url(imgs/simple-codelines.svg); */
+	margin: 0;
+}
+
+/* 登陆按钮 */
+input[type="button"] {
+	margin-top: 115px;
+}
+
+
+/* 欢迎文字 */
+.welcome {
+	float: left;
+	font-weight: bold;
+	color: white;
+	margin: 10% auto auto 10%;
+	line-height: 1.3;
+}
+
+.welcome>span:nth-child(1) {
+	font-size: 70px;
+}
+.welcome>span:nth-child(3) {
+	font-size: 30px;
+}
+
+
+/* 表单的box */
+.main {
+	position: fixed;
+	box-sizing: border-box;
+	width: 426px;
+	height: 496px;
+	background-color: white;
+	padding: 24px;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	right: 100px;
+	border-radius: 6px;
+}
+
+/* 表单 */
+.form{
+	margin-top: 20px;
+}
+
+/* 输入框上面的文字 电子邮件、密码 */
+.tip {
+	display: inline-block;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 21px;
+	margin-bottom: 5px;
+}
+
+/* 两个输入框 */
+input[type="text"],input[type="password"]{
+	padding-left: 10px;
+	box-sizing: border-box;
+	border: 1px solid #e1e4e8;
+	font-size: 16px;
+	outline: none;
+	width: 100%;
+	height: 44px;
+	border-radius:5px;
+	padding: 10px;
+	margin-bottom: 40px;
+	outline: none;
+}
+
+/* 三个输入框获得焦点时样式 */
+input[type="text"]:focus,input[type="password"]:focus {
+	box-shadow: 0 0 0 3px rgba(3,102,214,.3);
+	border: 1px solid #0366d6;
+}
+
+/* 登陆按钮 */
+input[type="button"] {
+	border: none;
+	outline: none;
+	font-size: 16px;
+	font-weight: bold;
+	width: 100%;
+	height: 64px;
+	box-sizing: border-box;
+	background-color: #2ebc4f;
+	border-radius: 6px;
+	color: white;
+}
+
+/* 输入框上右侧错误提示信息 */
+.error_tip {
+	display: inline-block;
+	float: right;
+	color: red;
+}
+
+/* 登陆按钮上侧、输入框下侧的一段文字 */
+.info_tip {
+	line-height: 14px;
+	margin-top: -35px;
+	display: block;
+	color: #6a737d;
+	font-size: 12px;
+}
