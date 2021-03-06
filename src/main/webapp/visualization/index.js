@@ -15,19 +15,17 @@ function RenderRecentCommitCount() {
     var myChart = echarts.init(dom);
     var app = {};
     var source = [];
-    source[0]=['count', 'course'];
     var option;
-
 
     $.ajax({
         url:'homework/getRecentCommitCount.do',
         type:'get',
         dataType:'json',
         success:function (data) {
-            $.each(data.data,function (i,n) {
-                source[i+1]=[n.count,n.course];
-            })
-            option =  {
+            //填充数据
+            source=data.data
+
+            option = {
                 title: {
                     text: '各学科最近一次作业提交人数',
                     textStyle:{
@@ -65,7 +63,8 @@ function RenderRecentCommitCount() {
                     label: {
                         show: true,
                         position: 'right',
-                        color:'#AAA'
+                        color:'#AAA',
+                        formatter: '{@count}/'+data.count
                     }
                 }]
             };
