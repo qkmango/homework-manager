@@ -3,6 +3,34 @@
 
 <mapper namespace="cn.qkmango.hm.homework.dao.HomeworkDao">
 
+    <select id="getHomeworkAndCommitCountPageList" resultType="hashmap">
+        select SQL_CALC_FOUND_ROWS
+        h.id,
+        h.title,
+        c.name as course,
+        h.lastCommitDate,
+        h.createDate,
+        h.briefInfo,
+        IFNULL(vc.count,0) count
+        from homework h
+        JOIN course c
+        on h.course=c.id
+        LEFT JOIN v_commit_count vc
+        on h.id=vc.hid
+
+        <where>
+            <if test="(course!='0' and course!=0) and course!=null">
+                c.id=#{course}
+            </if>
+            <if test="title!=null and title!=''">
+                and h.title like '%' #{title} '%'
+            </if>
+        </where>
+
+        order by h.id desc
+        LIMIT #{skipCount},#{limit}
+    </select>
+
     <update id="editHomework">
         UPDATE homework set
             title=#{title},

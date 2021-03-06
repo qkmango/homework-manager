@@ -57,7 +57,50 @@ public class HomeworkController extends HttpServlet {
             editHomework(request,response);
         } else if ("/homework/addHomework.admin".equals(path)) {
             addHomework(request,response);
+        } else if ("/homework/getHomeworkAndCommitCountPageList.do".equals(path)) {
+            getHomeworkAndCommitCountPageList(request,response);
         }
+    }
+
+    private void getHomeworkAndCommitCountPageList(HttpServletRequest request, HttpServletResponse response) {
+
+
+        String  course      = request.getParameter("course");
+        String  title       = request.getParameter("title");
+        int     page        = Integer.valueOf(request.getParameter("page"));
+        int     limit       = Integer.valueOf(request.getParameter("limit"));
+        //略过的记录条数
+        int     skipCount   = (page-1)*limit;
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("course",course);
+        map.put("title",title);
+        map.put("skipCount",skipCount);
+        map.put("limit",limit);
+
+        System.out.println("course="+course);
+        System.out.println("title="+title);
+        System.out.println("skipCount="+skipCount);
+        System.out.println("limit="+limit);
+
+        HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
+        Map<String, Object> resultMap = hs.getHomeworkAndCommitCountPageList(map);
+
+
+        /*
+        {
+            code:0
+            count:1000,
+            data:[
+                {},
+                {},
+                {},
+                {},
+            ]
+        }
+         */
+        PrintJson.printJsonObj(response,resultMap);
+
     }
 
     private void editHomework(HttpServletRequest request, HttpServletResponse response) {

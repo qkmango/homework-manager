@@ -33,4 +33,6 @@ public interface HomeworkDao {
     Homework getHomeworkByIdOfEdit(String hid);
 
     int editHomework(Homework homework);
+
+    List<HashMap<String, Object>> getHomeworkAndCommitCountPageList(Map<String, Object> map);
 }

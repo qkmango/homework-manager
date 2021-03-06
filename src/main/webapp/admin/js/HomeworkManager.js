@@ -21,9 +21,9 @@ layui.use('table', function(){
         id:'homeworkPage'
         ,elem: '#homeworkPage'
         // ,cellMinWidth: 'auto'
-        ,cellWidth: 'auto'
+        // ,cellWidth: 'auto'
         ,method:'post'
-        ,url: 'homework/getHomeworkPageList.do' //数据接口
+        ,url: 'homework/getHomeworkAndCommitCountPageList.do' //数据接口
         ,page: true //开启分页
         ,cols: [[ //表头
             {field: 'id', title: 'ID',sort: true}
@@ -32,7 +32,8 @@ layui.use('table', function(){
             ,{field: 'lastCommitDate', title: '最后提交时间',sort: true}
             ,{field: 'createDate', title: '创建时间',sort: true}
             ,{field: 'briefInfo', title: '简略信息'}
-            ,{toolbar: '#bar',title: '操作'}
+            ,{field: 'count', title: '提交人数'}
+            ,{toolbar: '#bar',title: '操作',width:'160'}
         ]]
     });
 

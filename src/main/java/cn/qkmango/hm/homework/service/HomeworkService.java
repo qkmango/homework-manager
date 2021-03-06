@@ -36,4 +36,6 @@ public interface HomeworkService {
     Map<String, Object> getHomeworkByIdOfEdit(String hid);
 
     Map<String, Object> editHomework(@Param("homework") Homework homework) throws Throwable;
+
+    Map<String, Object> getHomeworkAndCommitCountPageList(Map<String, Object> map);
 }
