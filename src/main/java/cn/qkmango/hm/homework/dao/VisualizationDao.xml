@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.qkmango.hm.homework.dao.VisualizationDao">
+
+    <select id="getRecentCommitCount" resultType="hashmap">
+        SELECT h.id,c.name course,IFNULL(vcc.count,0) count
+        FROM (SELECT id,title,course FROM (SELECT id,title,course FROM homework ORDER BY id DESC) h GROUP BY course) h
+        LEFT JOIN v_commit_count vcc
+            ON h.id=vcc.hid
+        LEFT JOIN course c
+            ON h.course=c.id
+    </select>
+
+</mapper>

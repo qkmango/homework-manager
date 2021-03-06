@@ -68,6 +68,7 @@
     <url-pattern>/homework/commitHomework.do</url-pattern>
     <url-pattern>/homework/deleteCommitHomework.do</url-pattern>
     <url-pattern>/homework/getHomeworkAndCommitCountPageList.do</url-pattern>
+    <url-pattern>/homework/getRecentCommitCount.do</url-pattern>
 
     <url-pattern>/homework/addHomework.admin</url-pattern>
     <url-pattern>/homework/deleteHomework.admin</url-pattern>

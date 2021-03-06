@@ -1,13 +1,14 @@
 package cn.qkmango.hm.homework.web.controller;
 
-import cn.qkmango.hm.exception.HomeworkException;
 import cn.qkmango.hm.homework.domain.CommitHomework;
 import cn.qkmango.hm.homework.domain.Course;
 import cn.qkmango.hm.homework.domain.Homework;
 import cn.qkmango.hm.homework.service.CommitHomeworkService;
 import cn.qkmango.hm.homework.service.HomeworkService;
+import cn.qkmango.hm.homework.service.VisualizationService;
 import cn.qkmango.hm.homework.service.impl.CommitHomeworkServiceImpl;
 import cn.qkmango.hm.homework.service.impl.HomeworkServiceImpl;
+import cn.qkmango.hm.homework.service.impl.VisualizationServiceImpl;
 import cn.qkmango.hm.system.domain.User;
 import cn.qkmango.hm.utils.*;
 
@@ -59,7 +60,17 @@ public class HomeworkController extends HttpServlet {
             addHomework(request,response);
         } else if ("/homework/getHomeworkAndCommitCountPageList.do".equals(path)) {
             getHomeworkAndCommitCountPageList(request,response);
+        } else if ("/homework/getRecentCommitCount.do".equals(path)) {
+            getRecentCommitCount(request,response);
         }
+    }
+
+    private void getRecentCommitCount(HttpServletRequest request, HttpServletResponse response) {
+        VisualizationService vs = (VisualizationService) ServiceFactory.getService(new VisualizationServiceImpl());
+        HashMap<String, Object> map = vs.getRecentCommitCount();
+
+        PrintJson.printJsonObj(response,map);
+
     }
 
     private void getHomeworkAndCommitCountPageList(HttpServletRequest request, HttpServletResponse response) {
