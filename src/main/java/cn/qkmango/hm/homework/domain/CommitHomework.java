@@ -13,6 +13,7 @@ public class CommitHomework {
     private String uid;
     private String hid;
     private String filePath;
+    private String datetime;
 
     public String getUid() {
         return uid;
@@ -38,12 +39,21 @@ public class CommitHomework {
         this.filePath = filePath;
     }
 
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
+
     @Override
     public String toString() {
-        return "CommitHomeworkService{" +
+        return "CommitHomework{" +
                 "uid='" + uid + '\'' +
                 ", hid='" + hid + '\'' +
                 ", filePath='" + filePath + '\'' +
+                ", datetime='" + datetime + '\'' +
                 '}';
     }
 }

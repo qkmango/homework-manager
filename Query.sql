@@ -11,4 +11,16 @@ FROM (SELECT id,title,course FROM (SELECT id,title,course FROM homework ORDER BY
 LEFT JOIN v_commit_count vcc
 ON h.id=vcc.hid
 LEFT JOIN course c
-ON h.course=c.id
+ON h.course=c.id;
+
+-- 获取最近提交动态
+SELECT u.realname,ch.datetime,c.name course,h.title
+FROM commit_homework ch
+LEFT JOIN homework h
+   ON ch.hid=h.id
+LEFT JOIN user u
+   ON ch.uid=u.id
+LEFT JOIN course c
+   ON h.course=c.id
+ORDER BY ch.datetime desc
+LIMIT 0,20

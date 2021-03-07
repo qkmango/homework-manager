@@ -1,30 +1,21 @@
 {
+  "code": 0,
+  "msg": "",
+  "count": 1000,
   "data": [
     {
-      "count": 40,
-      "course": "java",
-      "id": 30007
+      "name":"zs",
+      "date":"2020-12-12",
+      "course_homework":"Java-实验报告一"
     },
     {
-      "count": 2,
-      "course": "php",
-      "id": 30010
-    },
-    {
-      "count": 1,
-      "course": "HTML",
-      "id": 30013
-    },
-    {
-      "count": 0,
-      "course": "微机原理",
-      "id": 30014
-    },
-    {
-      "count": 0,
-      "course": "sqlserver",
-      "id": 30012
+      "name":"zs",
+      "date":"2020-12-12",
+      "course_homework":"Java-实验报告一"
+    },{
+      "name":"zs",
+      "date":"2020-12-12",
+      "course_homework":"Java-实验报告一"
     }
-  ],
-  "count": 52
+  ]
 }

@@ -2,6 +2,9 @@ package cn.qkmango.hm.homework.dao;
 
 import cn.qkmango.hm.homework.domain.CommitHomework;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @version 1.0
  * @Description: //TODO
@@ -16,4 +19,6 @@ public interface CommitHomeworkDao {
     void commitHomework(CommitHomework ch);
 
     CommitHomework getCommitHomeworkByUidAndHid(CommitHomework ch);
+
+    List<Map<String, Object>> getCommitDynamic();
 }

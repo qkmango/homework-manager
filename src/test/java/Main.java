@@ -1,5 +1,6 @@
 import cn.qkmango.hm.exception.HomeworkException;
 import cn.qkmango.hm.system.domain.AliOss;
+import cn.qkmango.hm.utils.DateTimeUtil;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 
@@ -9,28 +10,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        HashMap<String, Object> map = new HashMap<>();
-
-        Object put = map.put("name", "zs");
-
-        System.out.println(put);
+        System.out.println(DateTimeUtil.getSysDateTime());
     }
 
-
-    public static int delete() throws HomeworkException {
-
-        try {
-            throw new HomeworkException("失败");
-        } catch (HomeworkException e) {
-            e.printStackTrace();
-            throw e.getCause();
-        } finally {
-            return 1;
-        }
-
-
-
-    }
 
 
 }
