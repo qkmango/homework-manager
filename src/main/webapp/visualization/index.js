@@ -163,21 +163,8 @@ function RenderHeatmap() {
                 for (var d in data) {
                     stats[data[d].date] = data[d].value;
                 }
-                // console.log(stats)
                 return stats;
             };
-
-            // console.log(data.data);
-            // return;
-            //
-            // var jsonStr = "{"
-            // for(var p in data){
-            //     jsonStr += "\""+(new Date(p)/1000).toString()+"\""
-            //     jsonStr += ":"+data[p]+","
-            // }
-            // jsonStr = jsonStr.substring(0, jsonStr.length - 1);
-            // jsonStr += "}"
-            // jsonData = JSON.parse(jsonStr)
 
             var cal = new CalHeatMap();
             cal.init({
