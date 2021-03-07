@@ -17,4 +17,6 @@ public interface VisualizationDao {
     List<HashMap<String, Object>> getRecentCommitCount();
 
     List<Map<String, Object>> getCommitDynamic();
+
+    List<HashMap<String, String>> getHeatmap(HashMap<String, String> map);
 }

@@ -25,24 +25,31 @@ div,ul,table{
     padding: 5px;
 }
 
-.layui-table-cell{
-    height:18px;
-    line-height: 18px;
-}
+/*.layui-table-cell{*/
+/*    height:18px;*/
+/*    line-height: 18px;*/
+/*}*/
 
-#commit_dynamic{
-    color: #393D49;
-    font-size: 12px;
-    line-height: 1.85;
-    text-align: center;
-}
+/*#commit_dynamic{*/
+/*    color: #393D49;*/
+/*    font-size: 12px;*/
+/*    line-height: 1.85;*/
+/*    text-align: center;*/
+/*}*/
 
 #commit_dynamic{
     overflow: auto;
 }
 
+#commit_dynamic .title {
+    margin-bottom: 10px;
+}
+
 #commit_dynamic .layui-icon{
     font-size: 12px;
+}
+#commit_dynamic .layui-timeline-item {
+    /*padding-bottom: 10px;*/
 }
 
 #commit_dynamic li {
@@ -63,5 +70,14 @@ a {
     font-weight: bold;
     color:#58a6fd;
     font-size:16px;
+    margin-bottom: 10px;
 }
+
+#cal-heatmap .cal-heatmap-container {
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+
 

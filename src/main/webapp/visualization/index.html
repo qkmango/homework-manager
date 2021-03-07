@@ -9,6 +9,16 @@
 <script src="lib/layui/layui.js"></script>
 <script src="lib/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script type="text/javascript" src="lib/utils/dateUtils.js"></script>
+
+<!--<script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>-->
+<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.min.js"></script>-->
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.css" />-->
+
+<script type="text/javascript" src="lib/cal-heatmap/d3.v3.min.js"></script>
+<script type="text/javascript" src="lib/cal-heatmap/cal-heatmap.min.js"></script>
+<link rel="stylesheet" href="lib/cal-heatmap/cal-heatmap.css" />
+
 <script type="text/javascript" src="visualization/index.js"></script>
 </head>
 
@@ -17,10 +27,13 @@
         <div class="vis" id="RecentCommitCount"></div>
     </div>
     <div class="vis_box layui-col-md6 layui-col-sm6 layui-col-xs12">
-        <div class="vis">最近几次作业</div>
+        <div class="vis">
+            <h2 class="title">班级作业提交热力图（小时）</h2>
+            <div id="cal-heatmap"></div>
+        </div>
     </div>
     <div class="vis_box layui-col-md6 layui-col-sm6 layui-col-xs12">
-        <ul class="vis" id="commit_dynamic">
+        <ul class="vis layui-timeline" id="commit_dynamic">
             <h2 class="title">作业提交动态</h2>
         </ul>
     </div>

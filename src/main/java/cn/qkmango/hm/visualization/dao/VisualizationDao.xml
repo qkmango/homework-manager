@@ -3,6 +3,15 @@
 
 <mapper namespace="cn.qkmango.hm.visualization.dao.VisualizationDao">
 
+    <select id="getHeatmap" resultType="hashmap">
+        SELECT
+            count(*) value,
+            unix_timestamp(CONCAT(date(datetime)," ",hour(datetime),":00:00")) date
+        FROM commit_homework
+        WHERE datetime >= #{startDateFormat} and datetime &lt;= #{endDateFormat}
+        GROUP BY date(datetime),hour(datetime);
+    </select>
+
     <select id="getCommitDynamic" resultType="map">
         SELECT u.realname,ch.datetime,c.name course,h.title
         FROM commit_homework ch

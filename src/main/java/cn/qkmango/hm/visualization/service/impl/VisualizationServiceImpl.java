@@ -24,7 +24,6 @@ public class VisualizationServiceImpl implements VisualizationService {
 
     VisualizationDao    visualizationDao   = SqlSessionUtil.getSqlSession().getMapper(VisualizationDao.class);
     UserDao             userDao            = SqlSessionUtil.getSqlSession().getMapper(UserDao.class);
-    // CommitHomeworkDao   CommitHomeworkDao  = SqlSessionUtil.getSqlSession().getMapper(CommitHomeworkDao.class);
 
     /**
      * 查询各科最近一次作业提交人数
@@ -51,6 +50,15 @@ public class VisualizationServiceImpl implements VisualizationService {
     @Override
     public List<Map<String, Object>> getCommitDynamic() {
         List<Map<String, Object>> list = visualizationDao.getCommitDynamic();
+        return list;
+    }
+
+    @Override
+    public List<HashMap<String, String>> getHeatmap(HashMap<String, String> map) {
+        List<HashMap<String, String>> list = visualizationDao.getHeatmap(map);
+
+
+
         return list;
     }
 }

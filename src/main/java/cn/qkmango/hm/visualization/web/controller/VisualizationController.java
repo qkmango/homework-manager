@@ -33,13 +33,42 @@ public class VisualizationController extends HttpServlet {
             getRecentCommitCount(request,response);
         } else if ("/visualization/getCommitDynamic.do".equals(path)) {
             getCommitDynamic(request,response);
+        } else if ("/visualization/getHeatmap.do".equals(path)) {
+            getHeatmap(request,response);
         }
+    }
+
+    private void getHeatmap(HttpServletRequest request, HttpServletResponse response) {
+        VisualizationService vs = (VisualizationService) ServiceFactory.getService(new VisualizationServiceImpl());
+
+        String startDateFormat = request.getParameter("startDateFormat");
+        String endDateFormat = request.getParameter("endDateFormat");
+
+        System.out.println(startDateFormat);
+        System.out.println(endDateFormat);
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("startDateFormat",startDateFormat);
+        map.put("endDateFormat",endDateFormat);
+
+        List<HashMap<String, String>> list = vs.getHeatmap(map);
+
+        HashMap<String, Object> resultMap = new HashMap<>();
+        resultMap.put("success",true);
+        resultMap.put("data",list);
+
+        PrintJson.printJsonObj(response,resultMap);
     }
 
     private void getCommitDynamic(HttpServletRequest request, HttpServletResponse response) {
         VisualizationService vs = (VisualizationService) ServiceFactory.getService(new VisualizationServiceImpl());
         List<Map<String, Object>> list = vs.getCommitDynamic();
-        PrintJson.printJsonObj(response,list);
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("success",true);
+        map.put("data",list);
+
+        PrintJson.printJsonObj(response,map);
     }
 
     private void getRecentCommitCount(HttpServletRequest request, HttpServletResponse response) {

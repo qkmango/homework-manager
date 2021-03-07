@@ -23,4 +23,13 @@ LEFT JOIN user u
 LEFT JOIN course c
    ON h.course=c.id
 ORDER BY ch.datetime desc
-LIMIT 0,20
+LIMIT 0,20;
+
+
+-- 按小时分组，查询每个小时内提交作业的人数
+SELECT
+    count(*) count,
+    unix_timestamp(CONCAT(date(datetime)," ",hour(datetime),":00:00"))*1000 timestamp
+FROM commit_homework
+WHERE datetime > '2021-03-07 12:22:21'
+GROUP BY hour(datetime)

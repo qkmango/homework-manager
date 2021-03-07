@@ -1,6 +1,7 @@
 $(function () {
     RenderRecentCommitCount();
     RenderCommitDynamic();
+    RenderHeatmap();
 })
 
 /**
@@ -106,16 +107,99 @@ function RenderCommitDynamic() {
         type:'get',
         dataType:'json',
         success:function (data) {
+            if (!data.success) {
+                return;
+            }
             let html = '';
-            $.each(data,function (i,n) {
-                html += '<li class="layui-row">';
-                html += '<i     class="layui-col-md1 layui-col-sm1 layui-col-xs1 layui-icon ">&#xe62f;</i>';
-                html += '<span  class="layui-col-md2 layui-col-sm2 layui-col-xs2">'+n.realname+'</span>';
-                html += '<span  class="layui-col-md4 layui-col-sm4 layui-col-xs4">'+n.datetime+'</span>';
-                html += '<a     class="layui-col-md5 layui-col-sm5 layui-col-xs5">'+n.course+'@'+n.title+'</a>';
+            $.each(data.data,function (i,n) {
+                html += '<li class="layui-row layui-timeline-item">';
+                html += '<i class="layui-col-md1 layui-col-sm1 layui-col-xs1 layui-icon layui-timeline-axis">&#xe62f;</i>';
+                html += '<div class="layui-timeline-content layui-text">';
+                html += '<span class="layui-col-md2 layui-col-sm2 layui-col-xs2">'+n.realname+'</span>';
+                html += '<span class="layui-col-md4 layui-col-sm4 layui-col-xs4">'+n.datetime+'</span>';
+                html += '<a class="layui-col-md5 layui-col-sm5 layui-col-xs5">'+n.course+'@'+n.title+'</a>';
+                html += '</div>';
                 html += '</li>';
             })
             $('#commit_dynamic').append(html)
         }
     })
+}
+
+
+/**
+ * 渲染热力图
+ * @constructor
+ */
+function RenderHeatmap() {
+    // var jsonData;
+    const stepSize = 7*24*60*60*1000;//毫秒
+
+    var endDate = new Date();
+    var endDateFormat = dateFormat('YYYY-mm-dd HH:MM:SS',endDate);
+
+    var startDate = new Date(endDate-stepSize);
+    var startDateFormat = dateFormat('YYYY-mm-dd HH:MM:SS',startDate);
+
+    console.log(startDateFormat)
+    console.log(endDateFormat)
+
+    $.ajax({
+        url:"visualization/getHeatmap.do",
+        data:{
+            startDateFormat:startDateFormat,
+            endDateFormat:endDateFormat
+        },
+        type:'get',
+        dataType:'json',
+        success:function(data) {
+
+            if (!data.success) {
+                return;
+            }
+
+            var parser = function(data) {
+                var stats = {};
+                for (var d in data) {
+                    stats[data[d].date] = data[d].value;
+                }
+                // console.log(stats)
+                return stats;
+            };
+
+            // console.log(data.data);
+            // return;
+            //
+            // var jsonStr = "{"
+            // for(var p in data){
+            //     jsonStr += "\""+(new Date(p)/1000).toString()+"\""
+            //     jsonStr += ":"+data[p]+","
+            // }
+            // jsonStr = jsonStr.substring(0, jsonStr.length - 1);
+            // jsonStr += "}"
+            // jsonData = JSON.parse(jsonStr)
+
+            var cal = new CalHeatMap();
+            cal.init({
+                itemSelector:"#cal-heatmap",
+                domain:"day",
+                subDomain:"hour",
+                cellSize:15,
+                itemName:["次提交"],
+                subDomainTextFormat:'%H',
+                tooltip:true,
+                start:startDate,
+                range:7,
+                legend:[4,8,12,16],
+                domainGutter:10,
+                // colLimit:2,
+                // rowLimit:1,
+                data:data.data,
+                afterLoadData: parser
+            });
+
+        }
+    })
+
+
 }

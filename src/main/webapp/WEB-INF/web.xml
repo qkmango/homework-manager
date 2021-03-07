@@ -85,6 +85,7 @@
     <servlet-name>VisualizationController</servlet-name>
     <url-pattern>/visualization/getRecentCommitCount.do</url-pattern>
     <url-pattern>/visualization/getCommitDynamic.do</url-pattern>
+    <url-pattern>/visualization/getHeatmap.do</url-pattern>
   </servlet-mapping>
 
 
