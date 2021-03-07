@@ -138,8 +138,6 @@ function uploadOSS(config) {
 
     //上传完成调用
     function uploadSuccess(config) {
-        //撒花
-        sh();
         changeDisable({
             inputFile:true,
             startBtn:true,
