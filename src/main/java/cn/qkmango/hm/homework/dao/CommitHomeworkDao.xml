@@ -3,19 +3,6 @@
 
 <mapper namespace="cn.qkmango.hm.homework.dao.CommitHomeworkDao">
 
-    <select id="getCommitDynamic" resultType="map">
-        SELECT u.realname,ch.datetime,c.name course,h.title
-        FROM commit_homework ch
-        LEFT JOIN homework h
-            ON ch.hid=h.id
-        LEFT JOIN user u
-            ON ch.uid=u.id
-        LEFT JOIN course c
-            ON h.course=c.id
-        ORDER BY ch.datetime desc
-        LIMIT 0,15
-    </select>
-
     <select id="getCommitHomeworkByUidAndHid" resultType="cn.qkmango.hm.homework.domain.CommitHomework">
         select
             uid,

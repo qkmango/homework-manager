@@ -17,8 +17,5 @@ import java.util.Map;
 public interface CommitHomeworkDao {
     int deleteCommitHomework(CommitHomework ch);
     void commitHomework(CommitHomework ch);
-
     CommitHomework getCommitHomeworkByUidAndHid(CommitHomework ch);
-
-    List<Map<String, Object>> getCommitDynamic();
 }

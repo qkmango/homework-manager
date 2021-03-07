@@ -2,6 +2,7 @@ package cn.qkmango.hm.visualization.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @version 1.0
@@ -14,4 +15,6 @@ import java.util.List;
  */
 public interface VisualizationDao {
     List<HashMap<String, Object>> getRecentCommitCount();
+
+    List<Map<String, Object>> getCommitDynamic();
 }
