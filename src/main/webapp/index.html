@@ -89,7 +89,7 @@
 	
 	<!-- iframe窗体 -->
 	<div id="iframe-box" class="layui-col-md10 layui-col-sm9">
-		<iframe src="visualization/index.html"></iframe>
+		<iframe></iframe>
 	</div>
 	
 </body>
@@ -110,6 +110,17 @@ $(function() {
 
 	// 左侧导航控制iframe
 	var iframe = $('#iframe-box iframe')[0];
+
+	if (window.location.hash != '') {
+		let hash = window.location.hash.split('#')[1];
+		iframe.src = hash;
+		$('.layui-nav-item').removeClass('layui-this');
+		$(document.getElementById(hash).parentNode).addClass('layui-this');
+	} else {
+		iframe.src='visualization/index.html';
+	}
+
+
 	$('#left-nav .item').click(function() {
 		window.location.hash=this.id;
 		iframe.src=this.id;
