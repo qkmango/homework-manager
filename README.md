@@ -136,3 +136,16 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 - [x] 基本的功能（作业的发布、删除，提交、撤销等基本供）
 - [x] 普通用户、管理员 权限的管理（不同权限有着不同的功能，只有管理员才能发布修改删除作业，管理员权限包含不同用户权限）
+- [x] 主页数据可视化开发
+
+## 色彩
+<div style="background-color:#e9e9e9;color:black">#e9e9e9 rgb(233,233,233) 网页背景灰</div>
+
+<div style="background-color:#0d1117;color:white">#0d1117 rgb(13,17,23) 左侧导航背景</div>
+<div style="background-color:#30363d;color:white">#30363d rgb(48,54,61) 左侧导航选中背景</div>
+
+<div style="background-color:#5FB878;color:white">#5FB878 rgb(95,184,120) 文字颜色（左侧上 退出）</div>
+
+<div style="background-color:#58a6fd;color:black">#58a6fd rgb(88,166,253) 标题文字</div>
+<div style="background-color:#01AAED;color:black">#01AAED rgb(1,170,237) 小字</div>
+
