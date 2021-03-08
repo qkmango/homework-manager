@@ -59,14 +59,15 @@ public class SystemController extends HttpServlet {
     private void getUserinfo(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession(false);
-        Map<String, Object> map = new HashMap<>();
+        // Map<String, Object> map = new HashMap<>();
+        RespMap<Object> map = new RespMap<>();
 
         if (session != null) {
             User user = (User) session.getAttribute("user");
             map.put("user",user);
-            map.put("success",true);
+            map.putSuccess(true);
         } else {
-            map.put("success",false);
+            map.putSuccess(false);
         }
 
         PrintJson.printJsonObj(response,map);

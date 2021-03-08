@@ -27,7 +27,7 @@ public class CommitHomeworkServiceImpl implements CommitHomeworkService {
     CommitHomeworkDao commitHomeworkDao = SqlSessionUtil.getSqlSession().getMapper(CommitHomeworkDao.class);
 
     @Override
-    public HashMap<String, Object> deleteCommitHomework(CommitHomework ch) throws Exception {
+    public RespMap<Object> deleteCommitHomework(CommitHomework ch) throws Exception {
         // HashMap<String, Object> map = new HashMap<>();
         RespMap<Object> map = new RespMap<>();
 
@@ -56,7 +56,7 @@ public class CommitHomeworkServiceImpl implements CommitHomeworkService {
     }
 
     @Override
-    public HashMap<String, Object> commitHomework(CommitHomework ch) {
+    public RespMap<Object> commitHomework(CommitHomework ch) {
 
         RespMap<Object> map = new RespMap<>();
         try {

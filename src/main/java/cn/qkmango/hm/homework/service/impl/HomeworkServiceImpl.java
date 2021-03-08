@@ -33,7 +33,7 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public Map<String, Object> getHomeworkById(String id) {
+    public RespMap<Object> getHomeworkById(String id) {
 
         Homework homework = homeworkDao.getHomeworkById(id);
         RespMap<Object> map = new RespMap<>();
@@ -51,17 +51,17 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public HashMap<String, Object> addHomeWork(Homework homework) throws Throwable {
+    public RespMap<Object> addHomeWork(Homework homework) throws Throwable {
         int count = homeworkDao.addHomeWork(homework);
-        HashMap<String, Object> map = new HashMap<>();
+        RespMap<Object> map = new RespMap<Object>();
 
         try {
             if (count==1) {
-                map.put("success",true);
-                map.put("msg",RespStatusMsg.Homework_Add_Success);
+                map.putSuccess(true);
+                map.putMsg(RespStatusMsg.Homework_Add_Success);
             }else {
-                map.put("success",false);
-                map.put("msg",RespStatusMsg.Homework_Add_Fail);
+                map.putSuccess(false);
+                map.putMsg(RespStatusMsg.Homework_Add_Fail);
                 throw new HomeworkException(RespStatusMsg.Homework_Add_Fail);
             }
         } catch (HomeworkException e) {
@@ -73,14 +73,14 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public Map<String, Object> getHomeworkPageList(Map<String, Object> map) {
+    public RespMap<Object> getHomeworkPageList(Map<String, Object> map) {
         List<Homework> list = homeworkDao.getHomeworkPageList(map);
         int count = homeworkDao.getTotalByCondition();
 
-        HashMap<String, Object> resultMap = new HashMap<>();
+        RespMap<Object> resultMap = new RespMap<Object>();
         resultMap.put("code",0);
         resultMap.put("count",count);
-        resultMap.put("data",list);
+        resultMap.putData(list);
 
         return resultMap;
     }
@@ -99,7 +99,7 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public Map<String, Object> deleteHomework(String hid) {
+    public RespMap<Object> deleteHomework(String hid) {
 
         RespMap<Object> map = new RespMap<>();
 
@@ -123,23 +123,23 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public Map<String, Object> getHomeworkByIdOfEdit(String hid) {
+    public RespMap<Object> getHomeworkByIdOfEdit(String hid) {
 
         Homework homework = homeworkDao.getHomeworkByIdOfEdit(hid);
-        HashMap<String, Object> map = new HashMap<>();
+        RespMap<Object> map = new RespMap<>();
 
         if (homework != null) {
-            map.put("success",true);
+            map.putSuccess(true);
             map.put("homework",homework);
         } else {
-            map.put("success",false);
+            map.putSuccess(false);
         }
 
         return map;
     }
 
     @Override
-    public Map<String, Object> editHomework(Homework homework) throws Throwable {
+    public RespMap<Object> editHomework(Homework homework) throws Throwable {
 
         RespMap<Object> map = new RespMap<>();
 
@@ -163,14 +163,16 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public Map<String, Object> getHomeworkAndCommitCountPageList(Map<String, Object> map) {
+    public RespMap<Object> getHomeworkAndCommitCountPageList(Map<String, Object> map) {
         List<HashMap<String, Object>> list = homeworkDao.getHomeworkAndCommitCountPageList(map);
         int count = homeworkDao.getTotalByCondition();
 
-        HashMap<String, Object> resultMap = new HashMap<>();
+        RespMap<Object> resultMap = new RespMap<>();
+
+
         resultMap.put("code",0);
-        resultMap.put("count",count);
-        resultMap.put("data",list);
+        resultMap.putCount(count);
+        resultMap.putData(list);
 
         return resultMap;
     }

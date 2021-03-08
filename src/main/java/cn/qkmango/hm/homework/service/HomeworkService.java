@@ -5,6 +5,7 @@ import cn.qkmango.hm.exception.HomeworkException;
 import cn.qkmango.hm.homework.domain.CommitHomework;
 import cn.qkmango.hm.homework.domain.Course;
 import cn.qkmango.hm.homework.domain.Homework;
+import cn.qkmango.hm.utils.RespMap;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
@@ -23,19 +24,19 @@ import java.util.Map;
 public interface HomeworkService {
     List<Course> getCourseList();
 
-    Map<String, Object> getHomeworkById(String id);
+    RespMap<Object> getHomeworkById(String id);
 
-    HashMap<String, Object> addHomeWork(@Param("homework") Homework homework) throws Throwable;
+    RespMap<Object> addHomeWork(@Param("homework") Homework homework) throws Throwable;
 
-    Map<String, Object> getHomeworkPageList(Map<String, Object> map);
+    RespMap<Object> getHomeworkPageList(Map<String, Object> map);
 
     boolean getHomeworkIsCommit(String uid, String hid);
 
-    Map<String, Object> deleteHomework(String hid) throws Exception;
+    RespMap<Object> deleteHomework(String hid) throws Exception;
 
-    Map<String, Object> getHomeworkByIdOfEdit(String hid);
+    RespMap<Object> getHomeworkByIdOfEdit(String hid);
 
-    Map<String, Object> editHomework(@Param("homework") Homework homework) throws Throwable;
+    RespMap<Object> editHomework(@Param("homework") Homework homework) throws Throwable;
 
-    Map<String, Object> getHomeworkAndCommitCountPageList(Map<String, Object> map);
+    RespMap<Object> getHomeworkAndCommitCountPageList(Map<String, Object> map);
 }

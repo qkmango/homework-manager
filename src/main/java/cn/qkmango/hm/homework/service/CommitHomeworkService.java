@@ -1,6 +1,7 @@
 package cn.qkmango.hm.homework.service;
 
 import cn.qkmango.hm.homework.domain.CommitHomework;
+import cn.qkmango.hm.utils.RespMap;
 
 import java.util.HashMap;
 
@@ -14,8 +15,8 @@ import java.util.HashMap;
  * @date: 2021-02-25 15:37
  */
 public interface CommitHomeworkService {
-    HashMap<String, Object> deleteCommitHomework(CommitHomework ch) throws Exception;
-    HashMap<String, Object> commitHomework(CommitHomework ch);
+    RespMap<Object> deleteCommitHomework(CommitHomework ch) throws Exception;
+    RespMap<Object> commitHomework(CommitHomework ch);
     HashMap<String, Object> getCommitHomeworkByUidAndHid(CommitHomework ch);
 
 }

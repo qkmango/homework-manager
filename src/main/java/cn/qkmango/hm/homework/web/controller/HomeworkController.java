@@ -64,7 +64,6 @@ public class HomeworkController extends HttpServlet {
 
     private void getHomeworkAndCommitCountPageList(HttpServletRequest request, HttpServletResponse response) {
 
-
         String  course      = request.getParameter("course");
         String  title       = request.getParameter("title");
         int     page        = Integer.valueOf(request.getParameter("page"));
@@ -78,13 +77,8 @@ public class HomeworkController extends HttpServlet {
         map.put("skipCount",skipCount);
         map.put("limit",limit);
 
-        System.out.println("course="+course);
-        System.out.println("title="+title);
-        System.out.println("skipCount="+skipCount);
-        System.out.println("limit="+limit);
-
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
-        Map<String, Object> resultMap = hs.getHomeworkAndCommitCountPageList(map);
+        RespMap<Object> resultMap = hs.getHomeworkAndCommitCountPageList(map);
 
 
         /*
@@ -99,6 +93,7 @@ public class HomeworkController extends HttpServlet {
             ]
         }
          */
+        resultMap.putSuccess(true);
         PrintJson.printJsonObj(response,resultMap);
 
     }
@@ -116,7 +111,7 @@ public class HomeworkController extends HttpServlet {
 
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
 
-        Map<String, Object> map = null;
+        HashMap<String, Object> map = null;
         try {
              map = hs.editHomework(homework);
         } catch (Throwable e) {
@@ -130,19 +125,18 @@ public class HomeworkController extends HttpServlet {
 
         String hid = request.getParameter("hid");
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
-        Map<String, Object> map = hs.getHomeworkByIdOfEdit(hid);
+        HashMap<String, Object> map = hs.getHomeworkByIdOfEdit(hid);
 
         PrintJson.printJsonObj(response,map);
 
     }
 
     private void deleteHomework(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(false);
         String hid = request.getParameter("hid");
 
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
 
-        Map<String, Object> map = null;
+        HashMap<String, Object> map = null;
         try {
             map = hs.deleteHomework(hid);
         } catch (Exception e) {
@@ -210,7 +204,6 @@ public class HomeworkController extends HttpServlet {
 
     private void getHomeworkPageList(HttpServletRequest request, HttpServletResponse response) {
 
-
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
 
@@ -230,16 +223,10 @@ public class HomeworkController extends HttpServlet {
         map.put("skipCount",skipCount);
         map.put("limit",limit);
 
-        System.out.println("uid="+user.getId());
-        System.out.println("course="+course);
-        System.out.println("status="+status);
-        System.out.println("title="+title);
-        System.out.println("skipCount="+skipCount);
-        System.out.println("limit="+limit);
-
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
-        Map<String, Object> resultMap = hs.getHomeworkPageList(map);
+        RespMap<Object> resultMap = hs.getHomeworkPageList(map);
 
+        resultMap.putSuccess(true);
 
         /*
         {
@@ -259,7 +246,7 @@ public class HomeworkController extends HttpServlet {
     private void getHomeworkById(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
-        Map<String, Object> map = hs.getHomeworkById(id);
+        HashMap<String, Object> map = hs.getHomeworkById(id);
 
         PrintJson.printJsonObj(response,map);
     }
@@ -280,8 +267,6 @@ public class HomeworkController extends HttpServlet {
         homework.setCreateDate(DateTimeUtil.getSysDate());
         homework.setBriefInfo(request.getParameter("briefInfo"));
         homework.setDetailInfo(request.getParameter("detailInfo"));
-
-        System.out.println(homework.getDetailInfo());
 
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
 

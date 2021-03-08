@@ -1,6 +1,7 @@
 package cn.qkmango.hm.visualization.web.controller;
 
 import cn.qkmango.hm.utils.PrintJson;
+import cn.qkmango.hm.utils.RespMap;
 import cn.qkmango.hm.utils.ServiceFactory;
 import cn.qkmango.hm.visualization.service.VisualizationService;
 import cn.qkmango.hm.visualization.service.impl.VisualizationServiceImpl;
@@ -53,9 +54,9 @@ public class VisualizationController extends HttpServlet {
 
         List<HashMap<String, String>> list = vs.getHeatmap(map);
 
-        HashMap<String, Object> resultMap = new HashMap<>();
-        resultMap.put("success",true);
-        resultMap.put("data",list);
+        RespMap<Object> resultMap = new RespMap<>();
+        resultMap.putSuccess(true);
+        resultMap.putData(list);
 
         PrintJson.printJsonObj(response,resultMap);
     }
@@ -64,20 +65,20 @@ public class VisualizationController extends HttpServlet {
         VisualizationService vs = (VisualizationService) ServiceFactory.getService(new VisualizationServiceImpl());
         List<Map<String, Object>> list = vs.getCommitDynamic();
 
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("success",true);
-        map.put("data",list);
+        RespMap<Object> map = new RespMap<>();
+        map.putSuccess(true);
+        map.putData(list);
 
         PrintJson.printJsonObj(response,map);
     }
 
     private void getRecentCommitCount(HttpServletRequest request, HttpServletResponse response) {
         VisualizationService vs = (VisualizationService) ServiceFactory.getService(new VisualizationServiceImpl());
-        HashMap<String, Object> map = vs.getRecentCommitCount();
+        RespMap<Object> resultMap = vs.getRecentCommitCount();
 
-        map.put("success",true);
+        resultMap.putSuccess(true);
 
-        PrintJson.printJsonObj(response,map);
+        PrintJson.printJsonObj(response,resultMap);
 
     }
 }

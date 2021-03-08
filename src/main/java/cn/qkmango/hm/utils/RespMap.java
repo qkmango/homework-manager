@@ -22,4 +22,12 @@ public class RespMap<V> extends HashMap<String,V> {
         return super.put("msg", msg);
     }
 
+    public V putData(V data) {
+        return super.put("data", data);
+    }
+
+    public V putCount(V count) {
+        return super.put("count", count);
+    }
+
 }

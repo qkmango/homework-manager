@@ -3,6 +3,7 @@ package cn.qkmango.hm.visualization.service.impl;
 import cn.qkmango.hm.homework.dao.CommitHomeworkDao;
 import cn.qkmango.hm.homework.dao.UserDao;
 
+import cn.qkmango.hm.utils.RespMap;
 import cn.qkmango.hm.utils.SqlSessionUtil;
 import cn.qkmango.hm.visualization.dao.VisualizationDao;
 import cn.qkmango.hm.visualization.service.VisualizationService;
@@ -29,15 +30,15 @@ public class VisualizationServiceImpl implements VisualizationService {
      * 查询各科最近一次作业提交人数
      */
     @Override
-    public HashMap<String, Object> getRecentCommitCount() {
+    public RespMap<Object> getRecentCommitCount() {
 
         int count = userDao.getUserCount();
         List<HashMap<String, Object>> list= visualizationDao.getRecentCommitCount();
 
-        HashMap<String, Object> map = new HashMap<>();
+        RespMap<Object> map = new RespMap<>();
 
-        map.put("count",count);
-        map.put("data",list);
+        map.putCount(count);
+        map.putData(list);
 
         return map;
     }
@@ -56,8 +57,6 @@ public class VisualizationServiceImpl implements VisualizationService {
     @Override
     public List<HashMap<String, String>> getHeatmap(HashMap<String, String> map) {
         List<HashMap<String, String>> list = visualizationDao.getHeatmap(map);
-
-
 
         return list;
     }
