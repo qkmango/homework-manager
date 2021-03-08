@@ -30,13 +30,16 @@ public class LoginFilter implements Filter {
 
         /*
         如果session ！= null
-        或 访问的路径是 登录页/登陆请求
+        或 访问的路径是 登录页/登陆请求 等
         则放行*/
         String path = request.getServletPath();
         if (session != null ||
             "/system/user/login.do".equals(path)||
             "/system/user/logout.do".equals(path)||
             "/homework/getCourseList.do".equals(path)||
+            "/visualization/getRecentCommitCount.do".equals(path)||
+            "/visualization/getCommitDynamic.do".equals(path)||
+            "/visualization/getHeatmap.do".equals(path)||
             "/homework/getHomeworkById.do".equals(path)) {
             chain.doFilter(req,resp);
         } else {
