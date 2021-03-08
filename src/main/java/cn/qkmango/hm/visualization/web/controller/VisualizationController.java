@@ -75,6 +75,8 @@ public class VisualizationController extends HttpServlet {
         VisualizationService vs = (VisualizationService) ServiceFactory.getService(new VisualizationServiceImpl());
         HashMap<String, Object> map = vs.getRecentCommitCount();
 
+        map.put("success",true);
+
         PrintJson.printJsonObj(response,map);
 
     }

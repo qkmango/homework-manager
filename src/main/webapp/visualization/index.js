@@ -21,8 +21,9 @@ function RenderRecentCommitCount() {
         type:'get',
         dataType:'json',
         success:function (data) {
-            //填充数据
-            source=data.data
+            if (!data.success) {
+                return;
+            }
 
             option = {
                 title: {
@@ -41,7 +42,7 @@ function RenderRecentCommitCount() {
                     }
                 },
                 dataset: {
-                    source: source
+                    source: data.data
                 },
                 grid: {
                     containLabel: true,

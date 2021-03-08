@@ -49,7 +49,7 @@ div,ul,table{
     font-size: 12px;
 }
 #commit_dynamic .layui-timeline-item {
-    /*padding-bottom: 10px;*/
+    padding-bottom: 10px;
 }
 
 #commit_dynamic li {
@@ -73,11 +73,30 @@ a {
     margin-bottom: 10px;
 }
 
+/*热力图 居中对齐*/
 #cal-heatmap .cal-heatmap-container {
-    left: 0;
-    right: 0;
     margin: auto;
 }
 
 
+/*滚动条*/
+#visualization_main ::-webkit-scrollbar{
+    width:8px;
+    height:10px;
+}
+#visualization_main ::-webkit-scrollbar-track{
+    /*background: rgb(239, 239, 239);*/
+    /*border-radius:2px;*/
+}
+#visualization_main ::-webkit-scrollbar-thumb{
+    background: #e2e2e2;
+    border-radius:4px;
+}
+#visualization_main ::-webkit-scrollbar-thumb:hover{
+    /*background: #333;*/
+    background-color: rgb(95, 184, 120);
+}
+/*#visualization_main ::-webkit-scrollbar-corner{*/
+/*    background: #179a16;*/
+/*}*/
 

@@ -16,7 +16,6 @@
 		height: 100%;
 	}
 	body{
-		/*background-color:#f3f4fa;*/
 		background-color:#F2F2F2;
 	}
 	
@@ -45,8 +44,13 @@
 		background-color: #0d1117;
 	}
 
-	.layui-this .item {
+	#left-nav .layui-this .item {
 		background-color: #30363d !important;
+	}
+
+	/*左侧导航鼠标悬浮左侧颜色*/
+	#left-nav .layui-nav-bar {
+		background-color:#5FB878;
 	}
 </style>
 </head>
@@ -59,7 +63,7 @@
 			<!--左上角 用户名-->
 			<li id="user">
 				<span id="realname"></span>
-				<a id="loginFlag" style="color: #009E94; float: right;" ></a>
+				<a id="loginFlag" style="color:#5FB878; float: right;" ></a>
 			</li>
 
 			<li class="layui-nav-item layui-this">
