@@ -132,14 +132,18 @@ function RenderCommitDynamic() {
  * @constructor
  */
 function RenderHeatmap() {
-    // var jsonData;
     const stepSize = 7*24*60*60*1000;//毫秒
 
-    var endDate = new Date();
-    var endDateFormat = dateFormat('YYYY-mm-dd HH:MM:SS',endDate);
+    let nowDate = new Date(new Date()-0+24*60*60*1000);
+    let year = nowDate.getFullYear();
+    let month = nowDate.getMonth()+1;
+    let day = nowDate.getDate();
 
-    var startDate = new Date(endDate-stepSize);
-    var startDateFormat = dateFormat('YYYY-mm-dd HH:MM:SS',startDate);
+    let endDate = new Date(year+'-'+month+'-'+day);
+    let endDateFormat = dateFormat('YYYY-mm-dd HH:MM:SS',endDate);
+
+    let startDate = new Date(endDate-stepSize);
+    let startDateFormat = dateFormat('YYYY-mm-dd HH:MM:SS',startDate);
 
     console.log(startDateFormat)
     console.log(endDateFormat)
@@ -159,8 +163,8 @@ function RenderHeatmap() {
             }
 
             var parser = function(data) {
-                var stats = {};
-                for (var d in data) {
+                let stats = {};
+                for (let d in data) {
                     stats[data[d].date] = data[d].value;
                 }
                 return stats;
