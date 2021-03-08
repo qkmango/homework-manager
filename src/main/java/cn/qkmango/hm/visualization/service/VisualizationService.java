@@ -8,10 +8,9 @@ import java.util.Map;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
- * @className VisualizationServiceImpl
+ * <p>VisualizationService</p>
+ * <p>数据可视化服务 接口</p>
+ * @className VisualizationService
  * @author: Mango
  * @date: 2021-03-06 20:43
  */

@@ -3,6 +3,10 @@
 
 <mapper namespace="cn.qkmango.hm.system.dao.UserDao">
 
+    <select id="getUserCount" resultType="int">
+        SELECT COUNT(*) FROM user
+    </select>
+
     <select id="login" resultType="cn.qkmango.hm.system.domain.User">
         select id,username,realname,power
         from user

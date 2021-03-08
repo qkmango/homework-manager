@@ -6,9 +6,8 @@ import java.util.List;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>CourseDao</p>
+ * <p>course 表的数据访问层</p>
  * @className CourseDao
  * @author: Mango
  * @date: 2021-02-22 09:58

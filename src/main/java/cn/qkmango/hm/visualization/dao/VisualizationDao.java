@@ -6,9 +6,8 @@ import java.util.Map;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>VisualizationDao</p>
+ * <p>数据可视化模块的数据访问层，此数据访问层操作多长表</p>
  * @className VisualizationDao
  * @author: Mango
  * @date: 2021-03-06 20:47

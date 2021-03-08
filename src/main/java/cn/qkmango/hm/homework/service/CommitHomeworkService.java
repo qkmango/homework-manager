@@ -7,9 +7,8 @@ import java.util.HashMap;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>CommitHomeworkService</p>
+ * <p>作业提交服务</p>
  * @className CommitHomeworkService
  * @author: Mango
  * @date: 2021-02-25 15:37

@@ -9,12 +9,17 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * PrintJson
+ * 将要响应到前端的信息使用此类转换为JSON，并进行响应
+ */
 public class PrintJson {
 
 	/**
 	 * 向前端响应 标志位 与 信息
-	 * @param response 响应
-	 * @param flag 标志位
+	 * @param response 响应对象
+	 * @param flag 标志位值
 	 * @param msg 信息
 	 */
 	public static void printFlagAndMsg(HttpServletResponse response,boolean flag,String msg) {
@@ -37,7 +42,11 @@ public class PrintJson {
 	}
 
 
-	//将boolean值解析为json串
+	/**
+	 * 向前端响应标志位success
+	 * @param response 响应对象
+	 * @param flag 标志位值
+	 */
 	public static void printJsonFlag(HttpServletResponse response,boolean flag){
 		
 		Map<String,Boolean> map = new HashMap<String,Boolean>();
@@ -60,7 +69,12 @@ public class PrintJson {
 		
 	}
 	
-	//将对象解析为json串
+
+	/**
+	 * 向前端响应一个对象
+	 * @param response 响应对象
+	 * @param obj 要响应到前端的对象
+	 */
 	public static void printJsonObj(HttpServletResponse response,Object obj){
 		
 		/*

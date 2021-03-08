@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * @version 1.0
  * <p>登陆过滤器</p>
- * <p>验证用户是否登陆，登陆则放行，未登录则重定向到登陆页面</p>
+ * <p>验证用户是否登陆，登陆则放行，以保证过滤在用户没有登陆的情况下，不能进行特定的请求</p>
  * @className LoginFilter
  * @author: Mango
  * @date: 2021-01-28 16:51

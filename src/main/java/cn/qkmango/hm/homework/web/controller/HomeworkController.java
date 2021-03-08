@@ -22,9 +22,8 @@ import java.util.Map;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>HomeworkController</p>
+ * <p>作业控制器，关于 作业的获取、作业的提交等等都由此控制器控制转发</p>
  * @className HomeworkController
  * @author: Mango
  * @date: 2021-02-22 10:06

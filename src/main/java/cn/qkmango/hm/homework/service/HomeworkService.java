@@ -14,9 +14,8 @@ import java.util.Map;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>HomeworkService</p>
+ * <p>作业服务，如作业的发布，获取作业信息</p>
  * @className HomeworkService
  * @author: Mango
  * @date: 2021-02-22 10:06

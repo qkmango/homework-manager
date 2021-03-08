@@ -21,8 +21,8 @@ import java.util.Map;
 
 /**
  * @version 1.0
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>SystemController</p>
+ * <p>系统控制器，相关用户的登陆，阿里OSS相关的服务的请求都由此类进行控制</p>
  * @className UserController
  * @author: Mango
  * @date: 2021-01-26 17:31

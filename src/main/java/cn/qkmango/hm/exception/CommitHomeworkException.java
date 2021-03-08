@@ -2,9 +2,8 @@ package cn.qkmango.hm.exception;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>CommitHomeworkException</p>
+ * <p>作业提交异常</p>
  * @className CommitHomeworkException
  * @author: Mango
  * @date: 2021-02-24 12:12

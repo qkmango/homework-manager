@@ -2,8 +2,8 @@ package cn.qkmango.hm.homework.domain;
 
 /**
  * @version 1.0
- * <p>homework实体类</p>
- * @className homework
+ * <p>homework</p>
+ * @className homework 表对象
  * @author: Mango
  * @date: 2021-02-21 18:35
  */

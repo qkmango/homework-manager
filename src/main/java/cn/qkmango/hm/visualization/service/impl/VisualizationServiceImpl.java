@@ -1,8 +1,6 @@
 package cn.qkmango.hm.visualization.service.impl;
 
-import cn.qkmango.hm.homework.dao.CommitHomeworkDao;
-import cn.qkmango.hm.homework.dao.UserDao;
-
+import cn.qkmango.hm.system.dao.UserDao;
 import cn.qkmango.hm.utils.RespMap;
 import cn.qkmango.hm.utils.SqlSessionUtil;
 import cn.qkmango.hm.visualization.dao.VisualizationDao;
@@ -14,9 +12,8 @@ import java.util.Map;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>VisualizationServiceImpl</p>
+ * <p>数据可视化服务 实现类</p>
  * @className VisualizationServiceImpl
  * @author: Mango
  * @date: 2021-03-06 20:43
@@ -54,6 +51,11 @@ public class VisualizationServiceImpl implements VisualizationService {
         return list;
     }
 
+    /**
+     * 获取班级作业提交的热力图数据（7天/小时）
+     * @param map 热力图数据的 [起始时间,结束时间)
+     * @return 返回热力图的数据
+     */
     @Override
     public List<HashMap<String, String>> getHeatmap(HashMap<String, String> map) {
         List<HashMap<String, String>> list = visualizationDao.getHeatmap(map);

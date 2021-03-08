@@ -20,9 +20,8 @@ import java.util.Properties;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>OSSServiceImpl</p>
+ * <p>阿里 OSS 的服务实现类 相关的OSS临时授权配置的获取、删除OSS中的文件 都由此类操作</p>
  * @className OSSServiceImpl
  * @author: Mango
  * @date: 2021-02-21 09:28

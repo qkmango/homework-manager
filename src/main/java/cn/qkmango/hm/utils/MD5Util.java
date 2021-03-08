@@ -3,8 +3,19 @@ package cn.qkmango.hm.utils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+
+/**
+ * MD5工具类
+ * 此类可以生成MD5的字符串
+ */
 public class MD5Util {
-	
+
+
+	/**
+	 * 传入字符串，获取MD5的字符串
+	 * @param password 传入要进行MD5加密的字符串
+	 * @return 返回 加密后的MD5字符串
+	 */
 	public static String getMD5(String password) {
 		try {
 			// 得到一个信息摘要器

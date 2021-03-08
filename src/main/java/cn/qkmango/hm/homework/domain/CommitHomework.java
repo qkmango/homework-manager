@@ -2,10 +2,9 @@ package cn.qkmango.hm.homework.domain;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
- * @className CommitHomeworkService
+ * <p>CommitHomework</p>
+ * <p>commit_homework 表对象</p>
+ * @className CommitHomework
  * @author: Mango
  * @date: 2021-02-25 14:16
  */

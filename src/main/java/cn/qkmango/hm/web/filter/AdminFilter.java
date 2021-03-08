@@ -12,9 +12,8 @@ import java.io.IOException;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>AdminFilter</p>
+ * <p>管理员权限请求过滤器 相关管理员权限才能请求的接口，经过此过滤器进行过滤，以保证拦截非法请求</p>
  * @className AdminFilter
  * @author: Mango
  * @date: 2021-03-03 11:15
@@ -36,6 +35,7 @@ public class AdminFilter implements Filter {
         }
 
         User user = (User) session.getAttribute("user");
+        //判断用户权限，默认普通用户权限值为 "0"，管理员权限值为 "1"
         if (user != null && "1".equals(user.getPower())) {
             chain.doFilter(req,resp);
         } else {

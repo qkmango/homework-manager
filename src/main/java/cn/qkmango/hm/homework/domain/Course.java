@@ -2,8 +2,8 @@ package cn.qkmango.hm.homework.domain;
 
 /**
  * @version 1.0
- * <p>Course科目 实体类</p>
- * @className Course
+ * <p>Course</p>
+ * @className course 科目表对象
  * @author: Mango
  * @date: 2021-02-21 19:02
  */

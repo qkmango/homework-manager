@@ -3,21 +3,17 @@ package cn.qkmango.hm.homework.service.impl;
 import cn.qkmango.hm.homework.dao.CommitHomeworkDao;
 import cn.qkmango.hm.homework.domain.CommitHomework;
 import cn.qkmango.hm.homework.service.CommitHomeworkService;
-import cn.qkmango.hm.system.domain.AliOss;
-import cn.qkmango.hm.system.service.OSSService;
 import cn.qkmango.hm.system.service.impl.OSSServiceImpl;
 import cn.qkmango.hm.utils.RespMap;
 import cn.qkmango.hm.utils.RespStatusMsg;
 import cn.qkmango.hm.utils.SqlSessionUtil;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>CommitHomeworkServiceImpl</p>
+ * <p>作业提交服务 实现类</p>
  * @className CommitHomeworkServiceImpl
  * @author: Mango
  * @date: 2021-02-25 15:37

@@ -2,14 +2,10 @@ package cn.qkmango.hm.homework.dao;
 
 import cn.qkmango.hm.homework.domain.CommitHomework;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>CommitHomeworkDao</p>
+ * <p>commit_homework 表的数据访问层</p>
  * @className CommitHomeworkDao
  * @author: Mango
  * @date: 2021-02-25 15:40

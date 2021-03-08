@@ -10,9 +10,8 @@ import java.util.Map;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>HomeworkDao</p>
+ * <p>homework 表的数据访问层</p>
  * @className HomeworkDao
  * @author: Mango
  * @date: 2021-02-21 19:00
