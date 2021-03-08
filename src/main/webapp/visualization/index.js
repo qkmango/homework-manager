@@ -13,7 +13,7 @@ function RenderRecentCommitCount() {
     var dom = document.getElementById("RecentCommitCount");
     var RCC_Chart = echarts.init(dom);
     var app = {};
-    var source = [];
+    // var source = [];
     var option;
 
     $.ajax({
@@ -145,9 +145,6 @@ function RenderHeatmap() {
 
     let startDate = new Date(endDate-stepSize);
     let startDateFormat = dateFormat('YYYY-mm-dd HH:MM:SS',startDate);
-
-    console.log(startDateFormat)
-    console.log(endDateFormat)
 
     $.ajax({
         url:"visualization/getHeatmap.do",
