@@ -28,6 +28,7 @@
 | coco-message/      | 消息弹窗工具类                    |
 | alioss/            | 阿里云OSS的工具类                 |
 | utils/             | 自己开发的项目工具集              |
+| cal-heatmap/       | 热力图                          |
 
 ### 后端
 
