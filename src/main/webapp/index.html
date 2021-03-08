@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title></title>
+<title>作业管理系统</title>
 <base href="/hm/">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="stylesheet" href="lib/layui/css/layui.css" />
@@ -89,7 +89,7 @@
 	
 	<!-- iframe窗体 -->
 	<div id="iframe-box" class="layui-col-md10 layui-col-sm9">
-		<iframe src="admin/HomeworkManager.html"></iframe>
+		<iframe src="visualization/index.html"></iframe>
 	</div>
 	
 </body>
@@ -111,6 +111,7 @@ $(function() {
 	// 左侧导航控制iframe
 	var iframe = $('#iframe-box iframe')[0];
 	$('#left-nav .item').click(function() {
+		window.location.hash=this.id;
 		iframe.src=this.id;
 	})
 
@@ -130,9 +131,7 @@ $(function() {
 				$('#realname').text('未登录');
 				$('#loginFlag').text('去登陆');
 				$('#loginFlag').attr('href','system/login/login.html');
-				window.parent.cocoMessage.error(2000,data.msg,function () {
-					window.location.href = 'system/login/login.html';
-				});
+				window.parent.cocoMessage.error(2000,data.msg);
 			}
 		}
 	})
