@@ -63,6 +63,12 @@ function getHomeworkPageList(){
         type:'post',
         dataType:'json',
         success:function(data){
+
+            if (!data.success) {
+                window.parent.cocoMessage.error(2000,data.msg);
+                return;
+            }
+
             count=data.count;  //设置总条数
             let html = '';
             let nowDate = new Date();
