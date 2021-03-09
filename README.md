@@ -146,6 +146,8 @@ SET FOREIGN_KEY_CHECKS = 1;
 <div style="background-color:#30363d;color:white">#30363d rgb(48,54,61) 左侧导航选中背景</div>
 
 <div style="background-color:#5FB878;color:white">#5FB878 rgb(95,184,120) 文字颜色（左侧上 退出）</div>
+<div style="background-color:#2ebc4f;color:white">#2ebc4f rgb(46,188,79) 登陆页按钮鼠标悬浮色</div>
+
 
 <div style="background-color:#58a6fd;color:black">#58a6fd rgb(88,166,253) 标题文字</div>
 <div style="background-color:#01AAED;color:black">#01AAED rgb(1,170,237) 小字</div>
