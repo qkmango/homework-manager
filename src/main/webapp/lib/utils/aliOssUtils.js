@@ -54,6 +54,7 @@ config中值的解读：
     course：     homework所对应的学科，如Java
     $系类：       为jquery对象的 文件域、开始按钮、重置按钮、暂停按钮
     user：       json对象，包含user的信息，如 {username: "11111", realName: "芒果小洛", id: "100000"}
+    format:     提交的作业名格式
     getFilePath：        function(innerConf)，获取给上传文件指定文件上传后的路径
     CallBack：           function(innerConf)，回调函数系类
     uploadSuccessTodo：  function(innerConf)：上传完成后要去做...下面的配置中是发送了ajax告诉后端

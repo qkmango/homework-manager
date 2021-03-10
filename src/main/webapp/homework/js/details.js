@@ -69,12 +69,6 @@ $(function () {
                     });
                 }
             }
-            // ,
-            // error:function (error) {
-            //     window.parent.cocoMessage.error(2000, "请求失败，请重试！",function () {
-            //         window.location.href='/hm/homework/homework.html';
-            //     })
-            // }
         })
 
         return homework;

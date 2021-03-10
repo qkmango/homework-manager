@@ -9,6 +9,14 @@
 <script src="lib/jquery-3.5.1.js"></script>
 <script src="lib/layui/layui.js"></script>
 <script src="lib/laymd/marked.min.js"></script>
+<style>
+    .layui-form .layui-input-inline {
+        margin-right: 0;
+    }
+    #format_show{
+        width: 220px;
+    }
+</style>
 </head>
 <body>
 
@@ -38,10 +46,10 @@
 
 
 
-    <div class="layui-form-item layui-form-text layui-col-md6">
+    <div class="layui-form-item layui-form-text layui-col-md6" style="height:172px">
         <label class="layui-form-label">简略信息</label>
-        <div class="layui-input-block">
-            <textarea name="briefInfo" placeholder="请输入内容" lay-verify="required" class="layui-textarea"></textarea>
+        <div class="layui-input-block" style="height:100%">
+            <textarea name="briefInfo" placeholder="请输入内容" lay-verify="required" class="layui-textarea" style="height:100%"></textarea>
         </div>
     </div>
 

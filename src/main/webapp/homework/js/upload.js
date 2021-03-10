@@ -8,7 +8,7 @@ $(function () {
 	//用户信息 json
 	var user = '';
 
-	//homework id、course、title（从url中获取）
+	//homework id、course、title、format（从url中获取）
 	var hid = getUrlParam('hid');
 	var course = getUrlParam('course');
 	var title = getUrlParam('title');
