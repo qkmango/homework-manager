@@ -1,5 +1,6 @@
 package cn.qkmango.hm.system.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,4 +14,6 @@ import java.util.Map;
 public interface UserService {
 
     Map<String, Object> login(String username, String password);
+
+    boolean change(HashMap<String, String> map) throws Throwable;
 }

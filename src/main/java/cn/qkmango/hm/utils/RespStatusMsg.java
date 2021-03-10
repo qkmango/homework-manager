@@ -30,4 +30,7 @@ public class RespStatusMsg {
     public static final String Get_Homework_Success = "通过 ID 过去 homework 详情成功";
     public static final String Get_Homework_Fail = "通过 ID 过去 homework 详情失败";
 
+    public static final String Change_Userinfo_Success = "修改用户信息成功";
+    public static final String Change_Userinfo_Fail = "修改用户信息失败";
+
 }

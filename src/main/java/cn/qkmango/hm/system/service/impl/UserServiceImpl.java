@@ -1,5 +1,6 @@
 package cn.qkmango.hm.system.service.impl;
 
+import cn.qkmango.hm.exception.UserException;
 import cn.qkmango.hm.system.dao.UserDao;
 import cn.qkmango.hm.system.domain.User;
 import cn.qkmango.hm.system.service.UserService;
@@ -33,5 +34,25 @@ public class UserServiceImpl implements UserService {
         }
 
         return map;
+    }
+
+    @Override
+    public boolean change(HashMap<String, String> map) throws Throwable {
+
+        boolean flag = false;
+
+        try {
+            int count = userDao.change(map);
+            System.out.println("count=>>"+count);
+            if (count != 1) {
+                throw new UserException("修改用户信息失败！");
+            }
+            flag = true;
+        } catch (UserException e) {
+            e.printStackTrace();
+            throw e.getCause();
+        } finally {
+            return flag;
+        }
     }
 }

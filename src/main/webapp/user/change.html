@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<base href="/hm/">
+<link rel="stylesheet" href="lib/layui/css/layui.css" />
+<script src="lib/layui/layui.js"></script>
+<script src="lib/jquery-3.5.1.js"></script>
+</head>
+<body>
+<form class="layui-form layui-form-pane" action="">
+
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">用户ID</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" disabled value="1932101149">
+            </div>
+            <div class="layui-form-mid layui-word-aux">用户的唯一身份标识，不予更改</div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">真实姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="realname" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux" id="realname-tip">用于展示</div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="username" lay-verify="check" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux" id="username-tip">用户登陆系统使用</div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-inline">
+            <input type="text" name="password" lay-verify="check" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">用户登陆系统使用</div>
+    </div>
+
+    <div class="layui-form-item">
+        <button class="layui-btn" lay-submit lay-filter="formSubmit">确认修改</button>
+    </div>
+</form>
+</body>
+</html>
+<script>
+
+    $.ajax({
+        url:'system/user/getUserinfo.do',
+        type:'get',
+        dataType:'json',
+        success:function (data) {
+            if (data.success) {
+                $('#realname-tip').text('用于展示，当前姓名：'+data.user.realName);
+                $('#username-tip').text('用于系统登陆使用，当前用户名：'+data.user.username);
+            } else {
+                window.parent.cocoMessage.error(2000,data.msg);
+            }
+        }
+    })
+
+    layui.use(['form','laydate'], function() {
+
+        var form = layui.form;
+
+        //校验
+        form.verify({
+            check: function (value, item) { //value：表单的值、item：表单的DOM对象
+                console.log(value)
+
+                if (value.length==0) {
+                    return;
+                }
+
+                if (value.length>10 || value.length<5) {
+                    return '长度不合规';
+                }
+                if (!/^(\d|[a-z]|[A-Z])*$/.test(value)) {
+                    return '只能是数字和字母';
+                }
+            }
+        })
+
+        //监听提交
+        form.on('submit(formSubmit)', function (data) {
+            $.ajax({
+                url: 'system/user/change.do',
+                data: data.field,
+                type:'post',
+                async:false,
+                dataType:'json',
+                success: function (data) {
+                    if (data.success) {
+                        window.parent.cocoMessage.success(2000, data.msg);
+                    }else {
+                        window.parent.cocoMessage.error(2000, data.msg);
+                    }
+                }
+            });
+            return false;
+        });
+
+    })
+</script>

@@ -3,6 +3,8 @@ package cn.qkmango.hm.system.dao;
 import cn.qkmango.hm.system.domain.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
+
 /**
  * @version 1.0
  * <p>UserDao</p>
@@ -17,4 +19,6 @@ public interface UserDao {
 
     User login(@Param("username") String username,
                @Param("password")String password);
+
+    int change(HashMap<String, String> map);
 }

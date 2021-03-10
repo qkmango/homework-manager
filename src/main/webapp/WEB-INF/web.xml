@@ -53,6 +53,7 @@
     <url-pattern>/system/user/login.do</url-pattern>
     <url-pattern>/system/user/logout.do</url-pattern>
     <url-pattern>/system/user/getUserinfo.do</url-pattern>
+    <url-pattern>/system/user/change.do</url-pattern>
   </servlet-mapping>
 
   <servlet>

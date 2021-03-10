@@ -3,6 +3,24 @@
 
 <mapper namespace="cn.qkmango.hm.system.dao.UserDao">
 
+
+    <update id="change">
+        update user
+            <trim prefix="set" suffixOverrides=",">
+                <if test="realname!=null and realname!=''">
+                    realname=#{realname},
+                </if>
+                <if test="username!=null and username!=''">
+                    username=#{username},
+                </if>
+                <if test="password!=null and password!=''">
+                    password=#{password},
+                </if>
+            </trim>
+
+            where id=#{id}
+    </update>
+
     <select id="getUserCount" resultType="int">
         SELECT COUNT(*) FROM user
     </select>

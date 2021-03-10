@@ -40,6 +40,44 @@ public class SystemController extends HttpServlet {
             logout(request,response);
         } else if ("/system/user/getUserinfo.do".equals(path)) {
             getUserinfo(request,response);
+        } else if ("/system/user/change.do".equals(path)) {
+            change(request,response);
+        }
+    }
+
+    private void change(HttpServletRequest request, HttpServletResponse response) {
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String realname = request.getParameter("realname");
+
+        String id = ((User) request.getSession().getAttribute("user")).getId();
+
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("username",username);
+        map.put("password",password);
+        map.put("realname",realname);
+        map.put("id",id);
+
+        UserService us = (UserService) ServiceFactory.getService(new UserServiceImpl());
+        // UserService us = new UserServiceImpl();
+
+        RespMap<Object> resultMap = new RespMap<>();
+
+        try {
+            boolean flag = us.change(map);
+            if (flag) {
+                resultMap.putSuccess(true);
+                resultMap.putMsg(RespStatusMsg.Change_Userinfo_Success);
+            } else {
+                resultMap.putSuccess(false);
+                resultMap.putMsg(RespStatusMsg.Change_Userinfo_Fail);
+            }
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            PrintJson.printJsonObj(response,resultMap);
         }
     }
 
