@@ -14,7 +14,20 @@ import java.util.HashMap;
  * @date: 2021-02-25 15:37
  */
 public interface CommitHomeworkService {
+
+    /**
+     * 删除已经提交的作业（用户）
+     * @param ch CommitHomework对象，包含主键（uid、hid）
+     * @return Map，包含是否成功删除成功的标志位 和 返回给前端的信息
+     * @throws Exception
+     */
     RespMap<Object> deleteCommitHomework(CommitHomework ch) throws Exception;
+
+    /**
+     * 提交作业（用户）
+     * @param ch CommitHomework对象，包含此对象的所有信息
+     * @return Map，包含是否成功删除成功的标志位 和 返回给前端的信息
+     */
     RespMap<Object> commitHomework(CommitHomework ch);
     HashMap<String, Object> getCommitHomeworkByUidAndHid(CommitHomework ch);
 

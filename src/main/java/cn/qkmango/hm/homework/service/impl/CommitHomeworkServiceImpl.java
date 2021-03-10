@@ -22,9 +22,14 @@ public class CommitHomeworkServiceImpl implements CommitHomeworkService {
 
     CommitHomeworkDao commitHomeworkDao = SqlSessionUtil.getSqlSession().getMapper(CommitHomeworkDao.class);
 
+    /**
+     * 删除已经提交的作业（用户）
+     * @param ch CommitHomework对象，包含主键（uid、hid）
+     * @return Map，包含是否成功删除成功的标志位 和 返回给前端的信息
+     * @throws Exception
+     */
     @Override
     public RespMap<Object> deleteCommitHomework(CommitHomework ch) throws Exception {
-        // HashMap<String, Object> map = new HashMap<>();
         RespMap<Object> map = new RespMap<>();
 
         try {
@@ -51,6 +56,11 @@ public class CommitHomeworkServiceImpl implements CommitHomeworkService {
         }
     }
 
+    /**
+     * 提交作业（用户）
+     * @param ch CommitHomework对象，包含此对象的所有信息
+     * @return Map，包含是否成功删除成功的标志位 和 返回给前端的信息
+     */
     @Override
     public RespMap<Object> commitHomework(CommitHomework ch) {
 

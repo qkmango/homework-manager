@@ -14,5 +14,9 @@ import java.util.List;
  * @date: 2021-03-10 11:33
  */
 public interface FormatService {
+    /**
+     * 获取 format 格式化表信息
+     * @return 返回 List<Format> 格式化列表
+     */
     List<Format> getFormat();
 }

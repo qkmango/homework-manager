@@ -43,12 +43,14 @@ public class UserServiceImpl implements UserService {
 
         try {
             int count = userDao.change(map);
-            System.out.println("count=>>"+count);
             if (count != 1) {
                 throw new UserException("修改用户信息失败！");
             }
             flag = true;
         } catch (UserException e) {
+            e.printStackTrace();
+            throw e.getCause();
+        }catch (Exception e) {
             e.printStackTrace();
             throw e.getCause();
         } finally {

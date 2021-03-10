@@ -65,6 +65,11 @@ public class HomeworkController extends HttpServlet {
         }
     }
 
+    /**
+     * 获取 format 格式化表信息
+     * @param request 请求
+     * @param response 响应
+     */
     private void getFormat(HttpServletRequest request, HttpServletResponse response) {
         FormatService fs = (FormatService) ServiceFactory.getService(new FormatServiceImpl());
 
@@ -75,11 +80,13 @@ public class HomeworkController extends HttpServlet {
         resultMap.putData(list);
 
         PrintJson.printJsonObj(response,resultMap);
-
-
     }
 
-
+    /**
+     * 分页获取 作业列表（管理员页面），同时带有一提交人数的信息
+     * @param request 请求
+     * @param response 响应
+     */
     private void getHomeworkAndCommitCountPageList(HttpServletRequest request, HttpServletResponse response) {
 
         String  course      = request.getParameter("course");
@@ -116,6 +123,11 @@ public class HomeworkController extends HttpServlet {
 
     }
 
+    /**
+     * 编辑已经发布的作业（管理员）
+     * @param request
+     * @param response
+     */
     private void editHomework(HttpServletRequest request, HttpServletResponse response) {
 
         Homework homework = new Homework();
@@ -140,6 +152,11 @@ public class HomeworkController extends HttpServlet {
         }
     }
 
+    /**
+     * 获取作业信息（管理员编辑作业信息时使用）
+     * @param request
+     * @param response
+     */
     private void getHomeworkByIdOfEdit(HttpServletRequest request, HttpServletResponse response) {
 
         String hid = request.getParameter("hid");
@@ -150,6 +167,11 @@ public class HomeworkController extends HttpServlet {
 
     }
 
+    /**
+     * 删除已经发布的作业（管理员）
+     * @param request
+     * @param response
+     */
     private void deleteHomework(HttpServletRequest request, HttpServletResponse response) {
         String hid = request.getParameter("hid");
 
@@ -163,11 +185,13 @@ public class HomeworkController extends HttpServlet {
         } finally {
             PrintJson.printJsonObj(response,map);
         }
-
-
-
     }
 
+    /**
+     * 删除已经提交的作业（用户）
+     * @param request
+     * @param response
+     */
     private void deleteCommitHomework(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession(false);
@@ -191,6 +215,11 @@ public class HomeworkController extends HttpServlet {
 
     }
 
+    /**
+     * 提交作业（用户）
+     * @param request
+     * @param response
+     */
     private void commitHomework(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
 
@@ -210,6 +239,11 @@ public class HomeworkController extends HttpServlet {
         PrintJson.printJsonObj(response,map);
     }
 
+    /**
+     * 获取此作业是否已经提交了
+     * @param request
+     * @param response
+     */
     private void getHomeworkIsCommit(HttpServletRequest request, HttpServletResponse response) {
         String uid = ((User)request.getSession(false).getAttribute("user")).getId();
         String hid = request.getParameter("hid");
@@ -221,6 +255,11 @@ public class HomeworkController extends HttpServlet {
 
     }
 
+    /**
+     * 分页 获取作业列表
+     * @param request
+     * @param response
+     */
     private void getHomeworkPageList(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession(false);
@@ -262,6 +301,11 @@ public class HomeworkController extends HttpServlet {
         PrintJson.printJsonObj(response,resultMap);
     }
 
+    /**
+     * 获取一个作业对象（作业的信息），通过作业ID
+     * @param request
+     * @param response
+     */
     private void getHomeworkById(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
@@ -270,12 +314,22 @@ public class HomeworkController extends HttpServlet {
         PrintJson.printJsonObj(response,map);
     }
 
+    /**
+     * 获取学科列表
+     * @param request
+     * @param response
+     */
     private void getCourseList(HttpServletRequest request, HttpServletResponse response) {
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
         List<Course> courseList = hs.getCourseList();
         PrintJson.printJsonObj(response,courseList);
     }
 
+    /**
+     * 添加作业（管理员）
+     * @param request
+     * @param response
+     */
     private void addHomework(HttpServletRequest request, HttpServletResponse response) {
 
         Homework homework = new Homework();

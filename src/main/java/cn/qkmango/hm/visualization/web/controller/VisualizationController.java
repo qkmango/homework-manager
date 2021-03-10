@@ -17,9 +17,8 @@ import java.util.Map;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>VisualizationController</p>
+ * <p>数据可视化 控制器</p>
  * @className VisualizationController
  * @author: Mango
  * @date: 2021-03-07 14:56
