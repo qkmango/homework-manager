@@ -1,120 +1,121 @@
-/* 解决高度塌陷 */
-.clearfix::after,
-.clearfix::before{
-	content: '';
-	display: table;
-	clear: both;
-}
-
-html,body {
-	width: 100%;
-	height: 100%;
-}
-
 body {
-	background-color: #2b3137;
+	color: #0366d6;
+	line-height: 1.5;
+}
+
+.header {
+	padding: 32px 0;
+	width: 65px;
+	position: relative;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
+.logo_img {
+	width: 100%;
+}
+
+.title {
+	font-size: 24px;
+	/*font-weight: 300;*/
+	text-align: center;
+	/*letter-spacing: -.5px;*/
 	margin: 0;
-}
-
-
-/*!* 欢迎文字 *!*/
-/*.welcome {*/
-/*	float: left;*/
-/*	font-weight: bold;*/
-/*	color: white;*/
-/*	margin: 10% auto auto 10%;*/
-/*	line-height: 1.3;*/
-/*}*/
-
-/*.welcome>span:nth-child(1) {*/
-/*	font-size: 70px;*/
-/*}*/
-/*.welcome>span:nth-child(3) {*/
-/*	font-size: 30px;*/
-/*}*/
-
-
-/* 表单的box */
-.main {
-	position: fixed;
-	box-sizing: border-box;
-	width: 426px;
-	height: 496px;
-	background-color: white;
-	padding: 24px;
-	margin: auto;
-	top: 0;
-	bottom: 0;
-	right: 100px;
-	border-radius: 6px;
-}
-
-/* 表单 */
-.form{
-	margin-top: 20px;
-}
-
-/* 输入框上面的文字 电子邮件、密码 */
-.tip {
-	display: inline-block;
-	font-size: 16px;
-	font-weight: 600;
-	line-height: 21px;
-	margin-bottom: 5px;
-}
-
-/* 两个输入框 */
-input[type="text"],input[type="password"]{
-	padding-left: 10px;
-	box-sizing: border-box;
-	border: 1px solid #e1e4e8;
-	font-size: 16px;
-	outline: none;
-	width: 100%;
-	height: 44px;
-	border-radius:5px;
-	padding: 10px;
-	margin-bottom: 40px;
-	outline: none;
-}
-
-/* 三个输入框获得焦点时样式 */
-input[type="text"]:focus,input[type="password"]:focus {
-	box-shadow: 0 0 0 3px rgba(3,102,214,.3);
-	border: 1px solid #0366d6;
-}
-
-/* 登陆按钮 */
-input[type="button"] {
-	border: none;
-	outline: none;
-	font-size: 16px;
+	/*color: #000;*/
+	color: #0366d6;
 	font-weight: bold;
-	width: 100%;
-	height: 64px;
-	box-sizing: border-box;
-	background-color: rgb(95,184,120);
+}
+
+.main {
+}
+
+.form {
+	margin: 16px auto 0 auto;
+	padding: 20px;
+	border: 1px solid #eaecef;
 	border-radius: 6px;
-	color: white;
-	margin-top: 115px;
+	background-color:#f6f8fa;
+	width: 266px;
 }
 
-input[type="button"]:hover{
-	background-color: #2ebc4f;
+.login_field {
+	margin: 0;
+	font-size: 12px;
+	font-weight: 400;
+	text-align: left;
+	color: #444d56;
 }
 
-/* 输入框上右侧错误提示信息 */
-.error_tip {
-	display: inline-block;
+.login_field .tip {
 	float: right;
 	color: red;
 }
 
-/* 登陆按钮上侧、输入框下侧的一段文字 */
-.info_tip {
-	line-height: 14px;
-	margin-top: -35px;
-	display: block;
-	color: #6a737d;
+input[type=text],
+input[type=password]{
+	border: 1px solid #eaecef;
+	width: 240px;
+	height: 20px;
+	padding: 5px 12px;
+	margin: 5px 0 15px 0;
+	border-radius: 6px;
+}
+input[type=text]:focus,
+input[type=password]:focus {
+	box-shadow: 0 0 0 3px rgba(3,102,214,.3);
+	border-color:#0366d6;
+	outline: none;
+}
+
+#login_btn {
+	border: 1px solid #2b9148;
+	background-color:#2ea44f;
+	color: #fff;
+	width: 100%;
+	text-align: center;
+	position: relative;
+	display: inline-block;
+	padding: 5px 16px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	cursor: pointer;
+	border-radius: 6px;
+	box-shadow: 0 1px 0 rgba(0,0,0,.1);
+	transition: all 0.4s;
+	outline: none;
+}
+
+#login_btn:hover {
+	background-color: #22863a;
+}
+
+
+.lable {
+	margin: 16px auto 0 auto;
+	padding: 15px 20px;
+	border: 1px solid #d1d5da;
+	border-radius: 6px;
+	width: 266px;
 	font-size: 12px;
+	text-align: center;
+}
+
+.link {
+	margin: 0 auto;
+	width: 306px;
+	font-size: 14px;
+	position: relative;
+	bottom: 0;
+	padding: 40px 0;
+}
+
+.link a {
+	text-decoration: none;
+	color: #0366d6;
+	margin-right: 15px;
+}
+.link a:hover {
+	text-decoration: underline;
 }
