@@ -2,7 +2,10 @@
  * 通过id获取homework信息
  */
 var form;
-var hid = getUrlParam('hid')
+var transfer;
+var hid = getUrlParam('hid');
+var formatData = {};
+var formatDataChecked = [];
 
 function getHomeworkById(hid) {
     let homework;
@@ -23,12 +26,7 @@ function getHomeworkById(hid) {
     })
     return homework;
 }
-// 获取homework 数据
-var homework = getHomeworkById(hid);
-
-$(function () {
-
-    //获取学科列表
+function getCourseList() {
     $.ajax({
         url:'homework/getCourseList.do',
         type:'get',
@@ -42,10 +40,47 @@ $(function () {
             $('#selectCourse').html(html);
         }
     })
+}
+function getFormat() {
+    $.ajax({
+        url:'homework/getFormat.do',
+        type:'get',
+        dataType:'json',
+        async:false,
+        success:function (data){
+            if (!data.success) {
+                return;
+            }
+            formatData=data.data;
+            let i=0;
+            $.each(formatData,function (i,n){
+                if (n.checked=='1') {
+                    formatDataChecked = homework.format.split('');
+                    console.log(formatDataChecked)
+                    i++;
+                }
+            })
+
+        }
+    })
+}
+
+// 获取homework 数据
+var homework = getHomeworkById(hid);
+
+$(function () {
+
+    //获取学科列表
+    getCourseList();
+
+    //获取格式
+    getFormat();
 
     //渲染表格
-    layui.use(['form','laydate'], function(){
+    layui.use(['form','laydate','transfer'], function(){
         form = layui.form;
+        transfer = layui.transfer;
+
         var laydate = layui.laydate;
         laydate.render({
             elem: '#data' //指定元素
@@ -71,7 +106,43 @@ $(function () {
             //如果返回true，就会刷新跳转页面了，所以固定false
             return false;
         });
+
+        //渲染穿梭框
+        transfer.render({
+            elem: '#filePathRule',
+            title: ['提交格式可选参数', '提交格式已选参数'],
+            height:210,
+            data: formatData,
+            value: formatDataChecked,
+            id: 'filePathRule',
+            onchange: function(data, index){
+                let getData = transfer.getData('filePathRule');
+                let format_show = '';
+                let format = '';
+                $.each(getData,function(i,n) {
+                    format_show += n.data;
+                    format += n.value;
+                })
+                $('#format_show').val(format_show)
+                $('#format').val(format)
+            }
+        });
+
+        let getData = transfer.getData('filePathRule');
+        let format_show = '';
+        let format = '';
+        $.each(getData,function(i,n) {
+            format_show += n.data;
+            format += n.value;
+        })
+        $('#format_show').val(format_show)
+        $('#format').val(format)
+
+
+
     });
+
+
 
     //md编辑器渲染
     layui.config({base: 'lib/laymd/'}).use(['laymd'], function(){
@@ -93,7 +164,6 @@ $(function () {
     document.getElementsByName('lastCommitDate')[0].value = homework.lastCommitDate;
     document.getElementsByName('course')[0].value = homework.course;
     document.getElementsByName('briefInfo')[0].value = homework.briefInfo;
-    // document.getElementsByName('detailInfo')[0].value = homework.detailInfo;
 
 })
 

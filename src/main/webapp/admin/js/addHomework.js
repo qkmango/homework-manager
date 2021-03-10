@@ -32,9 +32,40 @@ $(function () {
         }
     })
 
-    layui.use(['form','laydate'], function(){
+
+
+    //获取格式
+    var formatData = {};
+    var formatDataChecked = [];
+    $.ajax({
+        url:'homework/getFormat.do',
+        type:'get',
+        dataType:'json',
+        async:false,
+        success:function (data){
+            if (!data.success) {
+                return;
+            }
+            formatData=data.data;
+
+            let i=0;
+            $.each(formatData,function (i,n){
+                if (n.checked=='1') {
+                    formatDataChecked[i]=n.value;
+                    i++;
+                }
+            })
+
+        }
+    })
+
+
+
+    layui.use(['form','laydate','transfer'], function(){
         var form = layui.form;
         var laydate = layui.laydate;
+        var transfer = layui.transfer;
+
         //执行一个laydate实例
         laydate.render({
             elem: '#data' //指定元素
@@ -59,6 +90,39 @@ $(function () {
             //如果返回true，就会刷新跳转页面了，所以固定false
             return false;
         });
+
+
+        //渲染
+        transfer.render({
+            elem: '#filePathRule',
+            title: ['提交格式可选参数', '提交格式已选参数'],
+            height:210,
+            data: formatData,
+            value: formatDataChecked,
+            id: 'filePathRule',
+            onchange: function(data, index){
+                let getData = transfer.getData('filePathRule');
+                let format_show = '';
+                let format = '';
+                $.each(getData,function(i,n) {
+                    format_show += n.data;
+                    format += n.value;
+                })
+                $('#format_show').val(format_show)
+                $('#format').val(format)
+            }
+        });
+
+        let getData = transfer.getData('filePathRule');
+        let format_show = '';
+        let format = '';
+        $.each(getData,function(i,n) {
+            format_show += n.data;
+            format += n.value;
+        })
+        $('#format_show').val(format_show)
+        $('#format').val(format)
+
     });
 
 })

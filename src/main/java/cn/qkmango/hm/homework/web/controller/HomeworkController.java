@@ -2,10 +2,13 @@ package cn.qkmango.hm.homework.web.controller;
 
 import cn.qkmango.hm.homework.domain.CommitHomework;
 import cn.qkmango.hm.homework.domain.Course;
+import cn.qkmango.hm.homework.domain.Format;
 import cn.qkmango.hm.homework.domain.Homework;
 import cn.qkmango.hm.homework.service.CommitHomeworkService;
+import cn.qkmango.hm.homework.service.FormatService;
 import cn.qkmango.hm.homework.service.HomeworkService;
 import cn.qkmango.hm.homework.service.impl.CommitHomeworkServiceImpl;
+import cn.qkmango.hm.homework.service.impl.FormatServiceImpl;
 import cn.qkmango.hm.homework.service.impl.HomeworkServiceImpl;
 import cn.qkmango.hm.system.domain.User;
 import cn.qkmango.hm.utils.*;
@@ -57,7 +60,23 @@ public class HomeworkController extends HttpServlet {
             addHomework(request,response);
         } else if ("/homework/getHomeworkAndCommitCountPageList.do".equals(path)) {
             getHomeworkAndCommitCountPageList(request,response);
+        } else if ("/homework/getFormat.do".equals(path)) {
+            getFormat(request,response);
         }
+    }
+
+    private void getFormat(HttpServletRequest request, HttpServletResponse response) {
+        FormatService fs = (FormatService) ServiceFactory.getService(new FormatServiceImpl());
+
+        List<Format> list = fs.getFormat();
+
+        RespMap<Object> resultMap = new RespMap<>();
+        resultMap.putSuccess(true);
+        resultMap.putData(list);
+
+        PrintJson.printJsonObj(response,resultMap);
+
+
     }
 
 
@@ -107,6 +126,7 @@ public class HomeworkController extends HttpServlet {
         homework.setLastCommitDate(request.getParameter("lastCommitDate"));
         homework.setBriefInfo(request.getParameter("briefInfo"));
         homework.setDetailInfo(request.getParameter("detailInfo"));
+        homework.setFormat(request.getParameter("format"));
 
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
 
@@ -266,6 +286,7 @@ public class HomeworkController extends HttpServlet {
         homework.setCreateDate(DateTimeUtil.getSysDate());
         homework.setBriefInfo(request.getParameter("briefInfo"));
         homework.setDetailInfo(request.getParameter("detailInfo"));
+        homework.setFormat(request.getParameter("format"));
 
         HomeworkService hs = (HomeworkService) ServiceFactory.getService(new HomeworkServiceImpl());
 

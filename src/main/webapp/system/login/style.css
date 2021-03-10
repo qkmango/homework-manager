@@ -114,7 +114,7 @@ input[type=password]:focus {
 .link a {
 	text-decoration: none;
 	color: #0366d6;
-	margin-right: 15px;
+	margin-left: 15px;
 }
 .link a:hover {
 	text-decoration: underline;

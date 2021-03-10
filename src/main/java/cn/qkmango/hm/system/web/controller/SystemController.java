@@ -59,7 +59,6 @@ public class SystemController extends HttpServlet {
     private void getUserinfo(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession(false);
-        // Map<String, Object> map = new HashMap<>();
         RespMap<Object> map = new RespMap<>();
 
         if (session != null) {

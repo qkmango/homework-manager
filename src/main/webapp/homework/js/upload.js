@@ -12,8 +12,14 @@ $(function () {
 	var hid = getUrlParam('hid');
 	var course = getUrlParam('course');
 	var title = getUrlParam('title');
+	var format = getUrlParam('format');
+
+	console.log(format)
 
 	var ossConfig;
+
+	//文件提交格式
+	var formatData = {};
 
 
 	//如果从url中获取hid失败，则返回作业列表页面
@@ -60,12 +66,13 @@ $(function () {
 				user = data.user;
 			} else {
 				window.parent.cocoMessage.error(2000, data.msg,function () {
-					window.location.href='../../system/login2/login.html'
+					window.location.href='system/login/login.html'
 				})
 
 			}
 		}
 	})
+
 
 
 	uploadOSS({
@@ -76,10 +83,37 @@ $(function () {
 		"$suspendBtn":$suspendBtn,
 		"course":course,
 		"hid":hid,
+		"title":title,
 		"user":user,
+		"format":format,
 		"getFilePath":function (innerConf) {
 			//这个innerConfig其实就是调用uploadOSS函数传入的此json，再加入了一个fileType而已
-			return innerConf.course+'/'+innerConf.hid+'/'+innerConf.user.id+'.'+innerConf.fileType;
+
+
+			let uid 		= innerConf.user.id;
+			let lastUid 	= innerConf.user.id.substring(uid.length-2);
+			let realName 	= innerConf.user.realName;
+
+			let formats = innerConf.format.split('');
+
+			let fileName = '';
+			console.log(formats)
+
+
+
+			$.each(formats,function (i,n){
+				switch (n) {
+					case '0':fileName+=lastUid;break;
+					case '1':fileName+=uid;break;
+					case '2':fileName+=realName;break;
+					case '3':fileName+="_";break;
+					case '4':fileName+=innerConf.title;break;
+				}
+				console.log(fileName)
+			})
+
+			console.log(fileName)
+			return innerConf.course+'/'+innerConf.hid+'/'+fileName+'.'+innerConf.fileType;
 		},
 		"changeProgressCallback":function (p) {
 			element.progress('uploadProgress', (p*100).toFixed(2)+'%');

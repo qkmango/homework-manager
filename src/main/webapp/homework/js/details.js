@@ -26,11 +26,6 @@ function deleteCommitHomework(){
                 window.parent.cocoMessage.error(2000, data.msg);
             }
         }
-        // ,
-        // error:function () {
-        //     window.parent.cocoMessage.destroyAll();
-        //     window.parent.cocoMessage.error(2000, "服务器请求失败！");
-        // }
     })
 
 }
@@ -38,7 +33,7 @@ function deleteCommitHomework(){
 $(function () {
     if (hid==null) {
         window.parent.cocoMessage.error(2000, "获取作业id失败！",function (){
-            window.location.href='/hm/homework/homework.html';
+            window.location.href='homework/homework.html';
         });
     }
 
@@ -70,7 +65,7 @@ $(function () {
                     document.getElementById("content").innerHTML=marked(homework.detailInfo);
                 } else {
                     window.parent.cocoMessage.error(2000, data.msg,function (){
-                        window.location.href='/hm/homework/homework.html';
+                        window.location.href='homework/homework.html';
                     });
                 }
             }
@@ -102,7 +97,7 @@ $(function () {
                 if (data.success) {
                     $('#btn-box').html('<a class="layui-btn layui-btn-danger layui-layout-right" onclick="deleteCommitHomework()"><i class="layui-icon">&#x1006;</i>撤销提交</a>')
                 } else {
-                    $('#btn-box').html('<a href="homework/upload.html?hid='+homework.id+'&course='+homework.course+'&title='+homework.title+'" class="layui-btn layui-layout-right"><i class="layui-icon">&#xe681;</i>去提交</a>')
+                    $('#btn-box').html('<a href="homework/upload.html?hid='+homework.id+'&course='+homework.course+'&title='+homework.title+'&format='+homework.format+'" class="layui-btn layui-layout-right"><i class="layui-icon">&#xe681;</i>去提交</a>')
                 }
             },
             error:function () {

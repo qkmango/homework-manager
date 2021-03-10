@@ -37,7 +37,8 @@
             course=#{course},
             lastCommitDate=#{lastCommitDate},
             briefInfo=#{briefInfo},
-            detailInfo=#{detailInfo}
+            detailInfo=#{detailInfo},
+            format=#{format}
         WHERE id=#{id}
     </update>
 
@@ -50,7 +51,8 @@
             lastCommitDate,
             createDate,
             briefInfo,
-            detailInfo
+            detailInfo,
+            format
         from homework
         where id=#{id};
     </select>
@@ -109,7 +111,8 @@
             h.lastCommitDate,
             h.createDate,
             h.briefInfo,
-            h.detailInfo
+            h.detailInfo,
+            h.format
         from homework h
         join course c
         on h.course=c.id
@@ -123,7 +126,8 @@
             lastCommitDate,
             createDate,
             briefInfo,
-            detailInfo
+            detailInfo,
+            format
         )
         values (
            #{title},
@@ -131,7 +135,8 @@
            #{lastCommitDate},
            #{createDate},
            #{briefInfo},
-           #{detailInfo}
+           #{detailInfo},
+           #{format}
         )
     </insert>
 

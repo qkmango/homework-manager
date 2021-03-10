@@ -15,6 +15,7 @@ public class Homework {
     private String createDate;      //创建日期
     private String briefInfo;       //简略信息
     private String detailInfo;      //详细信息
+    private String format;          //作业提交格式
 
     public String getId() {
         return id;
@@ -72,6 +73,14 @@ public class Homework {
         this.detailInfo = detailInfo;
     }
 
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
     @Override
     public String toString() {
         return "Homework{" +
@@ -82,6 +91,7 @@ public class Homework {
                 ", createDate='" + createDate + '\'' +
                 ", briefInfo='" + briefInfo + '\'' +
                 ", detailInfo='" + detailInfo + '\'' +
+                ", format='" + format + '\'' +
                 '}';
     }
 }
