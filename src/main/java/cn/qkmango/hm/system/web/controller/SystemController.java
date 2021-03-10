@@ -61,7 +61,6 @@ public class SystemController extends HttpServlet {
         map.put("id",id);
 
         UserService us = (UserService) ServiceFactory.getService(new UserServiceImpl());
-        // UserService us = new UserServiceImpl();
 
         RespMap<Object> resultMap = new RespMap<>();
 

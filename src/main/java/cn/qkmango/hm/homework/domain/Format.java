@@ -2,9 +2,8 @@ package cn.qkmango.hm.homework.domain;
 
 /**
  * @version 1.0
- * @Description: //TODO
- * <p>类简介</p>
- * <p>类详细介绍</p>
+ * <p>Format</p>
+ * <p>格式化 表对象，代表文件上传是文件名的命名规范</p>
  * @className Format
  * @author: Mango
  * @date: 2021-03-10 11:31
