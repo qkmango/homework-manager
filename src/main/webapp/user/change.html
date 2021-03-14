@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <base href="/hm/">
 <link rel="stylesheet" href="lib/layui/css/layui.css" />
+<link rel="stylesheet" href="user/style.css" />
 <script src="lib/layui/layui.js"></script>
 <script src="lib/jquery-3.5.1.js"></script>
 </head>
@@ -11,11 +12,13 @@
 <form class="layui-form layui-form-pane" action="">
 
 
+    <blockquote class="layui-elem-quote">需要修改的信息输入即可，无需修改的地方无需输入！</blockquote>
+
     <div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">用户ID</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" disabled value="1932101149">
+                <input type="text" class="layui-input" disabled value="">
             </div>
             <div class="layui-form-mid layui-word-aux">用户的唯一身份标识，不予更改</div>
         </div>
@@ -24,7 +27,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">真实姓名</label>
         <div class="layui-input-inline">
-            <input type="text" name="realname" placeholder="请输入" autocomplete="off" class="layui-input">
+            <input type="text" name="realname" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-form-mid layui-word-aux" id="realname-tip">用于展示</div>
     </div>
@@ -32,7 +35,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">用户名</label>
         <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="check" placeholder="请输入" autocomplete="off" class="layui-input">
+            <input type="text" name="username" lay-verify="check" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-form-mid layui-word-aux" id="username-tip">用户登陆系统使用</div>
     </div>
@@ -40,7 +43,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-inline">
-            <input type="text" name="password" lay-verify="check" placeholder="请输入" autocomplete="off" class="layui-input">
+            <input type="text" name="password" lay-verify="check" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-form-mid layui-word-aux">用户登陆系统使用</div>
     </div>
