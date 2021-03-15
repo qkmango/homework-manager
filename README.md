@@ -66,17 +66,40 @@
 创建一个新的数据库，项目中数据库名为homework_manager，运行以下SQL，可以创建相应的表
 
 ````sql
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50562
+ Source Host           : localhost:3306
+ Source Schema         : homework_manager
+
+ Target Server Type    : MySQL
+ Target Server Version : 50562
+ File Encoding         : 65001
+
+ Date: 11/03/2021 20:29:58
+*/
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
+-- ----------------------------
+-- Table structure for commit_homework
+-- ----------------------------
 DROP TABLE IF EXISTS `commit_homework`;
 CREATE TABLE `commit_homework`  (
   `uid` int(11) NOT NULL COMMENT '完成者id（user.id）',
   `hid` int(11) NOT NULL COMMENT '完成的作业id（homework.id）',
   `filepath` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '作业文件的链接',
+  `datetime` char(19) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '提交时间',
   PRIMARY KEY (`uid`, `hid`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
+-- ----------------------------
+-- Table structure for course
+-- ----------------------------
 DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course`  (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '科目id',
@@ -84,6 +107,21 @@ CREATE TABLE `course`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 20005 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
+-- ----------------------------
+-- Table structure for format
+-- ----------------------------
+DROP TABLE IF EXISTS `format`;
+CREATE TABLE `format`  (
+  `value` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `checked` int(10) UNSIGNED NOT NULL COMMENT '是否默认选中',
+  `data` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '要展示的数据（格式）',
+  PRIMARY KEY (`value`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for homework
+-- ----------------------------
 DROP TABLE IF EXISTS `homework`;
 CREATE TABLE `homework`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -93,19 +131,29 @@ CREATE TABLE `homework`  (
   `createDate` char(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `briefInfo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `detailInfo` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `format` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '提交的文件名格式',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 30040 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 30019 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `username` char(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名（唯一）',
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id，唯一标识符，（不用来登陆使用）',
+  `username` char(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名，用于登陆系统的账户（唯一）',
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
   `realname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '真实名',
-  `power` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0',
+  `power` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '权限，0为普通用户权限，1为管理员权限',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 100002 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1932101152 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- View structure for v_commit_count
+-- ----------------------------
+DROP VIEW IF EXISTS `v_commit_count`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_commit_count` AS select count(0) AS `count`,`commit_homework`.`hid` AS `hid` from `commit_homework` group by `commit_homework`.`hid`;
 
 SET FOREIGN_KEY_CHECKS = 1;
 ````
@@ -129,14 +177,14 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 将项目编译为war包后，放在Tomcat的webapps目录中，**并将war包重命名为 hm.war**
 
-**项目的上下路径是hm**
+**项目的上下路径是hm**，所有的HTML页面都是基于路径 `<base href="/hm/">`
 
 
 
 ## 功能开发
 
-- [x] 基本的功能（作业的发布、删除，提交、撤销等基本供）
-- [x] 普通用户、管理员 权限的管理（不同权限有着不同的功能，只有管理员才能发布修改删除作业，管理员权限包含不同用户权限）
+- [x] 普通用户基本功能：作业的查询、提交、撤销，用户信息的修改 等基本功能
+- [x] 管理员基本功能：作业的发布、修改、删除 功能
 - [x] 主页数据可视化开发
 
 ## 色彩
@@ -146,7 +194,6 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 <div style="background-color:#5FB878;color:white">#5FB878 rgb(95,184,120) 文字颜色（左侧上 退出）</div>
 <div style="background-color:#2ebc4f;color:white">#2ebc4f rgb(46,188,79) 登陆页按钮鼠标悬浮色</div>
-
 
 <div style="background-color:#58a6fd;color:black">#58a6fd rgb(88,166,253) 标题文字</div>
 <div style="background-color:#01AAED;color:black">#01AAED rgb(1,170,237) 小字</div>
