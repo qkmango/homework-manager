@@ -257,7 +257,7 @@ function RenderCourseHomeworkProportion() {
             };
 
             if (option && typeof option === 'object') {
-                myChart.setOption(option);
+                RCHP_Chart.setOption(option);
             }
         }
     })
