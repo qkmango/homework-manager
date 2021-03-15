@@ -18,4 +18,6 @@ public interface VisualizationDao {
     List<Map<String, Object>> getCommitDynamic();
 
     List<HashMap<String, String>> getHeatmap(HashMap<String, String> map);
+
+    List<HashMap<String, Integer>> getCourseHomeworkProportion();
 }

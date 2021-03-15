@@ -9,7 +9,7 @@
 <script src="lib/jquery-3.5.1.js"></script>
 </head>
 <body>
-<form class="layui-form layui-form-pane" action="">
+<form class="layui-form layui-form-pane">
 
 
     <blockquote class="layui-elem-quote">需要修改的信息输入即可，无需修改的地方无需输入！</blockquote>
@@ -18,7 +18,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">用户ID</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" disabled value="">
+                <input type="text" class="layui-input" id="uid" disabled>
             </div>
             <div class="layui-form-mid layui-word-aux">用户的唯一身份标识，不予更改</div>
         </div>
@@ -62,6 +62,7 @@
         dataType:'json',
         success:function (data) {
             if (data.success) {
+                $('#uid').val(data.user.id);
                 $('#realname-tip').text('用于展示，当前姓名：'+data.user.realName);
                 $('#username-tip').text('用于系统登陆使用，当前用户名：'+data.user.username);
             } else {

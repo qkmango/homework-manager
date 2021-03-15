@@ -62,4 +62,14 @@ public class VisualizationServiceImpl implements VisualizationService {
 
         return list;
     }
+
+    /**
+     * 获取各科作业布置的数量占比
+     */
+    @Override
+    public List<HashMap<String, Integer>> getCourseHomeworkProportion() {
+        List<HashMap<String, Integer>> list = visualizationDao.getCourseHomeworkProportion();
+
+        return list;
+    }
 }

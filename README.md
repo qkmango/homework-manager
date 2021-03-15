@@ -141,9 +141,8 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 ## 色彩
 <div style="background-color:#e9e9e9;color:black">#e9e9e9 rgb(233,233,233) 网页背景灰</div>
-
-<div style="background-color:#0d1117;color:white">#0d1117 rgb(13,17,23) 左侧导航背景</div>
 <div style="background-color:#30363d;color:white">#30363d rgb(48,54,61) 左侧导航选中背景</div>
+<div style="background-color:#0d1117;color:white">#0d1117 rgb(13,17,23) 左侧导航背景</div>
 
 <div style="background-color:#5FB878;color:white">#5FB878 rgb(95,184,120) 文字颜色（左侧上 退出）</div>
 <div style="background-color:#2ebc4f;color:white">#2ebc4f rgb(46,188,79) 登陆页按钮鼠标悬浮色</div>

@@ -3,6 +3,14 @@
 
 <mapper namespace="cn.qkmango.hm.visualization.dao.VisualizationDao">
 
+
+    <select id="getCourseHomeworkProportion" resultType="map">
+        SELECT c.name,count(h.id) value from course c
+        LEFT JOIN homework h
+            ON c.id=h.course
+        GROUP BY h.course;
+    </select>
+
     <select id="getHeatmap" resultType="hashmap">
         SELECT
             count(*) value,
@@ -26,7 +34,7 @@
     </select>
 
     <select id="getRecentCommitCount" resultType="hashmap">
-        SELECT h.id,c.name course,IFNULL(vcc.count,0) count
+        SELECT h.id,c.name course,h.title,IFNULL(vcc.count,0) count
         FROM (SELECT id,title,course FROM (SELECT id,title,course FROM homework ORDER BY id DESC) h GROUP BY course) h
         LEFT JOIN v_commit_count vcc
             ON h.id=vcc.hid

@@ -88,6 +88,7 @@
     <url-pattern>/visualization/getRecentCommitCount.do</url-pattern>
     <url-pattern>/visualization/getCommitDynamic.do</url-pattern>
     <url-pattern>/visualization/getHeatmap.do</url-pattern>
+    <url-pattern>/visualization/getCourseHomeworkProportion.do</url-pattern>
   </servlet-mapping>
 
 

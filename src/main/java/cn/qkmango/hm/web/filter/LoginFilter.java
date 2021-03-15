@@ -37,6 +37,7 @@ public class LoginFilter implements Filter {
             "/visualization/getRecentCommitCount.do".equals(path)||
             "/visualization/getCommitDynamic.do".equals(path)||
             "/visualization/getHeatmap.do".equals(path)||
+            "/visualization/getCourseHomeworkProportion.do".equals(path)||
             "/homework/getHomeworkById.do".equals(path)) {
             chain.doFilter(req,resp);
         } else if (request.getSession(false)!= null) {

@@ -2,6 +2,7 @@ $(function () {
     RenderRecentCommitCount();
     RenderCommitDynamic();
     RenderHeatmap();
+    RenderCourseHomeworkProportion();
 })
 
 /**
@@ -41,26 +42,41 @@ function RenderRecentCommitCount() {
                         shadowStyle:{color:'rgba(0, 0, 0, 0.2)'}
                     }
                 },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        mark: {show: true},
+                        dataView: {show: true, readOnly: false},
+                        restore: {show: true},
+                        saveAsImage: {show: true}
+                    }
+                },
                 dataset: {
-                    source: data.data
+                    source: data.data,
+                    sourceHeader:false
                 },
                 grid: {
                     containLabel: true,
                     left: '10px',
                     right:'50px'
                 },
-                xAxis: {name: 'count'},
+                xAxis: {name:'count',type:'value',max:data.count},
                 yAxis: {
                     type:'category',
-                    axisTick:{ show: false },
-                    axisLine:{show:false}
+                    axisTick:{show:false},
+                    axisLine:{show:false},
+                    axisLabel:{
+                        formatter: function (value, index) {
+                            return value+'\n'+data.data[index]['title'];
+                        }
+                    }
                 },
                 visualMap: {
                     orient: 'horizontal',
                     left: 'center',
                     min: 0,
                     max: data.count,
-                    text: ['High Score', 'Low Score'],
+                    text: ['High', 'Low'],
                     dimension: 0,
                     inRange: {
                         color: ['#65B581', '#FFCE34', '#FD665F']
@@ -191,4 +207,62 @@ function RenderHeatmap() {
     })
 
 
+}
+
+/**
+ * 各学科布置的作业数量占比
+ * @constructor
+ */
+function RenderCourseHomeworkProportion() {
+    $.ajax({
+        url:'visualization/getCourseHomeworkProportion.do',
+        type:'get',
+        dataType:'json',
+        success:function (data) {
+            if (!data) {
+                return;
+            }
+
+            var dom = document.getElementById("container");
+            var RCHP_Chart = echarts.init(dom);
+            var app = {};
+            var option
+
+            option = {
+                legend: {
+                    top: 'bottom'
+                },
+                title: {
+                    left: 'center',
+                    text: '各学科作业数量占比',
+                    textStyle:{
+                        color:'#58a6fd',
+                        fontSize:'16px'
+                    }
+                },
+                toolbox: {
+                },
+                series: [{
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    center: ['50%', '50%'],
+                    emphasis: {
+                        label: {
+                            show: true,
+                            fontWeight: 'bold'
+                        }
+                    },
+                    data: data.data,
+                }]
+            };
+
+            if (option && typeof option === 'object') {
+                myChart.setOption(option);
+            }
+        }
+    })
+
+    window.addEventListener('resize',function() {
+        RCHP_Chart.resize();
+    })
 }

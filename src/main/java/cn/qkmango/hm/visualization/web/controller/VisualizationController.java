@@ -35,8 +35,23 @@ public class VisualizationController extends HttpServlet {
             getCommitDynamic(request,response);
         } else if ("/visualization/getHeatmap.do".equals(path)) {
             getHeatmap(request,response);
+        } else if ("/visualization/getCourseHomeworkProportion.do".equals(path)) {
+            getCourseHomeworkProportion(request,response);
         }
     }
+
+    private void getCourseHomeworkProportion(HttpServletRequest request, HttpServletResponse response) {
+
+        VisualizationService vs = (VisualizationService) ServiceFactory.getService(new VisualizationServiceImpl());
+        List<HashMap<String, Integer>> list = vs.getCourseHomeworkProportion();
+
+        RespMap<Object> respMap = new RespMap<>();
+        respMap.putData(list);
+        respMap.putSuccess(true);
+
+        PrintJson.printJsonObj(response,respMap);
+    }
+
 
     private void getHeatmap(HttpServletRequest request, HttpServletResponse response) {
         VisualizationService vs = (VisualizationService) ServiceFactory.getService(new VisualizationServiceImpl());

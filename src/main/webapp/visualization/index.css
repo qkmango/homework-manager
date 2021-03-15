@@ -25,18 +25,6 @@ div,ul,table{
     padding: 5px;
 }
 
-/*.layui-table-cell{*/
-/*    height:18px;*/
-/*    line-height: 18px;*/
-/*}*/
-
-/*#commit_dynamic{*/
-/*    color: #393D49;*/
-/*    font-size: 12px;*/
-/*    line-height: 1.85;*/
-/*    text-align: center;*/
-/*}*/
-
 #commit_dynamic{
     overflow: auto;
 }
