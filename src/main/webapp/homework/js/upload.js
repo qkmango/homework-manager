@@ -1,5 +1,18 @@
 $(function () {
 
+	window.parent.NProgress.done();
+
+	//撒花
+	function sh() {
+		$('#restartConfetti').click()
+		function sleep(ms, callback) {
+			setTimeout(callback, ms)
+		}
+		sleep(5000, () => {
+			$('#stopConfetti').click()
+		})
+	}
+
 	var $inputFile = $('#inputFile');
 	var $startBtn = $("#startBtn");
 	var $resetBtn = $("#resetBtn");
