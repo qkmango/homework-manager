@@ -72,19 +72,10 @@ a {
     width:8px;
     height:10px;
 }
-#visualization_main ::-webkit-scrollbar-track{
-    /*background: rgb(239, 239, 239);*/
-    /*border-radius:2px;*/
-}
 #visualization_main ::-webkit-scrollbar-thumb{
     background: #e2e2e2;
     border-radius:4px;
 }
 #visualization_main ::-webkit-scrollbar-thumb:hover{
-    /*background: #333;*/
     background-color: rgb(95, 184, 120);
 }
-/*#visualization_main ::-webkit-scrollbar-corner{*/
-/*    background: #179a16;*/
-/*}*/
-

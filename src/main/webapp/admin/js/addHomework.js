@@ -1,3 +1,5 @@
+var step = new window.parent.Step(window.parent.NProgress,2);
+
 $(function () {
 
     layui.config({base: 'lib/laymd/'}).use(['laymd'], function(){
@@ -24,6 +26,7 @@ $(function () {
         dataType:'json',
         async:false,
         success:function (data){
+            step.stepping();
             let html = '<option></option>';
             $.each(data,function (i,n) {
                 html += '<option value="'+n.id+'">'+n.name+'</option>'
@@ -43,6 +46,7 @@ $(function () {
         dataType:'json',
         async:false,
         success:function (data){
+            step.stepping();
             if (!data.success) {
                 return;
             }

@@ -1,3 +1,5 @@
+var step = new window.parent.Step(window.parent.NProgress, 2);
+
 let hid = getUrlParam('hid');
 let homework;
 
@@ -53,6 +55,7 @@ $(function () {
             type:'get',
             dataType:'json',
             success:function(data){
+                step.stepping();
                 //{"homework":{"id":"10001","title":"Java实验报告一","course":"Java","deadline":"2021-03-06","briefInfo":"简略","detailInfo":"# Java实验报告一\nhhhh\n\n尽快完成"},"success":true}
                 if (data.success) {
                     homework = data.homework;
@@ -80,6 +83,7 @@ $(function () {
     function getHomeworkIsCommit(homework) {
         //判断权限 power=admin（管理员权限）,则没有 提交/撤销提交 按钮
         if (getUrlParam('power')=='admin') {
+            step.NProgress.done();
             return;
         }
         $.ajax({
@@ -88,6 +92,7 @@ $(function () {
             type:'get',
             dataType:'json',
             success:function(data){
+                step.stepping();
                 if (data.success) {
                     $('#btn-box').html('<a class="layui-btn layui-btn-danger layui-layout-right" onclick="deleteCommitHomework()"><i class="layui-icon">&#x1006;</i>撤销提交</a>')
                 } else {

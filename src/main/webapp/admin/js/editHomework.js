@@ -1,3 +1,5 @@
+var step = new window.parent.Step(window.parent.NProgress,3);
+
 /**
  * 通过id获取homework信息
  */
@@ -16,6 +18,7 @@ function getHomeworkById(hid) {
         type:'get',
         dataType:'json',
         success:function(data){
+            step.stepping();
             //{"homework":{"id":"10001","title":"Java实验报告一","course":"Java","deadline":"2021-03-06","briefInfo":"简略","detailInfo":"# Java实验报告一\nhhhh\n\n尽快完成"},"success":true}
             if (data.success) {
                 homework = data.homework;
@@ -33,6 +36,7 @@ function getCourseList() {
         dataType:'json',
         async:false,
         success:function (data){
+            step.stepping();
             let html = '<option></option>';
             $.each(data,function (i,n) {
                 html += '<option value="'+n.id+'">'+n.name+'</option>'
@@ -48,6 +52,7 @@ function getFormat() {
         dataType:'json',
         async:false,
         success:function (data){
+            step.stepping();
             if (!data.success) {
                 return;
             }
@@ -56,7 +61,6 @@ function getFormat() {
             $.each(formatData,function (i,n){
                 if (n.checked=='1') {
                     formatDataChecked = homework.format.split('');
-                    console.log(formatDataChecked)
                     i++;
                 }
             })

@@ -1,9 +1,12 @@
+var step = new window.parent.Step(window.parent.NProgress,2);
+
 $.ajax({
     url:'homework/getCourseList.do',
     type:'get',
     dataType:'json',
     async:false,
     success:function (data){
+        step.stepping();
         let html = '<option value="0">全部</option>';
         $.each(data,function (i,n) {
             html += '<option value="'+n.id+'">'+n.name+'</option>'
@@ -35,12 +38,17 @@ layui.use('table', function(){
             ,{field: 'count', title: '提交人数'}
             ,{toolbar: '#bar',title: '操作',width:'160'}
         ]]
+        ,done:function () {
+            step.stepping();
+        }
     });
+
 
     //监听工具条（右侧 查看、编辑、删除）
     table.on('tool(homeworkPage)', function(obj){
         var data = obj.data;
         if(obj.event === 'detail'){
+            window.parent.NProgress.start();
             layer.msg('ID：'+ data.id + ' 的查看操作');
             window.location.href="homework/details.html?power=admin&hid="+data.id;
         }
@@ -71,7 +79,7 @@ layui.use('table', function(){
             });
         }
         else if(obj.event === 'edit'){
-            // layer.alert('编辑行：<br>'+ JSON.stringify(data))
+            window.parent.NProgress.start();
             window.location.href="admin/editHomework.html?power=admin&hid="+data.id;
         }
     });

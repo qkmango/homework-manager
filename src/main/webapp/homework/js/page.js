@@ -63,7 +63,7 @@ function getHomeworkPageList(){
         type:'post',
         dataType:'json',
         success:function(data){
-
+            step.stepping();
             if (!data.success) {
                 window.parent.cocoMessage.error(2000,data.msg);
                 return;
@@ -90,7 +90,7 @@ function getHomeworkPageList(){
                 html += '<div class="layui-card-header '+color+'">'+n.course;
                 html += '<span class="layui-layout-right">'+n.createDate;
                 html += '<i class="layui-icon">&#xe642;</i>';
-                html += '<a href="/hm/homework/details.html?hid='+n.id+'">详情</a>';
+                html += '<a href="/hm/homework/details.html?hid='+n.id+'" onclick="window.parent.NProgress.start()">详情</a>';
                 html +=	'</span></div><div class="layui-card-body"><p>';
                 html += '<span>'+n.title+'</span>';
                 html += '<span class="layui-layout-right">最后提交日期:'+n.lastCommitDate+'</span>';

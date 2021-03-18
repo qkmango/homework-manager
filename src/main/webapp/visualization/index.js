@@ -5,6 +5,9 @@ $(function () {
     RenderCourseHomeworkProportion();
 })
 
+
+var step = new window.parent.Step(window.parent.NProgress,4);
+
 /**
  * 渲染 各学科最近一次作业提交人数
  * @constructor
@@ -22,10 +25,11 @@ function RenderRecentCommitCount() {
         type:'get',
         dataType:'json',
         success:function (data) {
+            step.stepping();
+
             if (!data.success) {
                 return;
             }
-
             option = {
                 title: {
                     left: 'center',
@@ -124,6 +128,7 @@ function RenderCommitDynamic() {
         type:'get',
         dataType:'json',
         success:function (data) {
+            step.stepping();
             if (!data.success) {
                 return;
             }
@@ -171,7 +176,7 @@ function RenderHeatmap() {
         type:'get',
         dataType:'json',
         success:function(data) {
-
+            step.stepping();
             if (!data.success) {
                 return;
             }
@@ -219,6 +224,7 @@ function RenderCourseHomeworkProportion() {
         type:'get',
         dataType:'json',
         success:function (data) {
+            step.stepping();
             if (!data) {
                 return;
             }
@@ -241,6 +247,13 @@ function RenderCourseHomeworkProportion() {
                     }
                 },
                 toolbox: {
+                    show: true,
+                    feature: {
+                        mark: {show: true},
+                        dataView: {show: true, readOnly: false},
+                        restore: {show: true},
+                        saveAsImage: {show: true}
+                    }
                 },
                 series: [{
                     type: 'pie',
